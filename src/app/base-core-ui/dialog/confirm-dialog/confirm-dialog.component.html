@@ -1,0 +1,20 @@
+<!-- Vertically centered modal -->
+<div class="modal-dialog modal-dialog-centered">
+  <span class="fs-4 fw-bold">{{ data.title | translate }}</span>
+</div>
+<hr />
+<!-- Vertically centered scrollable modal -->
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="d-flex align-items-center">
+    <mat-icon color="primary">warning</mat-icon>
+    <span class="px-2 fs-5">{{ data.content | translate }}</span>
+  </div>
+</div>
+<div class="text-end mt-3 w-100">
+  <button mat-button mat-dialog-close (click)="setFalse()">
+    {{ 'cancel' | translate }}
+  </button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="setTrue()">
+    {{ 'ok' | translate }}
+  </button>
+</div>

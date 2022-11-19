@@ -1,0 +1,86 @@
+<div class="nav navbar mt-4 mb-5 mx-3 d-block">
+  <p class="fs-3 float-start text-primary">
+    {{ 'user.list-customer' | translate }}
+  </p>
+</div>
+<div class="container-fluid">
+  <div>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'regDate' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.createdAt | date: 'dd/MM/yyyy' }}
+        </td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="full_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'user.username' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="text-capitalize">{{ element.full_name }}</div>
+        </td>
+      </ng-container>
+
+      <!-- email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'user.email' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <!-- phone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'user.phone-number' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+      </ng-container>
+
+      <!-- role Column -->
+      <ng-container matColumnDef="rolename">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'user.role' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.rolename }}
+        </td>
+      </ng-container>
+
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button title="{{ 'view' | translate }}" mat-icon-button>
+            <mat-icon>launch</mat-icon>
+          </button>
+          <button
+            (click)="confirmDialog(element.id)"
+            title="{{ 'delete' | translate }}"
+            mat-icon-button
+          >
+            <mat-icon class="text-danger">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      #paginator
+      [length]="PageInfo.total ? PageInfo.total : 100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+    ></mat-paginator>
+  </div>
+</div>

@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/variables.scss';
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+a {
+  text-decoration: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#root {
+  width: 100vw;
+  max-width: 100%;
+}
+
+* ::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+  background-color: #ffffff;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  background-color: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  /* border-radius   : 50px; */
+  background-color: #aaafb6;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

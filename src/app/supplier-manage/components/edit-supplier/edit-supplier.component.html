@@ -1,0 +1,217 @@
+<div class="container mt-4 d-flex">
+  <mat-button
+    class="btn border-0 circle"
+    matRipple
+    [matRippleCentered]="true"
+    routerLink="/supplier"
+  >
+    <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+      keyboard_backspace
+    </mat-icon>
+  </mat-button>
+  <p class="text-primary fs-3 px-3 mt-3">
+    {{ 'user.create-supplier' | translate }}
+  </p>
+</div>
+<div class="container bg-white shadow px-3">
+  <div class="w-100 px-1 pt-5 pb-4 mx-auto">
+    <form class="form-card" id="formSupplier" #formSupplier="ngForm">
+      <div class="row justify-content-between text-left">
+        <!-- name -->
+        <div class="form-group col-sm-6 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'user.supplier' | translate }}
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            class="text-capitalize"
+            [ngModel]="SupplierInfo?.name"
+            #name="ngModel"
+            name="name"
+            placeholder="{{ 'placeholder.input-sup-name' | translate }}"
+            type="text"
+            required
+          />
+          <small
+            id="nameHid"
+            class="form-text mx-3 text-muted"
+            *ngIf="!name?.valid && (name?.dirty || name?.touched)"
+          >
+            {{ 'notification.invalid-supplier-name' | translate }}
+          </small>
+        </div>
+        <!-- phone -->
+        <div class="form-group col-sm-6 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'user.phone-number' | translate }}
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            [ngModel]="SupplierInfo?.phone_number"
+            #phone_number="ngModel"
+            name="phone_number"
+            placeholder="{{ 'placeholder.input-phone' | translate }}"
+            type="text"
+            required
+          />
+          <small
+            id="phoneHid"
+            class="form-text mx-3 text-muted"
+            *ngIf="
+              !phone_number?.valid &&
+              (phone_number?.dirty || phone_number?.touched)
+            "
+          >
+            {{ 'notification.invalid-phone' | translate }}
+          </small>
+        </div>
+      </div>
+      <!-- description -->
+      <div class="row justify-content-between text-left">
+        <div class="form-group col-12 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'user.description' | translate }}
+          </label>
+          <textarea
+            [ngModel]="SupplierInfo?.description"
+            #description="ngModel"
+            name="description"
+            placeholder="{{ 'placeholder.input-des' | translate }}"
+            type="text"
+            rows="4"
+          ></textarea>
+        </div>
+      </div>
+      <!-- combobox -->
+      <div class="row justify-content-between text-left">
+        <!-- province -->
+        <div class="form-group col-sm-4 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'user.province' | translate }}
+            <span class="text-danger">*</span>
+          </label>
+
+          <select
+            class="text-capitalize"
+            #province_id="ngModel"
+            [ngModel]="SupplierInfo?.province_id"
+            name="province_id"
+            id="province_id"
+            (ngModelChange)="getDistrict($event)"
+          >
+            <option hidden value="" disabled selected>
+              {{ 'placeholder.choose-province' | translate }}
+            </option>
+            <option *ngFor="let item of province" [value]="item.id">
+              {{ item.name }}
+            </option>
+          </select>
+          <small
+            id="provinceHid"
+            class="form-text mx-3 text-muted"
+            *ngIf="
+              !province_id?.valid &&
+              (province_id?.dirty || province_id?.touched)
+            "
+          >
+            {{ 'notification.invalid-province' | translate }}
+          </small>
+        </div>
+        <!-- district -->
+        <div class="form-group col-sm-4 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'user.district' | translate }}
+            <span class="text-danger">*</span>
+          </label>
+
+          <select
+            [ngModel]="SupplierInfo?.district_id"
+            class="text-capitalize"
+            #district_id="ngModel"
+            name="district_id"
+            id="district_id"
+            (ngModelChange)="getWard($event)"
+          >
+            <option hidden value="" disabled selected>
+              {{ 'placeholder.choose-district' | translate }}
+            </option>
+            <option *ngFor="let item of district" [value]="item.id">
+              {{ item.name }}
+            </option>
+          </select>
+          <small
+            id="district_idHid"
+            class="form-text mx-3 text-muted"
+            *ngIf="
+              !district_id?.valid &&
+              (district_id?.dirty || district_id?.touched)
+            "
+          >
+            {{ 'notification.invalid-district' | translate }}
+          </small>
+        </div>
+        <!-- wards -->
+        <div class="form-group col-sm-4 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'user.ward' | translate }}
+            <span class="text-danger">*</span>
+          </label>
+
+          <select
+            [ngModel]="SupplierInfo?.wards_id"
+            class="text-capitalize"
+            #ward_id="ngModel"
+            name="wards_id"
+            id="wards_id"
+          >
+            <option hidden value="" disabled selected>
+              {{ 'placeholder.choose-ward' | translate }}
+            </option>
+            <option *ngFor="let item of wards" [value]="item.id">
+              {{ item?.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- address -->
+      <div class="row justify-content-between text-left">
+        <div class="form-group col-12 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'user.address' | translate }}
+          </label>
+          <textarea
+            [ngModel]="SupplierInfo?.address"
+            #address="ngModel"
+            name="address"
+            placeholder="{{ 'placeholder.input-sup-address' | translate }}"
+            type="text"
+            rows="4"
+          ></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12"></div>
+        <div class="col-12 col-md-4 mt-4">
+          <div class="d-flex w-100 float-end">
+            <button
+              (click)="confirmDialog()"
+              type="submit"
+              class="btn border-0 btn-primary mx-3"
+              style="flex: 1;"
+            >
+              {{ 'save' | translate }}
+            </button>
+            <button
+              (click)="formSupplier.reset()"
+              type="button"
+              class="btn btn-secondary"
+            >
+              {{ 'cancel' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

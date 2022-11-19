@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+}
+.mat-column-id {
+  width: 50px;
+  padding-right: 24px;
+  text-align: center;
+}
+.mat-column-delete {
+  width: 50px;
+}
+.mat-column-edit {
+  text-align: center;
+  width: 100px;
+}
+.mat-header-cell {
+  font-weight: bolder;
+}
+
+.card {
+  border-radius: 0.5rem;
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, 0.2);
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}

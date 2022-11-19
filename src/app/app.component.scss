@@ -1,0 +1,36 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.example-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(37, 4, 85, 0.5);
+}
+
+.example-sidenav {
+  padding: 20px;
+  width: 300px;
+  background-color: rgb(8, 14, 57);
+}
+
+.search-field {
+  flex: 1;
+  padding-left: 10px;
+  height: 40px;
+  background-color: whitesmoke;
+  margin-left: 10px;
+}
+input:focus {
+  outline: none;
+}
+mat-drawer {
+  width: 300px;
+  background-color: #0f172a;
+  padding: 0px;
+}
+.shopname {
+  background-color: #16223d;
+}
+.mat-menu {
+  min-width: 300px !important;
+}

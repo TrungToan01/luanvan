@@ -1,0 +1,57 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+    <mat-icon>dashboard</mat-icon>
+    <div class="px-2">{{ 'home' | translate }}</div>
+  </a>
+
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <a mat-list-item>
+        <mat-icon>people</mat-icon>
+        <div>{{ 'user.user-manage' | translate }}</div>
+      </a>
+    </mat-expansion-panel-header>
+
+    <a mat-list-item routerLink="/employee" routerLinkActive="list-item-active">
+      <mat-icon>people</mat-icon>
+      <div class="px-2">{{ 'user.employee' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink="/customer" routerLinkActive="list-item-active">
+      <mat-icon>people</mat-icon>
+      <div class="px-2">{{ 'user.customer' | translate }}</div>
+    </a>
+  </mat-expansion-panel>
+
+  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+    <mat-icon>settings</mat-icon>
+    <div class="px-2">{{ 'product.product-configuration' | translate }}</div>
+  </a>
+  <a mat-list-item routerLink="/product" routerLinkActive="list-item-active">
+    <mat-icon>stay_current_portrait</mat-icon>
+    <div class="px-2">{{ 'product.product' | translate }}</div>
+  </a>
+  <a mat-list-item routerLink="/supplier" routerLinkActive="list-item-active">
+    <mat-icon>account_balance</mat-icon>
+    <div class="px-2">{{ 'user.supplier' | translate }}</div>
+  </a>
+  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+    <mat-icon>shop_two</mat-icon>
+    <div class="px-2">{{ 'order.order' | translate }}</div>
+  </a>
+  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+    <mat-icon>image</mat-icon>
+    <div class="px-2">{{ 'banner' | translate }}</div>
+  </a>
+  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+    <mat-icon>card_giftcard</mat-icon>
+    <div class="px-2">{{ 'order.discount-code' | translate }}</div>
+  </a>
+  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+    <mat-icon>notifications_none</mat-icon>
+    <div class="px-2">{{ 'notification.message-to-customer' | translate }}</div>
+  </a>
+  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+    <mat-icon>store</mat-icon>
+    <div class="px-2">{{ 'shop-info' | translate }}</div>
+  </a>
+</mat-nav-list>

@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+}
+.mat-column-id {
+  width: 50px;
+  padding-right: 24px;
+}
+.mat-column-delete {
+  width: 50px;
+}
+.mat-column-edit {
+  text-align: center;
+  width: 100px;
+}
+.mat-header-cell {
+  font-weight: bolder;
+}
+
+.hide {
+  display: none;
+}

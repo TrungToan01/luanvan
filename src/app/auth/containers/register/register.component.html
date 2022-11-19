@@ -1,0 +1,196 @@
+<div class="auth-page container-fluid">
+  <div class="auth-form d-flex">
+    <div class="container row p-3 py-4">
+      <div class="d-none d-md-flex col-md-5">
+        <img
+          src="https://alexwebdevelop.com/wp-content/uploads/2019/08/php-login-and-authentication-the-definitive-guide.png"
+          class="img-fluid d-xs-none m-auto"
+        />
+      </div>
+
+      <div class="col-md-7 col-xs-12">
+        <div class="text-primary text-center display-5 fw-bold mb-4">
+          <span>{{ 'auth.registration' | translate }}</span>
+        </div>
+        <form id="registerForm" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+          <!-- user full name -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.username' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                ngModel
+                #full_name="ngModel"
+                name="full_name"
+                required
+                aria-describedby="full_name"
+                type="email"
+                class="form-control form-control-lg"
+                required
+              />
+              <small
+                id="full_nameHid"
+                class="form-text text-muted"
+                *ngIf="
+                  !full_name?.valid && (full_name?.dirty || full_name?.touched)
+                "
+              >
+                {{ 'notification.invalid-username' | translate }}
+              </small>
+            </div>
+          </div>
+          <!-- number Phone -->
+          <div class="form-group row mb-4">
+            <label for="phone" class="col-3 m-auto col-form-label text-end">
+              {{ 'user.phone-number' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                type="text"
+                ngModel
+                #phone="ngModel"
+                name="phone"
+                minlength="10"
+                aria-describedby="phone"
+                class="form-control form-control-lg"
+                id="phone"
+                required
+              />
+              <small
+                class="form-text text-muted"
+                *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
+              >
+                {{ 'notification.invalid-phone' | translate }}
+              </small>
+            </div>
+          </div>
+          <!-- email -->
+          <div class="form-group row mb-4">
+            <label
+              for="email_address"
+              class="col-3 m-auto col-form-label text-end"
+            >
+              {{ 'user.email' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                ngModel
+                #email="ngModel"
+                name="email"
+                class="form-control form-control-lg"
+                aria-describedby="email"
+                type="email"
+                required
+              />
+              <small
+                id="emailHid"
+                class="form-text text-muted"
+                *ngIf="!email?.valid && (email?.dirty || email?.touched)"
+              >
+                {{ 'notification.invalid-email' | translate }}
+              </small>
+            </div>
+          </div>
+          <!-- password -->
+          <div class="form-group row mb-4">
+            <label for="password" class="col-3 m-auto col-form-label text-end">
+              {{ 'user.password' | translate }}
+            </label>
+
+            <div class="col-9">
+              <div class="d-flex position-relative">
+                <input
+                  class="form-control form-control-lg"
+                  ngModel
+                  #password="ngModel"
+                  name="password"
+                  type="text"
+                  aria-describedby="password"
+                  required
+                  style="padding-right: 30px;"
+                />
+                <div
+                  class="d-flex form-control-lg position-absolute"
+                  style="right: 0;"
+                >
+                  <i class="bi bi-eye m-auto"></i>
+                </div>
+              </div>
+              <small
+                id="passwordHid"
+                class="form-text text-muted"
+                *ngIf="
+                  !password?.valid && (password?.dirty || password.touched)
+                "
+              >
+                {{ 'notification.invalid-password' | translate }}
+              </small>
+            </div>
+          </div>
+          <!-- password confirm -->
+          <div class="form-group row mb-4">
+            <label
+              for="passwordconfirm"
+              class="col-3 m-auto col-form-label text-end"
+            >
+              {{ 'user.password-confirm' | translate }}
+            </label>
+            <div class="col-9">
+              <div class="d-flex position-relative">
+                <input
+                  class="form-control form-control-lg"
+                  ngModel
+                  #passwordconfirm="ngModel"
+                  name="passwordconfirm"
+                  required
+                  aria-describedby="passwordconfirm"
+                  type="text"
+                  style="padding-right: 30px;"
+                />
+                <div
+                  class="d-flex form-control-lg position-absolute"
+                  style="right: 0;"
+                >
+                  <i class="bi bi-eye m-auto"></i>
+                </div>
+              </div>
+              <small
+                id="passwordconfirmHid"
+                class="form-text text-muted"
+                *ngIf="
+                  !passwordconfirm?.valid &&
+                  (passwordconfirm?.dirty || passwordconfirm.touched)
+                "
+              >
+                {{ 'notification.invalid-confirm' | translate }}
+              </small>
+              <small *ngIf="!confirmPass" class="from-text text-muted">
+                {{ 'notification.validate-password' | translate }}
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group row my-5">
+            <div class="col-3"></div>
+            <div class="col-9">
+              <button class="btn btn-primary m-auto fs-4 px-5 w-100">
+                {{ 'auth.register' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <div style="float: right;">
+            <span class="float-right">
+              {{ 'auth.already-have-an-account' | translate }}
+
+              <a class="text-primary" routerLink="/login">
+                {{ 'auth.login' | translate }}
+              </a>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
