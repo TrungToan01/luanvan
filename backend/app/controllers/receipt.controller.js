@@ -5,8 +5,8 @@ const Op = db.Sequelize.Op
 // ----------------------------------CREATE RECEIPT----------------------------------
 exports.create = (req, res) => {
   if (
-    !req.body.supplier_id ||
-    !req.body.user_id ||
+    !req.body.supplierId ||
+    !req.body.userId ||
     req.body.total_price <= 0 ||
     !req.body.total_price
   ) {
@@ -17,8 +17,8 @@ exports.create = (req, res) => {
   }
 
   const receipt = {
-    supplier_id: req.body.supplier_id,
-    user_id: req.body.user_id,
+    supplierId: req.body.supplierId,
+    userId: req.body.userId,
     total_price: req.body.total_price,
   }
   Receipt.create(receipt)
@@ -35,9 +35,9 @@ exports.create = (req, res) => {
 
 // ----------------------------------FIND ALL RECEIPT----------------------------------
 exports.findAll = (req, res) => {
-  const supplier_id = req.query.supplier_id
-  var condition = supplier_id
-    ? { supplier_id: { [Op.like]: `%${supplier_id}%` } }
+  const supplierId = req.query.supplierId
+  var condition = supplierId
+    ? { supplierId: { [Op.like]: `%${supplierId}%` } }
     : null
   Receipt.findAll({ where: condition })
     .then((data) => {

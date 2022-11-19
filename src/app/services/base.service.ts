@@ -60,7 +60,6 @@ export class BaseService {
           ? response.rows
           : undefined,
       token: response && response.token ? response.token : undefined,
-      role: response && response.role ? response.role : undefined,
     };
     return result;
   }
@@ -70,7 +69,7 @@ export class BaseService {
     let result: HttpResponse = {
       ok: false,
       code: error.status,
-      msg: error?.message,
+      msg: error?.message || undefined,
     };
     return result;
   }

@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     quantity: req.body.quantity,
     used_quantity: req.body.used_quantity,
     discount_value: req.body.discount_value,
-    user_id: req.body.user_id,
+    userId: req.body.userId,
   }
   Coupons.create(coupons)
     .then((data) => {

@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
   const cart = sequelize.define('cart', {
-    user_id: {
+    userId: {
       type: Sequelize.INTEGER,
     },
-    product_option_id: {
+    productOptionId: {
       type: Sequelize.INTEGER,
     },
     quantity: {

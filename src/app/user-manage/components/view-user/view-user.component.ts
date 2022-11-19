@@ -20,7 +20,6 @@ export class ViewUserComponent implements OnInit {
 
   async ngOnInit() {
     await this.getUserById(this.userId);
-    console.log(this.userInfo);
   }
 
   async getUserById(id: any) {

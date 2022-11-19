@@ -24,10 +24,10 @@ module.exports = (sequelize, Sequelize) => {
     published: {
       type: Sequelize.BOOLEAN,
     },
-    brand_id: {
+    brandId: {
       type: Sequelize.INTEGER,
     },
-    user_id: {
+    userId: {
       type: Sequelize.INTEGER,
     },
   })

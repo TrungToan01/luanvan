@@ -32,11 +32,9 @@ exports.register = async (req, res) => {
 
   //handle data
   const hashPassword = bcrypt.hashSync(req.body.password, 10)
-  const id = req.body.userRoleId ? req.body.userRoleId : 3
-  const userRole = await Role.findOne({ where: { id: id } })
   const user = {
-    full_name: req.body.full_name,
-    birth_date: req.body.birth_date,
+    name: req.body.name,
+    birthdate: req.body.birthdate,
     gender: req.body.gender ? req.body.gender : true,
     phone: req?.body?.phone,
     email: req.body.email,
@@ -44,11 +42,11 @@ exports.register = async (req, res) => {
     avatar: req?.file?.filename
       ? 'avatars/' + req?.file?.filename
       : '/avatars/default_avatar.png',
-    userRoleId: id,
-    rolename: userRole.role_name,
+    userRoleId: req.body.userRoleId ? req.body.userRoleId : 3,
   }
+
   User.create(user)
-    .then((datas) => {
+    .then((response) => {
       var token = jwt.sign(
         { email: req.body.email, password: req.body.password },
         process.env.JWT_KEY,
@@ -57,22 +55,22 @@ exports.register = async (req, res) => {
         },
       )
       var data = {
-        username: datas.full_name,
-        birth_date: datas.birth_date,
-        gender: datas.gender,
-        phone: datas.phone,
-        email: datas.email,
-        avatar: datas?.avatar,
-        rolename: datas?.rolename,
+        username: response.name,
+        birthdate: response.birthdate,
+        gender: response.gender,
+        phone: response.phone,
+        email: response.email,
+        avatar: response?.avatar,
+        userRoleId: response?.userRoleId,
       }
-      var userRoleId = datas.userRoleId
+
       return res
         .status(200)
-        .json({ message: 'login is success.', data, userRoleId, token })
+        .json({ message: 'login is success.', rows: data, token })
     })
     .catch((err) => {
       return res.status(500).send({
-        message: err.message || 'Some error occurred while creating the user.',
+        message: err.message || 'Register is failed.',
       })
     })
 }
@@ -99,25 +97,24 @@ exports.login = async (req, res) => {
             expiresIn: '24h',
           },
         )
-        var role = user.userRoleId
         var data = {
-          username: user.full_name,
-          birth_date: user.birth_date,
+          username: user.name,
+          birthdate: user.birthdate,
           gender: user.gender,
           phone: user.phone,
           email: user.email,
           avatar: user.avatar,
-          rolename: user.rolename,
+          userRoleId: user.userRoleId,
         }
 
         return res
           .status(200)
-          .json({ message: 'login is success.', data, role, token })
+          .json({ message: 'Login is success.', rows: data, token })
       } else {
-        return res.status(200).json('account does not exist.')
+        return res.status(200).json('Account does not exist.')
       }
     }
   } catch (err) {
-    res.status(500).json(err.message)
+    res.status(500).json({ message: 'Login is failed.' })
   }
 }

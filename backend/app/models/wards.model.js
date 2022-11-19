@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
     name: {
       type: Sequelize.STRING,
     },
-    district_id: {
+    districtId: {
       type: Sequelize.INTEGER,
     },
     idname: {

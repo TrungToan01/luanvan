@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const user_role = sequelize.define('user_role', {
-    role_name: {
+    name: {
       type: Sequelize.STRING,
     },
   })

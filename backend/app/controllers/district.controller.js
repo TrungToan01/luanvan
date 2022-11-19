@@ -5,7 +5,7 @@ const serverPage = require('./page')
 
 // ----------------------------------CREATE DISTRICT----------------------------------
 exports.create = (req, res) => {
-  if (!req.body.name || !req.body.province_id) {
+  if (!req.body.name || !req.body.provinceId) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   const district = {
     name: req.body.name,
-    province_id: req.body.province_id,
+    provinceId: req.body.provinceId,
     idname: req.body.idname,
   }
   District.create(district)
@@ -31,9 +31,9 @@ exports.create = (req, res) => {
 
 // ----------------------------------FIND ALL DISTRICT----------------------------------
 exports.findAll = (req, res) => {
-  const province_id = req?.query?.province_id
-  var condition = province_id
-    ? { province_id: { [Op.like]: `%${province_id}%` } }
+  const provinceId = req?.query?.provinceId
+  var condition = provinceId
+    ? { provinceId: { [Op.like]: `%${provinceId}%` } }
     : null
   District.findAndCountAll({ where: condition })
     .then((data) => {

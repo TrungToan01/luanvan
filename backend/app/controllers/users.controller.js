@@ -1,13 +1,15 @@
 const db = require('../models')
 const User = db.user
-const Role = db.user_role
 const Op = db.Sequelize.Op
 const bcrypt = require('bcryptjs')
 const serverPage = require('./page')
+const userRole = db.user_role
+
+userRole.hasMany(User)
+User.belongsTo(userRole)
 
 // ----------------------------------CREATE USER----------------------------------
 exports.create = async (req, res) => {
-  console.log(req)
   if (
     !req.body.email ||
     !req.body.password ||
@@ -40,39 +42,32 @@ exports.create = async (req, res) => {
 
   //handle data
   const hashPassword = bcrypt.hashSync(req.body.password, 10)
-  const id = req.body.userRoleId ? req.body.userRoleId : 3
-  const role = await Role.findOne({ where: { id: id } })
-
-  console.log(req.body)
-  //console.log(req.file)
   const user = {
-    full_name: req.body.full_name,
-    birth_date: req?.body?.birth_date || '01/01/1975',
+    name: req.body.name,
+    birthdate: req?.body?.birthdate || '01/01/1975',
     gender: req.body.gender ? req.body.gender : true,
     phone: req?.body?.phone,
     email: req.body.email,
     password: hashPassword,
     avatar: req?.file?.filename
-      ? 'avatars/' + req?.file?.filename
+      ? '/avatars/' + req?.file?.filename
       : '/avatars/default_avatar.png',
-    userRoleId: id,
-    rolename: role.role_name,
+    userRoleId: req?.body?.userRoleId,
   }
 
   User.create(user)
     .then((response) => {
       const data = {
         id: response.id,
-        full_name: response.full_name,
+        name: response.name,
         gender: response.gender,
         phone: response.phone,
         email: response.email,
         avatar: response.avatar,
         userRoleId: response.userRoleId,
-        rolename: response.rolename,
       }
 
-      return res.send(data)
+      return res.send()
     })
     .catch((err) => {
       return res.status(500).send({
@@ -83,52 +78,49 @@ exports.create = async (req, res) => {
 
 // ----------------------------------FIND ALL USER----------------------------------
 exports.findAll = (req, res) => {
-  const page = req.query.page
+  const page = req?.query?.page
   const size = req?.query?.size
-  const user = {
-    full_name: req.query.full_name,
-    birth_date: req.query.birth_date,
-    gender: req.query.gender,
-    phone: req.query.phone,
-    email: req.query.email,
-    userRoleId: req.query.userRoleId,
-  }
-  var condition
-  if (user.email) {
-    condition = { email: { [Op.like]: `%${user.email}%` } }
-  } else {
-    if (user.full_name) {
-      condition = { full_name: { [Op.like]: `%${user.full_name}` } }
-    } else {
-      if (user.birth_date) {
-        condition = { birth_date: { [Op.like]: `%${user.birth_date}` } }
-      } else {
-        if (user.phone) {
-          condition = { phone: { [Op.like]: `%${user.phone}` } }
-        } else {
-          if (user.gender) {
-            condition = { gender: { [Op.like]: `%${user.gender}` } }
-          } else {
-            if (user.userRoleId) {
-              condition = { userRoleId: { [Op.like]: `%${user.userRoleId}` } }
-            } else {
-              condition = null
-            }
-          }
-        }
-      }
-    }
-  }
+
+  // var condition
+  // if (user.email) {
+  //   condition = { email: { [Op.like]: `%${user.email}%` } }
+  // } else {
+  //   if (user.name) {
+  //     condition = { name: { [Op.like]: `%${user.name}` } }
+  //   } else {
+  //     if (user.birthdate) {
+  //       condition = { birthdate: { [Op.like]: `%${user.birthdate}` } }
+  //     } else {
+  //       if (user.phone) {
+  //         condition = { phone: { [Op.like]: `%${user.phone}` } }
+  //       } else {
+  //         if (user.gender) {
+  //           condition = { gender: { [Op.like]: `%${user.gender}` } }
+  //         } else {
+  //           if (user.userRoleId) {
+  //             condition = { userRoleId: { [Op.like]: `%${user.userRoleId}` } }
+  //           } else {
+  //             condition = null
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   const { limit, offset } = serverPage.getPagination(page, size)
 
-  User.findAndCountAll({ where: condition, limit, offset })
+  User.findAndCountAll({
+    include: userRole,
+    limit,
+    offset,
+  })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
-      res.send(response)
+      return res.status(200).send(response)
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || 'Some error occurred while retrieving user.',
       })
     })
@@ -137,19 +129,19 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID USER----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  User.findByPk(id)
+  User.findByPk(id, { include: userRole })
     .then((response) => {
       if (response) {
         const data = {
           id: response.id,
-          full_name: response.full_name,
-          gender: response.gender,
-          birthdate: response.birth_date,
-          phone: response.phone,
-          email: response.email,
-          avatar: response.avatar,
-          userRoleId: response.userRoleId,
-          rolename: response?.rolename,
+          name: response?.name,
+          gender: response?.gender,
+          birthdate: response?.birthdate,
+          phone: response?.phone,
+          email: response?.email,
+          avatar: response?.avatar,
+          userRoleId: response?.userRoleId,
+          rolename: response?.user_role?.role_name,
         }
 
         res.send({ rows: data })
@@ -170,7 +162,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id
   if (req.file) {
-    req.body.avatar = 'avatars/' + req.file.filename
+    req.body.avatar = '/avatars/' + req.file.filename
   }
   User.update(req.body, {
     where: { id: id },

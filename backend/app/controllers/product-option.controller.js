@@ -13,10 +13,10 @@ exports.create = (req, res) => {
   }
 
   const product_option = {
-    product_id: req.body.product_id,
-    ram_id: req.body.ram_id,
-    rom_id: req.body.rom_id,
-    color_id: req.body.color_id,
+    productId: req.body.productId,
+    ramId: req.body.ramId,
+    romId: req.body.romId,
+    colorId: req.body.colorId,
     original_price: req.body.original_price,
     sale_price: req.body.sale_price,
     quantity: req.body.quantity,

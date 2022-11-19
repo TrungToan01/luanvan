@@ -1,3 +1,4 @@
+const { wards } = require('../models')
 const db = require('../models')
 const Supplier = db.supplier
 const Province = db.province
@@ -5,6 +6,15 @@ const District = db.district
 const Ward = db.wards
 const Op = db.Sequelize.Op
 const serverPage = require('./page')
+
+Province.hasMany(Supplier)
+Supplier.belongsTo(Province)
+
+District.hasMany(Supplier)
+Supplier.belongsTo(District)
+
+Ward.hasMany(Supplier)
+Supplier.belongsTo(Ward)
 
 // ----------------------------------CREATE SUPPLIER----------------------------------
 exports.create = async (req, res) => {
@@ -14,21 +24,10 @@ exports.create = async (req, res) => {
     })
     return
   }
-  const province = await Province.findByPk(req.body.province_id)
-  const district = await District.findByPk(req.body.district_id)
-  const ward = await Ward.findByPk(req.body.wards_id)
 
-  req.body.address =
-    req.body.address +
-    ', ' +
-    ward?.name +
-    ', ' +
-    district?.name +
-    ', ' +
-    province?.name
   Supplier.create(req.body)
     .then((data) => {
-      res.send(data)
+      res.send({ message: 'Create success.', rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -43,7 +42,11 @@ exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
   const { limit, offset } = serverPage.getPagination(page, size)
-  Supplier.findAndCountAll({ where: null, limit, offset })
+  Supplier.findAndCountAll({
+    include: { Province, District, Ward },
+    limit,
+    offset,
+  })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
       res.send(response)
@@ -59,7 +62,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID SUPPLIER----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Supplier.findByPk(id)
+  Supplier.findByPk(id, { include: { Province, District, Ward } })
     .then((data) => {
       if (data) {
         res.send({ rows: data })

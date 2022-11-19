@@ -60,6 +60,9 @@
   },
   "product": {
     "product": "Product",
+    "list-product": "Product list",
+    "update-product": "Update product",
+    "add-product": "Create product",
     "product-detail": "Product detail",
     "phone": "Phone",
     "Laptop": "Laptop",
@@ -71,7 +74,8 @@
     "original-price": "Original price",
     "sale-price": "Sale price",
     "specifications": "Specifications",
-    "color": "Color"
+    "color": "Color",
+    "sold": "Sold"
   },
   "notification": {
     "notification": "Notification",
@@ -131,5 +135,6 @@
   "regDate": "Date created",
   "update": "Update",
   "ok": "OK",
-  "publish": "Publish"
+  "publish": "Publish",
+  "change-password": "Change password"
 }

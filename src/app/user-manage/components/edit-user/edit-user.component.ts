@@ -57,7 +57,7 @@ export class EditUserComponent implements OnInit {
     if (response.ok) {
       this.roleList = response.data;
     } else {
-      console.log(response);
+      alert('can get role');
     }
   }
 
@@ -65,7 +65,6 @@ export class EditUserComponent implements OnInit {
     let response = await this.userManageService.GetUserById(id);
     if (response.ok) {
       this.userInfo = response.data;
-      console.log(response.data);
     } else {
       alert(response);
     }

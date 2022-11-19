@@ -4,7 +4,7 @@ const serverPage = require('./page')
 
 // ----------------------------------CREATE PRODUCT IMAGE----------------------------------
 exports.create = (req, res) => {
-  if (!req.body.product_id) {
+  if (!req.body.productId) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
@@ -12,9 +12,9 @@ exports.create = (req, res) => {
   }
 
   const pro_image = {
-    product_id: req.body.product_id,
+    productId: req.body.productId,
     image: req?.file?.filename ? 'products' + req?.file?.filename : null,
-    color_id: req.body.color_id,
+    colorId: req.body.colorId,
   }
   Product_img.create(pro_image)
     .then((data) => {

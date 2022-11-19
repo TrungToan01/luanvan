@@ -15,13 +15,13 @@ exports.create = (req, res) => {
   const order = {
     total_price: req.body.total_price,
     delivery_cost: req.body.delivery_cost,
-    coupons_id: req.body.coupons_id,
+    couponsId: req.body.couponsId,
     discount_value: req.body.discount_value,
-    status_id: req.body.status_id,
+    statusId: req.body.statusId,
     shop_name: req.body.shop_name,
     shop_phone: req.body.shop_phone,
     shop_address: req.body.shop_address,
-    customer_id: req.body.customer_id,
+    userId: req.body.userId,
     customer_name: req.body.customer_name,
     customer_phone: req.body.customer_phone,
     customer_address: req.body.customer_address,
@@ -39,8 +39,8 @@ exports.create = (req, res) => {
 
 // ----------------------------------FIND ALL ORDER----------------------------------
 exports.findAll = (req, res) => {
-  var condition = customer_id
-    ? { customer_id: { [Op.like]: `%${req.body.customer_id}%` } }
+  var condition = userId
+    ? { userId: { [Op.like]: `%${req.body.userId}%` } }
     : null
   Order.findAndCountAll({ where: condition, limit, offset })
     .then((data) => {

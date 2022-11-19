@@ -59,16 +59,6 @@ export class AuthService extends BaseService {
     }
   }
 
-  public isAdmin() {
-    const role = localStorage.getItem(AppConst.role);
-    const roleListAdmin = [1, 2, 3];
-    if (roleListAdmin.includes(Number(role))) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   //get user detail
   getUerDetail() {
     let userInfo = localStorage.getItem(AppConst.LocalStorage.Auth.UserInfo);

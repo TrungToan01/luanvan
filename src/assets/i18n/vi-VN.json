@@ -48,7 +48,7 @@
     "supplier": "Nhà cung cấp",
     "supplier-list": "Danh sách nhà cung cấp",
     "update-supplier-info": "Cập nhật thông tin nhà cung cấp",
-    "update-supplier": "Câp nhật nhà cung cấp",
+    "update-supplier": "Cập nhật nhà cung cấp",
     "create-supplier": "Thêm nhà cung cấp"
   },
   "order": {
@@ -62,6 +62,9 @@
   },
   "product": {
     "product": "Sản phẩm",
+    "list-product": "Danh sách sản phẩm",
+    "update-product": "Cập nhật sản phẩm",
+    "add-product": "Thêm sản phẩm",
     "product-detail": "Thông tin chi tiết sản phẩm",
     "phone": "Điện thoại",
     "product-configuration": "Cấu hình sản phẩm",
@@ -72,7 +75,8 @@
     "original-price": "Giá gốc",
     "sale-price": "Giá khuyến mãi",
     "specifications": "Đặc điểm kỹ thuật",
-    "color": "Màu sắc"
+    "color": "Màu sắc",
+    "sold": "Đã bán"
   },
   "notification": {
     "notification": "Thông báo",
@@ -131,5 +135,6 @@
   "regDate": "Ngày tạo",
   "update": "Cập nhật",
   "ok": "Đồng ý",
-  "publish": "Hiển thị"
+  "publish": "Hiển thị",
+  "change-password": "Đỗi mật khẩu"
 }

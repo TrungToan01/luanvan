@@ -10,12 +10,17 @@
     </mat-icon>
   </mat-button>
   <p class="text-primary fs-3 px-3 mt-3">
-    {{ 'user.edit-supplier' | translate }}
+    {{ 'user.create-supplier' | translate }}
   </p>
 </div>
 <div class="container bg-white shadow px-3">
   <div class="w-100 px-1 pt-5 pb-4 mx-auto">
-    <form class="form-card" id="formSupplier" #formSupplier="ngForm">
+    <form
+      class="form-card"
+      (ngSubmit)="onSubmit()"
+      id="formSupplier"
+      #formSupplier="ngForm"
+    >
       <div class="row justify-content-between text-left">
         <!-- name -->
         <div class="form-group col-sm-6 flex-column d-flex">
@@ -49,7 +54,7 @@
           <input
             ngModel
             #phone_number="ngModel"
-            name="phone_number"
+            name="phone"
             placeholder="{{ 'placeholder.input-phone' | translate }}"
             type="text"
             required

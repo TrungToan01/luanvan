@@ -5,7 +5,7 @@ const serverPage = require('./page')
 
 // ----------------------------------CREATE WRADS----------------------------------
 exports.create = (req, res) => {
-  if (!req.body.district_id || req.body.name) {
+  if (!req.body.districtId || req.body.name) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   const wards = {
     name: req.body.name,
-    district_id: req.body.district_id,
+    districtId: req.body.districtId,
     idname: req.body.idname,
   }
   Wards.create(wards)
@@ -30,9 +30,9 @@ exports.create = (req, res) => {
 
 // ----------------------------------FIND ALL WRADS----------------------------------
 exports.findAll = (req, res) => {
-  const district_id = req.query.district_id
-  var condition = district_id
-    ? { district_id: { [Op.like]: `%${district_id}` } }
+  const districtId = req.query.districtId
+  var condition = districtId
+    ? { districtId: { [Op.like]: `%${districtId}` } }
     : null
   Wards.findAndCountAll({ where: condition })
     .then((data) => {

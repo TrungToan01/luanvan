@@ -4,7 +4,7 @@ const serverPage = require('./page')
 
 // ----------------------------------CREATE ORDER TRACKING----------------------------------
 exports.create = (req, res) => {
-  if (!req.body.status_id || !req.body.order_id || !req.body.user_id) {
+  if (!req.body.statusId || !req.body.orderId || !req.body.userId) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
@@ -12,9 +12,9 @@ exports.create = (req, res) => {
   }
 
   const order_tracking = {
-    status_id: req.body.status,
-    order_id: req.body.order_id,
-    user_id: req.body.user_id,
+    statusId: req.body.status,
+    orderId: req.body.orderId,
+    userId: req.body.userId,
   }
   Order_tracking.create(order_tracking)
     .then((data) => {

@@ -5,8 +5,8 @@ const serverPage = require('./page')
 // ----------------------------------CREATE CART----------------------------------
 exports.create = (req, res) => {
   if (
-    !req.body.user_id ||
-    !req.body.product_option_id ||
+    !req.body.userId ||
+    !req.body.product_optionId ||
     req.body.quantity <= 0
   ) {
     return res.status(400).send({
@@ -15,8 +15,8 @@ exports.create = (req, res) => {
   }
 
   const cart = {
-    user_id: req.body.user_id,
-    product_option_id: req.body.product_option_id,
+    userId: req.body.userId,
+    product_optionId: req.body.product_optionId,
     quantity: req.body.quantity,
   }
   Cart.create(cart)

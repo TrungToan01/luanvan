@@ -6,8 +6,11 @@ module.exports = (sequelize, Sequelize) => {
     content: {
       type: Sequelize.STRING,
     },
-    user_id: {
+    userId: {
       type: Sequelize.INTEGER,
+    },
+    publish: {
+      type: Sequelize.BOOLEAN,
     },
     viewed: {
       type: Sequelize.BOOLEAN,

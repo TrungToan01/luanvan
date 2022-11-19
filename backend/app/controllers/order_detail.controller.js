@@ -6,10 +6,10 @@ const serverPage = require('./page')
 // ----------------------------------FIND ALL ORDER DETAIL----------------------------------
 exports.create = (req, res) => {
   if (
-    !req.body.order_id ||
+    !req.body.orderId ||
     req.body.quantity <= 0 ||
     !req.body.price ||
-    !req.body.product_option_id
+    !req.body.productOptionId
   ) {
     res.status(400).send({
       message: 'Content can not be empty!',
@@ -18,10 +18,10 @@ exports.create = (req, res) => {
   }
 
   const Product_detail = {
-    order_id: req.body.order_id,
+    orderId: req.body.orderId,
     quantity: req.body.quantity,
     price: req.body.price,
-    product_option_id: req.body.product_option_id,
+    productOptionId: req.body.productOptionId,
   }
   Product_detail.create(Product_detail)
     .then((data) => {
@@ -41,12 +41,12 @@ exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
   const pro_detail = {
-    product_option_id: req.body.product_option_id,
+    productOptionId: req.body.productOptionId,
   }
-  var condition = product_option_id
+  var condition = productOptionId
     ? {
-        product_option_id: {
-          [Op.like]: `%${pro_detail.product_option_id}%`,
+        productOptionId: {
+          [Op.like]: `%${pro_detail.productOptionId}%`,
         },
       }
     : null

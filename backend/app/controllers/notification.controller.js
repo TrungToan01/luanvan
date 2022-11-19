@@ -5,7 +5,7 @@ const serverPage = require('./page')
 
 // ----------------------------------FIND ALL COUPON----------------------------------
 exports.create = (req, res) => {
-  if (!req.body.title || !req.body.content || !req.body.user_id) {
+  if (!req.body.title || !req.body.content || !req.body.userId) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
@@ -15,7 +15,7 @@ exports.create = (req, res) => {
   const notification = {
     title: req.body.title,
     content: req.body.content,
-    user_id: req.body.user_id,
+    userId: req.body.userId,
     viewed: req.body.viewed ? req.body.published : false,
   }
   Notification.create(notification)
@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
   const notif = {
     title: req.body.title,
     content: req.body.content,
-    user_id: req.body.user_id,
+    userId: req.body.userId,
     viewed: req.body.viewed,
   }
   var condition
@@ -48,8 +48,8 @@ exports.findAll = (req, res) => {
     if (notif.content) {
       condition = { content: { [Op.like]: `%${notif.content}%` } }
     } else {
-      if (notif.user_id) {
-        condition = { user_id: { [Op.like]: `%${notif.user_id}%` } }
+      if (notif.userId) {
+        condition = { userId: { [Op.like]: `%${notif.userId}%` } }
       } else {
         if (notif.viewed) {
           condition = { viewed: { [Op.like]: `%${notif.viewed}%` } }

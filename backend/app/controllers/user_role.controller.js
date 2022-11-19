@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op
 
 // ----------------------------------CREATE ROLE----------------------------------
 exports.create = (req, res) => {
-  if (!req.body.role_name) {
+  if (!req.body.role) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
   }
 
   const user_role = {
-    role_name: req.body.role_name,
+    role: req.body.role,
   }
   User_role.create(user_role)
     .then((data) => {

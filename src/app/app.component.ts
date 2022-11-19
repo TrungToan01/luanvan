@@ -16,7 +16,6 @@ export class AppComponent {
   userInfo: any;
   languages: string[] = Object.values(AppConst.Languages);
   currentLanguage = AppConst.Languages.Vietnamese;
-  isAdmin = this.authService.isAdmin();
   showFiller = true;
 
   constructor(

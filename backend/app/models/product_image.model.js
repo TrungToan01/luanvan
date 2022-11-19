@@ -3,10 +3,10 @@ module.exports = (sequelize, Sequelize) => {
     image: {
       type: Sequelize.STRING,
     },
-    product_id: {
+    productId: {
       type: Sequelize.INTEGER,
     },
-    color_id: {
+    colorId: {
       type: Sequelize.INTEGER,
     },
   })

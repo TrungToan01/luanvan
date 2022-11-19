@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
     discount_value: {
       type: Sequelize.INTEGER,
     },
-    user_id: {
+    userId: {
       type: Sequelize.INTEGER,
     },
   })

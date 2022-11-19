@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const order_detail = sequelize.define('order_detail', {
-    order_id: {
+    orderId: {
       type: Sequelize.INTEGER,
     },
     quantity: {
@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
     price: {
       type: Sequelize.INTEGER,
     },
-    product_option_id: {
+    productOptionId: {
       type: Sequelize.INTEGER,
     },
   })

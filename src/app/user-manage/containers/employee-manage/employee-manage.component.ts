@@ -24,7 +24,7 @@ export class EmployeeManageComponent implements OnInit {
   displayedColumns = [
     'id',
     'createdAt',
-    'full_name',
+    'username',
     'email',
     'phone',
     'rolename',

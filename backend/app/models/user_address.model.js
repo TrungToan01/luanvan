@@ -1,33 +1,20 @@
 module.exports = (sequelize, Sequelize) => {
   const user_address = sequelize.define('user_address', {
-    user_id: {
+    userId: {
       type: Sequelize.INTEGER,
     },
-    username: {
-      type: Sequelize.STRING,
-    },
-    phone_number: {
-      type: Sequelize.STRING,
-    },
-    province_id: {
+    provinceId: {
       type: Sequelize.INTEGER,
     },
-    district_id: {
+    districtId: {
       type: Sequelize.INTEGER,
     },
-    wards: {
+    wardId: {
       type: Sequelize.INTEGER,
-    },
-    ward_code: {
-      type: Sequelize.STRING,
     },
     address: {
       type: Sequelize.STRING,
     },
-    full_address: {
-      type: Sequelize.STRING,
-    },
-
     is_default: {
       type: Sequelize.BOOLEAN,
     },

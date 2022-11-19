@@ -1,12 +1,18 @@
 table {
   width: 100%;
 }
-.mat-column-delete {
-  width: 50px;
+.mat-column-id {
+  width: 32px;
 }
-.mat-column-edit {
-  text-align: center;
-  width: 100px;
+.mat-column-createdAt {
+  width: max-content;
+}
+.mat-column-address {
+  max-width: 200px;
+}
+.mat-column-name {
+  max-width: 150px;
+  background-color: bisque;
 }
 .mat-header-cell {
   font-weight: bolder;
@@ -14,9 +20,4 @@ table {
 
 .hide {
   display: none;
-}
-.mat-column-id {
-  width: 40px;
-  padding-right: 24px;
-  text-align: center;
 }

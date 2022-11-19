@@ -24,7 +24,7 @@ export class CustomerManageComponent implements OnInit {
   displayedColumns = [
     'id',
     'createdAt',
-    'full_name',
+    'username',
     'email',
     'phone',
     'action',
@@ -44,7 +44,6 @@ export class CustomerManageComponent implements OnInit {
     let response = await this.userService.getAllUser();
     if (response.ok) {
       var newArray = response.data.filter(function (el: any) {
-        console.log(el);
         return el.userRoleId == 4;
       });
       this.dataSource = new MatTableDataSource(newArray);

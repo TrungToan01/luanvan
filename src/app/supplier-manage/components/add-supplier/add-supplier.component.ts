@@ -30,15 +30,17 @@ export class AddSupplierComponent implements OnInit {
     await this.getProvince();
   }
   async onSubmit() {
-    console.log(this.formSupplier.value);
-    let response = await this.supService.CreateSupplier(
-      this.formSupplier.value
-    );
-    if (response && response.ok) {
-      alert(response.msg ? response.mgs : 'Đã thêm thành công');
-      this.formSupplier.resetForm();
-    } else {
-      alert(response.msg);
+    if (this.doOk) {
+      console.log(this.formSupplier.value);
+      let response = await this.supService.CreateSupplier(
+        this.formSupplier.value
+      );
+      if (response && response.ok) {
+        alert('Đã thêm thành công');
+        this.formSupplier.resetForm();
+      } else {
+        alert(response.msg);
+      }
     }
   }
 

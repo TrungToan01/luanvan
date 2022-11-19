@@ -6,13 +6,13 @@ module.exports = (sequelize, Sequelize) => {
     delivery_cost: {
       type: Sequelize.INTEGER,
     },
-    coupons_id: {
+    couponsId: {
       type: Sequelize.INTEGER,
     },
     discount_value: {
       type: Sequelize.INTEGER,
     },
-    status_id: {
+    statusId: {
       type: Sequelize.INTEGER,
     },
     shop_name: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, Sequelize) => {
     shop_address: {
       type: Sequelize.STRING,
     },
-    customer_id: {
+    userId: {
       type: Sequelize.INTEGER,
     },
     customer_name: {

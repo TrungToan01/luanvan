@@ -21,8 +21,8 @@ exports.create = (req, res) => {
     weight: req.body.weight,
     length: req.body.length,
     published: req?.body?.published || true,
-    brand_id: req.body / brand_id,
-    user_id: req.body.user_id,
+    brandId: req.body / brandId,
+    userId: req.body.userId,
   }
   Products.create(product)
     .then((data) => {
@@ -46,13 +46,13 @@ exports.findAll = (req, res) => {
     name: req.body.name,
     specifications: req.body.specifications,
     description: req.body.description,
-    brand_id: req.body.brand_id,
+    brandId: req.body.brandId,
   }
   if (product.name) {
     condition = { name: { [Op.like]: `%${product.name}` } }
   } else {
-    if (product.brand_id) {
-      condition = { brand_id: { [Op.like]: `%${product.brand_id}` } }
+    if (product.brandId) {
+      condition = { brandId: { [Op.like]: `%${product.brandId}` } }
     } else {
       if (product.specifications) {
         condition = {

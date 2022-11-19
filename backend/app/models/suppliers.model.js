@@ -3,19 +3,19 @@ module.exports = (sequelize, Sequelize) => {
     name: {
       type: Sequelize.STRING,
     },
-    phone_number: {
+    phone: {
       type: Sequelize.STRING,
     },
     description: {
       type: Sequelize.STRING,
     },
-    province_id: {
+    provinceId: {
       type: Sequelize.INTEGER,
     },
-    district_id: {
+    districtId: {
       type: Sequelize.INTEGER,
     },
-    wards_id: {
+    wardId: {
       type: Sequelize.INTEGER,
     },
     address: {

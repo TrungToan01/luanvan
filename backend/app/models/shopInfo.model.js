@@ -12,25 +12,19 @@ module.exports = (sequelize, Sequelize) => {
     email: {
       type: Sequelize.STRING,
     },
-    phone_number: {
+    phone: {
       type: Sequelize.STRING,
     },
-    province_id: {
+    provinceId: {
       type: Sequelize.INTEGER,
     },
-    district_id: {
+    districtId: {
       type: Sequelize.INTEGER,
     },
-    ward_id: {
+    wardId: {
       type: Sequelize.INTEGER,
-    },
-    ward_code: {
-      type: Sequelize.STRING,
     },
     address: {
-      type: Sequelize.STRING,
-    },
-    full_address: {
       type: Sequelize.STRING,
     },
   })
