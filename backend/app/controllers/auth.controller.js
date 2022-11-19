@@ -33,14 +33,14 @@ exports.register = async (req, res) => {
   //handle data
   const hashPassword = bcrypt.hashSync(req.body.password, 10)
   const user = {
-    name: req.body.name,
-    birthdate: req.body.birthdate,
+    name: req?.body?.name,
+    birthdate: req?.body?.birthdate,
     gender: req.body.gender ? req.body.gender : true,
     phone: req?.body?.phone,
-    email: req.body.email,
+    email: req?.body?.email,
     password: hashPassword,
     avatar: req?.file?.filename
-      ? 'avatars/' + req?.file?.filename
+      ? '/avatars/' + req?.file?.filename
       : '/avatars/default_avatar.png',
     userRoleId: req.body.userRoleId ? req.body.userRoleId : 3,
   }
@@ -55,7 +55,7 @@ exports.register = async (req, res) => {
         },
       )
       var data = {
-        username: response.name,
+        name: response.name,
         birthdate: response.birthdate,
         gender: response.gender,
         phone: response.phone,

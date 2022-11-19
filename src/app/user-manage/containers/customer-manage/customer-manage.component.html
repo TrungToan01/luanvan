@@ -26,7 +26,7 @@
           {{ 'user.username' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          <div class="text-capitalize">{{ element.username }}</div>
+          <div class="text-capitalize">{{ element.name }}</div>
         </td>
       </ng-container>
 
@@ -52,7 +52,7 @@
           {{ 'user.role' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.rolename }}
+          {{ element?.user_role?.name }}
         </td>
       </ng-container>
 

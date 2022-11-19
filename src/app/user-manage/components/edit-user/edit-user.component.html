@@ -22,7 +22,7 @@
       <div class="text-center">
         <img
           [src]="
-            userInfo?.avatar ? 'http://localhost:5000/' + userInfo?.avatar : ''
+            userInfo?.avatar ? 'http://localhost:5000' + userInfo?.avatar : ''
           "
           class="avatar img-circle img-thumbnail"
           alt="avatar"
@@ -54,7 +54,7 @@
               class="form-select input-customize"
             >
               <option *ngFor="let item of roleList" [value]="item.id">
-                {{ item.role_name }}
+                {{ item.name }}
               </option>
             </select>
           </div>
@@ -67,7 +67,7 @@
           <div class="col-9">
             <input
               class="text-capitalize input-customize"
-              [ngModel]="userInfo?.username"
+              [ngModel]="userInfo?.name"
               #username="ngModel"
               name="username"
               class="form-control input-customize"

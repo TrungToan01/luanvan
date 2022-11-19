@@ -21,7 +21,7 @@
           class="bg-light m-auto"
           style="width: 90%;"
           [src]="
-            userInfo?.avatar ? 'http://localhost:5000/' + userInfo?.avatar : ''
+            userInfo?.avatar ? 'http://localhost:5000' + userInfo?.avatar : ''
           "
           alt="..."
         />
@@ -32,7 +32,7 @@
           style="width: 80%;"
         >
           <h3 class="h2 fs-3 text-white mb-3 text-capitalize">
-            {{ userInfo?.username }}
+            {{ userInfo?.name }}
           </h3>
           <span class="text">{{ userInfo?.rolename }}</span>
         </div>
@@ -75,12 +75,10 @@
       </div>
     </div>
     <div class="d-block w-100 mb-4">
-      <button
-        [routerLink]="['/editUser', userId]"
-        class="btn btn-primary px-5 py-1 float-end"
-        mat-button
-      >
-        {{ 'user.edit-user-info' | translate }}
+      <button class="btn btn-primary px-5 py-1 float-end" mat-button>
+        <a class="text-white" [routerLink]="['/employee/edit', userId]">
+          {{ 'user.edit-user-info' | translate }}
+        </a>
       </button>
     </div>
   </div>

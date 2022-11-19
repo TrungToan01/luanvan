@@ -25,9 +25,10 @@ export const authRoutes: Routes = [
 export const userManageRoutes: Routes = [
   { path: 'employee', component: EmployeeManageComponent },
   { path: 'customer', component: CustomerManageComponent },
-  { path: 'addUser', component: AddUserComponent },
-  { path: 'editUser/:id', component: EditUserComponent },
-  { path: 'viewUser/:id', component: ViewUserComponent },
+  { path: 'employee/add', component: AddUserComponent },
+  { path: 'employee/edit/:id', component: EditUserComponent },
+  { path: 'employee/view/:id', component: ViewUserComponent },
+  { path: 'customer/view/:id', component: ViewUserComponent },
 ];
 
 export const supplierManageRoutes: Routes = [

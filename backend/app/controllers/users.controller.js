@@ -60,6 +60,7 @@ exports.create = async (req, res) => {
       const data = {
         id: response.id,
         name: response.name,
+        birthdate: response?.birthdate,
         gender: response.gender,
         phone: response.phone,
         email: response.email,
@@ -67,7 +68,7 @@ exports.create = async (req, res) => {
         userRoleId: response.userRoleId,
       }
 
-      return res.send()
+      return res.send({ message: 'create user is success  ', rows: data })
     })
     .catch((err) => {
       return res.status(500).send({
@@ -141,7 +142,7 @@ exports.findOne = (req, res) => {
           email: response?.email,
           avatar: response?.avatar,
           userRoleId: response?.userRoleId,
-          rolename: response?.user_role?.role_name,
+          rolename: response?.user_role?.name,
         }
 
         res.send({ rows: data })
