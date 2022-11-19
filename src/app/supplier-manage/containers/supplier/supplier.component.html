@@ -2,13 +2,14 @@
   <p class="fs-3 float-start text-primary">
     {{ 'user.supplier-list' | translate }}
   </p>
-  <button
-    title="{{ 'user.create-supplier' | translate }}"
-    routerLink="add"
-    class="btn btn-primary float-end px-4 py-2"
-  >
-    {{ 'add' | translate }}
-  </button>
+  <a routerLink="add" class="text-white">
+    <button
+      title="{{ 'user.create-supplier' | translate }}"
+      class="btn btn-primary float-end px-4 py-2"
+    >
+      {{ 'add' | translate }}
+    </button>
+  </a>
 </div>
 
 <div>
@@ -66,20 +67,16 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button
-          [routerLink]="['/viewUser', element.id]"
-          title="{{ 'view' | translate }}"
-          mat-icon-button
-        >
-          <mat-icon>launch</mat-icon>
-        </button>
-        <button
-          [routerLink]="['edit', element.id]"
-          title="{{ 'edit' | translate }}"
-          mat-icon-button
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
+        <a [routerLink]="['view', element.id]">
+          <button title="{{ 'view' | translate }}" mat-icon-button>
+            <mat-icon>launch</mat-icon>
+          </button>
+        </a>
+        <a [routerLink]="['edit', element.id]">
+          <button title="{{ 'edit' | translate }}" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </a>
         <button
           (click)="confirmDialog(element.id)"
           title="{{ 'delete' | translate }}"

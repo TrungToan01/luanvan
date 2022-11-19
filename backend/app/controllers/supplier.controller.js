@@ -43,7 +43,7 @@ exports.findAll = (req, res) => {
   const size = req?.body?.size
   const { limit, offset } = serverPage.getPagination(page, size)
   Supplier.findAndCountAll({
-    include: { Province, District, Ward },
+    include: [Province, District, Ward],
     limit,
     offset,
   })
@@ -62,7 +62,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID SUPPLIER----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Supplier.findByPk(id, { include: { Province, District, Ward } })
+  Supplier.findByPk(id, { include: [Province, District, Ward] })
     .then((data) => {
       if (data) {
         res.send({ rows: data })
