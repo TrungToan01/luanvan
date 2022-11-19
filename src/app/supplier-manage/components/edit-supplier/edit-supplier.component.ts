@@ -46,11 +46,12 @@ export class EditSupplierComponent implements OnInit {
   }
 
   async onSubmit() {
-    let response = await this.supService.CreateSupplier(
-      this.formSupplier.value
+    let response = await this.supService.UpdateSupplier(
+      this.formSupplier.value,
+      this.supId
     );
     if (response && response.ok) {
-      alert(response.msg ? response.mgs : 'Đã thêm thành công');
+      alert('Đã cập nhật!');
       this.formSupplier.resetForm();
     } else {
       alert(response.msg);
@@ -60,8 +61,8 @@ export class EditSupplierComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: {
-        title: 'user.create-supplier',
-        content: 'notification.confirm-create',
+        title: 'user.update-supplier',
+        content: 'notification.confirm-update',
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -83,7 +84,7 @@ export class EditSupplierComponent implements OnInit {
     const response = await this.shareCoreService.getDistrict();
     if (response.ok) {
       this.district = response.data.filter(function (data: any) {
-        return data.province_id == id;
+        return data.provinceId == id;
       });
     } else {
       alert(response.msg);
@@ -94,7 +95,7 @@ export class EditSupplierComponent implements OnInit {
     const response = await this.shareCoreService.getWards();
     if (response.ok) {
       this.wards = response.data.filter(function (data: any) {
-        return data.district_id == id;
+        return data.districtId == id;
       });
     } else {
       alert(response.msg);

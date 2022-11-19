@@ -15,17 +15,19 @@
   <div>
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'id' | translate }}
+        </th>
         <td mat-cell *matCellDef="let element">{{ element.id }}</td>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- regDate Column -->
       <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'regDate' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.createdAt | date: 'dd/MM/yyyy' }}
+          {{ element.createdAt | date: 'short' }}
         </td>
       </ng-container>
       <!-- Name Column -->
@@ -34,7 +36,20 @@
           {{ 'user.username' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          <div class="text-capitalize">{{ element.name }}</div>
+          <div class="text-capitalize align-items-center d-flex">
+            <div
+              class="rounded-circle"
+              style="width: 35px; height: 35px; margin-right: 10px;"
+            >
+              <img
+                class="img-fluid rounded-circle"
+                [src]="'http://localhost:5000' + element?.avatar"
+                style="width: 35px; height: 35px;"
+              />
+            </div>
+
+            {{ element.name }}
+          </div>
         </td>
       </ng-container>
 
@@ -60,7 +75,27 @@
           {{ 'user.role' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element?.user_role?.name }}
+          <div
+            *ngIf="element.userRoleId == 1"
+            style="width: max-content;"
+            class="bg-danger text-white px-3 text-center py-1"
+          >
+            {{ element?.user_role?.name }}
+          </div>
+          <div
+            *ngIf="element.userRoleId == 2"
+            style="width: max-content;"
+            class="bg-secondary text-white px-3 text-center py-1"
+          >
+            {{ element?.user_role?.name }}
+          </div>
+          <div
+            *ngIf="element.userRoleId == 3"
+            style="width: max-content;"
+            class="bg-success text-white px-3 text-center py-1"
+          >
+            {{ element?.user_role?.name }}
+          </div>
         </td>
       </ng-container>
 

@@ -18,7 +18,7 @@ Supplier.belongsTo(Ward)
 
 // ----------------------------------CREATE SUPPLIER----------------------------------
 exports.create = async (req, res) => {
-  if (!req.body.name || !req.body.phone_number || !req.body.address) {
+  if (!req.body.name || !req.body.phone) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })

@@ -5,14 +5,16 @@ table {
   width: 32px;
 }
 .mat-column-createdAt {
-  width: max-content;
+  width: 150px;
 }
 .mat-column-address {
   max-width: 200px;
 }
+.mat-column-description {
+  max-width: 200px;
+}
 .mat-column-name {
-  max-width: 150px;
-  background-color: bisque;
+  max-width: 110px;
 }
 .mat-header-cell {
   font-weight: bolder;
@@ -23,4 +25,8 @@ table {
 }
 a {
   text-decoration: none;
+}
+.mat-cell {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

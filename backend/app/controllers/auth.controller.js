@@ -3,9 +3,11 @@ const User = db.user
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
-const Role = db.user_role
 dotenv.config()
+const userRole = db.user_role
 
+userRole.hasMany(User)
+User.belongsTo(userRole)
 // ----------------------------------REGISTRATION----------------------------------
 exports.register = async (req, res) => {
   // check email
@@ -45,7 +47,7 @@ exports.register = async (req, res) => {
     userRoleId: req.body.userRoleId ? req.body.userRoleId : 3,
   }
 
-  User.create(user)
+  User.create(user, { include: userRole })
     .then((response) => {
       var token = jwt.sign(
         { email: req.body.email, password: req.body.password },
@@ -80,7 +82,10 @@ exports.login = async (req, res) => {
   try {
     const email = req.body.email
     const password = req.body.password
-    const user = await User.findOne({ where: { email: email } })
+    const user = await User.findOne({
+      where: { email: email },
+      include: userRole,
+    })
     if (!user) {
       return res.status(401).send('User does not exist.')
     }
@@ -105,6 +110,7 @@ exports.login = async (req, res) => {
           email: user.email,
           avatar: user.avatar,
           userRoleId: user.userRoleId,
+          rolename: user.user_role.name,
         }
 
         return res

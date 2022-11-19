@@ -50,7 +50,7 @@
             <div class="col-9">
               <select required ngModel name="userRoleId" class="form-select">
                 <option *ngFor="let item of roleList" [value]="item.id">
-                  {{ item.role }}
+                  {{ item.name }}
                 </option>
               </select>
             </div>
@@ -65,9 +65,8 @@
                 class="text-capitalize"
                 ngModel
                 #username="ngModel"
-                name="username"
+                name="name"
                 class="form-control"
-                aria-describedby="username"
                 type="text"
                 required
               />

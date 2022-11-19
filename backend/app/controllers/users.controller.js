@@ -4,9 +4,13 @@ const Op = db.Sequelize.Op
 const bcrypt = require('bcryptjs')
 const serverPage = require('./page')
 const userRole = db.user_role
+const address = db.user_address
 
 userRole.hasMany(User)
 User.belongsTo(userRole)
+
+User.hasMany(address)
+address.belongsTo(User)
 
 // ----------------------------------CREATE USER----------------------------------
 exports.create = async (req, res) => {
@@ -55,7 +59,7 @@ exports.create = async (req, res) => {
     userRoleId: req?.body?.userRoleId,
   }
 
-  User.create(user)
+  User.create(user, { include: userRole })
     .then((response) => {
       const data = {
         id: response.id,
@@ -112,7 +116,7 @@ exports.findAll = (req, res) => {
   const { limit, offset } = serverPage.getPagination(page, size)
 
   User.findAndCountAll({
-    include: userRole,
+    include: [userRole, address],
     limit,
     offset,
   })
@@ -130,7 +134,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID USER----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  User.findByPk(id, { include: userRole })
+  User.findByPk(id, { include: [userRole, address] })
     .then((response) => {
       if (response) {
         const data = {

@@ -98,10 +98,10 @@
 
           <select
             class="text-capitalize"
-            #province_id="ngModel"
+            #provinceId="ngModel"
             ngModel
-            name="province_id"
-            id="province_id"
+            name="provinceId"
+            id="provinceId"
             (ngModelChange)="getDistrict($event)"
           >
             <option hidden value="" disabled selected>
@@ -115,8 +115,7 @@
             id="provinceHid"
             class="form-text mx-3 text-muted"
             *ngIf="
-              !province_id?.valid &&
-              (province_id?.dirty || province_id?.touched)
+              !provinceId?.valid && (provinceId?.dirty || provinceId?.touched)
             "
           >
             {{ 'notification.invalid-province' | translate }}
@@ -131,11 +130,12 @@
 
           <select
             class="text-capitalize"
-            #district_id="ngModel"
+            #districtId="ngModel"
             ngModel
-            name="district_id"
-            id="district_id"
+            name="districtId"
+            id="districtId"
             (ngModelChange)="getWard($event)"
+            required
           >
             <option hidden value="" disabled selected>
               {{ 'placeholder.choose-district' | translate }}
@@ -145,11 +145,10 @@
             </option>
           </select>
           <small
-            id="district_idHid"
+            id="districtIdHid"
             class="form-text mx-3 text-muted"
             *ngIf="
-              !district_id?.valid &&
-              (district_id?.dirty || district_id?.touched)
+              !districtId?.valid && (districtId?.dirty || districtId?.touched)
             "
           >
             {{ 'notification.invalid-district' | translate }}
@@ -166,8 +165,8 @@
             class="text-capitalize"
             #ward_id="ngModel"
             ngModel
-            name="wards_id"
-            id="wards_id"
+            name="wardId"
+            id="wardId"
           >
             <option hidden value="" disabled selected>
               {{ 'placeholder.choose-ward' | translate }}

@@ -68,9 +68,10 @@ export class AuthService extends BaseService {
       if (info && info.id) {
         return {
           userId: info.id,
-          username: info.full_name,
+          username: info.name,
           phone: info.phone,
           email: info.email,
+          rolename: info.rolename,
         };
       }
     }

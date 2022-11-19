@@ -31,7 +31,6 @@ export class AddSupplierComponent implements OnInit {
   }
   async onSubmit() {
     if (this.doOk) {
-      console.log(this.formSupplier.value);
       let response = await this.supService.CreateSupplier(
         this.formSupplier.value
       );
@@ -72,7 +71,7 @@ export class AddSupplierComponent implements OnInit {
     const response = await this.shareCoreService.getDistrict();
     if (response.ok) {
       this.district = response.data.filter(function (data: any) {
-        return data.province_id == id;
+        return data.provinceId == id;
       });
     } else {
       alert(response.msg);
@@ -83,7 +82,7 @@ export class AddSupplierComponent implements OnInit {
     const response = await this.shareCoreService.getWards();
     if (response.ok) {
       this.wards = response.data.filter(function (data: any) {
-        return data.district_id == id;
+        return data.districtId == id;
       });
     } else {
       alert(response.msg);

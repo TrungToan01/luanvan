@@ -93,10 +93,10 @@
 
           <select
             class="text-capitalize"
-            #province_id="ngModel"
-            [ngModel]="SupplierInfo?.province_id"
-            name="province_id"
-            id="province_id"
+            #provinceId="ngModel"
+            [ngModel]="SupplierInfo?.provinceId"
+            name="provinceId"
+            id="provinceId"
             (ngModelChange)="getDistrict($event)"
           >
             <option hidden value="" disabled selected>
@@ -110,8 +110,7 @@
             id="provinceHid"
             class="form-text mx-3 text-muted"
             *ngIf="
-              !province_id?.valid &&
-              (province_id?.dirty || province_id?.touched)
+              !provinceId?.valid && (provinceId?.dirty || provinceId?.touched)
             "
           >
             {{ 'notification.invalid-province' | translate }}
@@ -125,11 +124,11 @@
           </label>
 
           <select
-            [ngModel]="SupplierInfo?.district_id"
+            [ngModel]="SupplierInfo?.districtId"
             class="text-capitalize"
-            #district_id="ngModel"
-            name="district_id"
-            id="district_id"
+            #districtId="ngModel"
+            name="districtId"
+            id="districtId"
             (ngModelChange)="getWard($event)"
           >
             <option hidden value="" disabled selected>
@@ -140,11 +139,10 @@
             </option>
           </select>
           <small
-            id="district_idHid"
+            id="districtIdHid"
             class="form-text mx-3 text-muted"
             *ngIf="
-              !district_id?.valid &&
-              (district_id?.dirty || district_id?.touched)
+              !districtId?.valid && (districtId?.dirty || districtId?.touched)
             "
           >
             {{ 'notification.invalid-district' | translate }}
@@ -158,11 +156,11 @@
           </label>
 
           <select
-            [ngModel]="SupplierInfo?.wards_id"
+            [ngModel]="SupplierInfo?.wardId"
             class="text-capitalize"
             #ward_id="ngModel"
-            name="wards_id"
-            id="wards_id"
+            name="wardId"
+            id="wardId"
           >
             <option hidden value="" disabled selected>
               {{ 'placeholder.choose-ward' | translate }}

@@ -9,6 +9,7 @@ export const AppConst = {
       UserInfo: 'userInfo',
       Permissions: 'permissions',
       ForgotSendToken: 'forgotSendToken',
+      role: 'rolename',
     },
     Language: 'pipeLanguage',
   },
