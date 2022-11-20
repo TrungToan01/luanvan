@@ -1,1 +1,63 @@
-<p>view-supplier works!</p>
+<div class="container mt-4 d-flex">
+  <mat-button
+    class="btn border-0 circle"
+    matRipple
+    [matRippleCentered]="true"
+    routerLink="/supplier"
+  >
+    <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+      keyboard_backspace
+    </mat-icon>
+  </mat-button>
+  <p class="text-black-50 fw-bold fs-3 px-3 mt-3">
+    {{ 'user.supplier-info' | translate }}
+  </p>
+</div>
+
+<div class="container sup-data bg-white py-4 mt-3">
+  <div class="row">
+    <div class="col-md-2 col-0"></div>
+    <div class="col-md-8 col-12">
+      <ul class="list-unstyled mb-1-9">
+        <li
+          class="mb-2 mb-xl-3 bg-secondary display-28 py-4 text-white px-1 rounded fs-4"
+        >
+          <span class="display-26s text-warning me-2 font-weight-600">
+            {{ 'user.supplier' | translate }}
+          </span>
+          {{ supplierInfo?.name }}
+        </li>
+        <li class="mb-2 mb-xl-3 display-28">
+          <span class="display-26 text-secondary me-2 font-weight-600">
+            {{ 'user.phone-number' | translate }}
+          </span>
+          {{ supplierInfo?.phone }}
+        </li>
+        <li class="mb-2 mb-xl-3 display-28">
+          <span class="display-26 text-secondary me-2 font-weight-600">
+            {{ 'user.email' | translate }}
+          </span>
+          {{ supplierInfo?.email }}
+        </li>
+        <li class="mb-2 mb-xl-3 display-28">
+          <span class="display-26 text-secondary me-2 font-weight-600">
+            {{ 'user.description' | translate }}
+          </span>
+          {{ supplierInfo?.description }}
+        </li>
+
+        <li class="mb-2 mb-xl-3 display-28">
+          <span class="display-26 text-secondary me-2 font-weight-600">
+            {{ 'user.address' | translate }}
+          </span>
+
+          {{ supplierInfo?.address }}- {{ supplierInfo?.ward?.name }}-
+          {{ supplierInfo?.district?.name }} -{{
+            supplierInfo?.province?.name
+          }}-
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-2 col-0"></div>
+  </div>
+</div>

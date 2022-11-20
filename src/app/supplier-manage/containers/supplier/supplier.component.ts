@@ -26,7 +26,7 @@ export class SupplierComponent implements OnInit {
     'createdAt',
     'name',
     'phone',
-    'description',
+    'email',
     'address',
     'action',
   ];
@@ -58,6 +58,7 @@ export class SupplierComponent implements OnInit {
   async DeleteSupplier(id: any) {
     if (this.doOk) {
       const response = await this.supplierService.DeleteSupplier(id);
+      this.doOk = false;
       if (response.ok) {
         alert('đã xóa thành công');
         this.getAllSupplier();

@@ -34,6 +34,7 @@ export class AddSupplierComponent implements OnInit {
       let response = await this.supService.CreateSupplier(
         this.formSupplier.value
       );
+      this.doOk = false;
       if (response && response.ok) {
         alert('Đã thêm thành công');
         this.formSupplier.resetForm();

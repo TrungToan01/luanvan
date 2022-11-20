@@ -96,6 +96,8 @@ export class BaseService {
     try {
       let httpHeaders = new HttpHeaders();
       const httpHeader = this.generationToken(httpHeaders);
+      // httpHeader.append('Content-Type', 'multipart/form-data');
+      // httpHeader.append('Accept', 'application/json');
       let response = await firstValueFrom(
         this.http.post<any>(this.API_ENDPOINT + url, requestItem, {
           headers: httpHeader,

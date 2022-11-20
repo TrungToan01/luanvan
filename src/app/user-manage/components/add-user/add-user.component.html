@@ -1,4 +1,9 @@
-<form id="createUserForm" (ngSubmit)="onSubmit()" #createUserForm="ngForm">
+<form
+  id="createUserForm"
+  enctype="multipart/form-data"
+  (ngSubmit)="onSubmit()"
+  #createUserForm="ngForm"
+>
   <div class="container bootstrap snippets bootdey mt-3">
     <div class="d-flex">
       <mat-button
@@ -11,7 +16,7 @@
           keyboard_backspace
         </mat-icon>
       </mat-button>
-      <p class="text-primary fs-3 px-3 mt-3">
+      <p class="text-black-50 fw-bold fs-3 px-3 mt-3">
         {{ 'user.create-user' | translate }}
       </p>
     </div>
@@ -23,7 +28,9 @@
       <div class="col-md-3">
         <div class="text-center">
           <img
-            src="https://bootdey.com/img/Content/avatar/avatar7.png"
+            [src]="
+              imageSrc || 'https://bootdey.com/img/Content/avatar/avatar7.png'
+            "
             class="avatar img-circle img-thumbnail"
             alt="avatar"
           />
@@ -34,6 +41,7 @@
             id="avatar"
             type="file"
             class="form-control mt-3"
+            (change)="filechange($event)"
           />
         </div>
       </div>

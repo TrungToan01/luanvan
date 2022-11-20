@@ -1,5 +1,5 @@
 <div class="nav navbar mt-4 mb-5 mx-3 d-block">
-  <p class="fs-3 float-start text-primary">
+  <p class="fs-3 float-start text-black-50 fw-bold">
     {{ 'user.list-employee' | translate }}
   </p>
   <button
@@ -42,13 +42,15 @@
               style="width: 35px; height: 35px; margin-right: 10px;"
             >
               <img
-                class="img-fluid rounded-circle"
+                class="avatar rounded-circle img-circle"
+                alt="avatar"
                 [src]="'http://localhost:5000' + element?.avatar"
                 style="width: 35px; height: 35px;"
               />
             </div>
-
-            {{ element.name }}
+            <div style="flex: 1;">
+              {{ element.name }}
+            </div>
           </div>
         </td>
       </ng-container>

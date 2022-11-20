@@ -16,7 +16,6 @@ export class EditSupplierComponent implements OnInit {
   supId = this.route.snapshot.paramMap.get('id');
   @ViewChild('formSupplier')
   formSupplier!: NgForm;
-  searchParams!: SearchParamRequest;
   SupplierInfo: any;
   province: any;
   district: any;
@@ -32,8 +31,8 @@ export class EditSupplierComponent implements OnInit {
   async ngOnInit() {
     await this.getSupplierData(this.supId);
     await this.getProvince();
-    await this.getDistrict(this.SupplierInfo.province_id);
-    await this.getWard(this.SupplierInfo.district_id);
+    await this.getDistrict(this.SupplierInfo.provinceId);
+    await this.getWard(this.SupplierInfo.districtId);
   }
 
   async getSupplierData(id: any) {
@@ -46,17 +45,21 @@ export class EditSupplierComponent implements OnInit {
   }
 
   async onSubmit() {
-    let response = await this.supService.UpdateSupplier(
-      this.formSupplier.value,
-      this.supId
-    );
-    if (response && response.ok) {
-      alert('Đã cập nhật!');
-      this.formSupplier.resetForm();
-    } else {
-      alert(response.msg);
+    if (this.doOk) {
+      let response = await this.supService.UpdateSupplier(
+        this.formSupplier.value,
+        this.supId
+      );
+      this.doOk = false;
+      if (response && response.ok) {
+        alert('Đã cập nhật!');
+        this.formSupplier.resetForm();
+      } else {
+        alert(response.msg);
+      }
     }
   }
+
   confirmDialog() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',

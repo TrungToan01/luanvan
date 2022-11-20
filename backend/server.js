@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const db = require('./app/models/index')
 const app = express()
+const bodyParser = require('body-parser')
+const multer = require('multer')
 
 app.use(express.static('images'))
 var corsOptions = {
@@ -12,7 +14,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 db.sequelize
   .sync()
   .then(() => {

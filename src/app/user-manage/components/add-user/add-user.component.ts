@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { ShareCoreService } from 'src/app/services/share-core.service';
-
 import { UserManageService } from '../../service/user-manage.service';
 
 @Component({
@@ -15,8 +14,8 @@ export class AddUserComponent implements OnInit {
   @ViewChild('createUserForm')
   createUserForm!: NgForm;
   confirmPass = true;
-  imageSrc: string = '';
   fileToUpload!: File;
+  imageSrc!: any;
   roleList: any;
   doOk = false;
 
@@ -30,21 +29,34 @@ export class AddUserComponent implements OnInit {
     await this.getAllRole();
   }
 
+  filechange(event: any) {
+    this.fileToUpload = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => (this.imageSrc = reader.result);
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
   async onSubmit() {
     if (this.doOk) {
-      this.createUserForm.form.value.avatar = new File(
-        [this.createUserForm.form.value.avatar],
-        'avatar.jpg',
-        { type: 'image/jpg' }
-      );
-      let response = await this.userManageService.CreateUser(
-        this.createUserForm.value
-      );
+      let data = this.createUserForm.value;
+      const formData = new FormData();
+      formData.append('avatar', this.fileToUpload);
+      formData.set('email', data.email);
+      formData.set('name', data.name);
+      formData.set('phone', data.phone);
+      formData.set('password', data.password);
+      formData.set('userRoleId', data.userRoleId);
+      formData.set('birthdate', data.birthdate);
+      formData.set('gender', data.gender);
+      console.log(formData);
+
+      let response = await this.userManageService.CreateUser(formData);
       if (response.ok) {
         alert('da tao thanh cong');
       } else {
         console.log(response);
       }
+      this.doOk = false;
     }
     return;
   }

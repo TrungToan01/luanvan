@@ -1,217 +1,225 @@
-<div class="container bootstrap snippets bootdey mt-3">
-  <div class="d-flex">
-    <mat-button
-      class="btn border-0 circle"
-      matRipple
-      [matRippleCentered]="true"
-      routerLink="/employee"
-    >
-      <mat-icon title="back" class="fs-2 mt-1 fw-bold">
-        keyboard_backspace
-      </mat-icon>
-    </mat-button>
-    <p class="text-primary fs-3 px-3 mt-3">
-      {{ 'user.edit-user' | translate }}
-    </p>
-  </div>
+<form
+  id="UserForm"
+  #UserForm="ngForm"
+  enctype="multipart/form-data"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="container bootstrap snippets bootdey mt-3">
+    <div class="d-flex">
+      <mat-button
+        class="btn border-0 circle"
+        matRipple
+        [matRippleCentered]="true"
+        routerLink="/employee"
+      >
+        <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+          keyboard_backspace
+        </mat-icon>
+      </mat-button>
+      <p class="text-black-50 fw-bold fs-3 px-3 mt-3">
+        {{ 'user.edit-user' | translate }}
+      </p>
+    </div>
 
+    <hr />
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img
+            [src]="imageSrc || 'http://localhost:5000' + userInfo?.avatar"
+            class="avatar img-circle img-thumbnail"
+            alt="avatar"
+          />
+          <!-- <h6>Upload a different photo...</h6> -->
+          <input
+            ngModel
+            (change)="filechange($event)"
+            name="avatar"
+            type="file"
+            class="form-control mt-3"
+          />
+        </div>
+      </div>
+
+      <!-- edit form column -->
+      <div class="col-md-8 personal-info">
+        <h3 class="fs-3 fw-bold">{{ 'user.user-info' | translate }}</h3>
+
+        <div>
+          <!-- role -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.role' | translate }}
+            </label>
+            <div class="col-9">
+              <select
+                [ngModel]="userInfo?.userRoleId"
+                name="userRoleId"
+                class="form-select input-customize"
+              >
+                <option *ngFor="let item of roleList" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <!-- user name -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.username' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                class="text-capitalize input-customize"
+                [ngModel]="userInfo?.name"
+                #username="ngModel"
+                name="name"
+                class="form-control input-customize"
+                aria-describedby="username"
+                type="text"
+                required
+              />
+              <small
+                id="usernameHid"
+                class="form-text text-muted"
+                *ngIf="
+                  !username?.valid && (username?.dirty || username?.touched)
+                "
+              >
+                {{ 'notification.invalid-username' | translate }}
+              </small>
+            </div>
+          </div>
+          <!-- phone -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.phone-number' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                [ngModel]="userInfo?.phone"
+                #phone="ngModel"
+                name="phone"
+                class="form-control input-customize"
+                aria-describedby="phone"
+                type="text"
+                required
+              />
+              <small
+                id="phoneHid"
+                class="form-text text-muted"
+                *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
+              >
+                {{ 'notification.invalid-phone' | translate }}
+              </small>
+            </div>
+          </div>
+          <!-- birthdate -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.birthdate' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                #birthdate="ngModel"
+                name="birth_date"
+                class="form-control input-customize"
+                aria-describedby="birthdate"
+                type="date"
+                [ngModel]="userInfo?.birthdate | date: 'yyyy-MM-dd'"
+                required
+              />
+              <small
+                id="birthdateHid"
+                class="form-text text-muted"
+                *ngIf="
+                  !birthdate?.valid && (birthdate?.dirty || birthdate?.touched)
+                "
+              >
+                {{ 'notification.invalid-birthdate' | translate }}
+              </small>
+            </div>
+          </div>
+          <!-- gender -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.gender' | translate }}
+            </label>
+            <div class="col-9 d-flex align-items-center">
+              <div class="form-check">
+                <input
+                  [ngModel]="userInfo?.gender"
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="male"
+                  [value]="true"
+                />
+                <label class="form-check-label" for="male">
+                  {{ 'user.male' | translate }}
+                </label>
+              </div>
+              <div class="form-check mx-3">
+                <input
+                  [ngModel]="userInfo?.gender"
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  [value]="false"
+                />
+                <label class="form-check-label" for="female">
+                  {{ 'user.female' | translate }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- email -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.email' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                [ngModel]="userInfo?.email"
+                #email="ngModel"
+                name="email"
+                class="form-control input-customize"
+                type="email"
+                placeholder="example@gamilcom"
+                [disabled]="true"
+                required
+              />
+              <small
+                id="emailHid"
+                class="form-text text-muted"
+                *ngIf="!email?.valid && (email?.dirty || email?.touched)"
+              >
+                {{ 'notification.invalid-email' | translate }}
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-float">
+          <button
+            (click)="UserForm.reset()"
+            title="{{ 'cancel' | translate }}"
+            class="btn btn-secondary float-end py-2"
+          >
+            {{ 'cancel' | translate }}
+          </button>
+          <button
+            (click)="confirmDialog()"
+            title="{{ 'save' | translate }}"
+            class="btn btn-primary float-end mx-3 px-5 py-2"
+          >
+            {{ 'save' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <hr />
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-3">
-      <div class="text-center">
-        <img
-          [src]="
-            userInfo?.avatar ? 'http://localhost:5000' + userInfo?.avatar : ''
-          "
-          class="avatar img-circle img-thumbnail"
-          alt="avatar"
-        />
-        <!-- <h6>Upload a different photo...</h6> -->
-        <input
-          [ngModel]="imageSrc"
-          name="avatar"
-          type="file"
-          class="form-control mt-3"
-        />
-      </div>
-    </div>
-
-    <!-- edit form column -->
-    <div class="col-md-8 personal-info">
-      <h3 class="fs-3 fw-bold">{{ 'user.user-info' | translate }}</h3>
-
-      <form id="UserForm" #UserForm="ngForm" (ngSubmit)="onSubmit()">
-        <!-- role -->
-        <div class="form-group row mb-4">
-          <label class="col-3 m-auto col-form-label text-end">
-            {{ 'user.role' | translate }}
-          </label>
-          <div class="col-9">
-            <select
-              [ngModel]="userInfo?.userRoleId"
-              name="userRoleId"
-              class="form-select input-customize"
-            >
-              <option *ngFor="let item of roleList" [value]="item.id">
-                {{ item.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-        <!-- user name -->
-        <div class="form-group row mb-4">
-          <label class="col-3 m-auto col-form-label text-end">
-            {{ 'user.username' | translate }}
-          </label>
-          <div class="col-9">
-            <input
-              class="text-capitalize input-customize"
-              [ngModel]="userInfo?.name"
-              #username="ngModel"
-              name="username"
-              class="form-control input-customize"
-              aria-describedby="username"
-              type="text"
-              required
-            />
-            <small
-              id="usernameHid"
-              class="form-text text-muted"
-              *ngIf="!username?.valid && (username?.dirty || username?.touched)"
-            >
-              {{ 'notification.invalid-username' | translate }}
-            </small>
-          </div>
-        </div>
-        <!-- phone -->
-        <div class="form-group row mb-4">
-          <label class="col-3 m-auto col-form-label text-end">
-            {{ 'user.phone-number' | translate }}
-          </label>
-          <div class="col-9">
-            <input
-              [ngModel]="userInfo?.phone"
-              #phone="ngModel"
-              name="phone"
-              class="form-control input-customize"
-              aria-describedby="phone"
-              type="text"
-              required
-            />
-            <small
-              id="phoneHid"
-              class="form-text text-muted"
-              *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
-            >
-              {{ 'notification.invalid-phone' | translate }}
-            </small>
-          </div>
-        </div>
-        <!-- birthdate -->
-        <div class="form-group row mb-4">
-          <label class="col-3 m-auto col-form-label text-end">
-            {{ 'user.birthdate' | translate }}
-          </label>
-          <div class="col-9">
-            <input
-              #birthdate="ngModel"
-              name="birth_date"
-              class="form-control input-customize"
-              aria-describedby="birthdate"
-              type="date"
-              [ngModel]="userInfo?.birthdate | date: 'yyyy-MM-dd'"
-              required
-            />
-            <small
-              id="birthdateHid"
-              class="form-text text-muted"
-              *ngIf="
-                !birthdate?.valid && (birthdate?.dirty || birthdate?.touched)
-              "
-            >
-              {{ 'notification.invalid-birthdate' | translate }}
-            </small>
-          </div>
-        </div>
-        <!-- gender -->
-        <div class="form-group row mb-4">
-          <label class="col-3 m-auto col-form-label text-end">
-            {{ 'user.gender' | translate }}
-          </label>
-          <div class="col-9 d-flex align-items-center">
-            <div class="form-check">
-              <input
-                [ngModel]="userInfo?.gender"
-                class="form-check-input"
-                type="radio"
-                name="gender"
-                id="male"
-                [value]="true"
-              />
-              <label class="form-check-label" for="male">
-                {{ 'user.male' | translate }}
-              </label>
-            </div>
-            <div class="form-check mx-3">
-              <input
-                [ngModel]="userInfo?.gender"
-                class="form-check-input"
-                type="radio"
-                name="gender"
-                id="female"
-                [value]="false"
-              />
-              <label class="form-check-label" for="female">
-                {{ 'user.female' | translate }}
-              </label>
-            </div>
-          </div>
-        </div>
-        <!-- email -->
-        <div class="form-group row mb-4">
-          <label class="col-3 m-auto col-form-label text-end">
-            {{ 'user.email' | translate }}
-          </label>
-          <div class="col-9">
-            <input
-              [ngModel]="userInfo?.email"
-              #email="ngModel"
-              name="email"
-              class="form-control input-customize"
-              type="email"
-              placeholder="example@gamilcom"
-              [disabled]="true"
-              required
-            />
-            <small
-              id="emailHid"
-              class="form-text text-muted"
-              *ngIf="!email?.valid && (email?.dirty || email?.touched)"
-            >
-              {{ 'notification.invalid-email' | translate }}
-            </small>
-          </div>
-        </div>
-      </form>
-
-      <div class="d-float">
-        <button
-          (click)="UserForm.reset()"
-          title="{{ 'cancel' | translate }}"
-          class="btn btn-secondary float-end py-2"
-        >
-          {{ 'cancel' | translate }}
-        </button>
-        <button
-          (click)="confirmDialog()"
-          title="{{ 'save' | translate }}"
-          class="btn btn-primary float-end mx-3 px-5 py-2"
-        >
-          {{ 'save' | translate }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<hr />
+</form>

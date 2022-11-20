@@ -47,7 +47,8 @@
     "supplier-list": "Supplier list",
     "update-supplier-info": "Update supplier information",
     "update-supplier": "Update supplier",
-    "create-supplier": "Create supplier"
+    "create-supplier": "Create supplier",
+    "supplier-info": "Supplier information"
   },
   "order": {
     "order": "Order",

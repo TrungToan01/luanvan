@@ -17,8 +17,8 @@ export class EditUserComponent implements OnInit {
   @ViewChild('UserForm')
   UserForm!: NgForm;
   confirmPass = true;
-  imageSrc: string = '';
-  fileToUpload: any;
+  imageSrc!: any;
+  fileToUpload!: File;
   roleList: any;
   doOk = false;
 
@@ -34,19 +34,35 @@ export class EditUserComponent implements OnInit {
     await this.getUserById(this.userId);
   }
 
-  csvInputChange(fileInputEvent: any) {
-    this.imageSrc = fileInputEvent.target.files[0];
+  filechange(fileInputEvent: any) {
+    this.fileToUpload = fileInputEvent.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => (this.imageSrc = reader.result);
+    reader.readAsDataURL(this.fileToUpload);
   }
 
   async onSubmit() {
     if (this.doOk) {
+      let data = this.UserForm.value;
+      const formData = new FormData();
+      formData.append('avatar', this.fileToUpload);
+      formData.set('email', data.email);
+      formData.set('name', data.name);
+      formData.set('phone', data.phone);
+      formData.set('password', data.password);
+      formData.set('userRoleId', data.userRoleId);
+      formData.set('birthdate', data.birthdate);
+      formData.set('gender', data.gender);
+
       const response = await this.userManageService.UpdateUser(
-        this.UserForm.value,
+        formData,
         this.userId
       );
       if (response.ok) {
+        this.doOk = false;
         alert('đã cập nhật thành công');
       } else {
+        this.doOk = false;
         alert('không thể cập nhật ');
       }
     }

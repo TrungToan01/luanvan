@@ -27,7 +27,7 @@ export class ViewUserComponent implements OnInit {
     if (response.ok) {
       this.userInfo = response.data;
     } else {
-      alert(response);
+      alert(response.msg);
     }
   }
 }
