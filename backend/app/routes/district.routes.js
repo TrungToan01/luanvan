@@ -2,7 +2,7 @@ module.exports = (app) => {
   const district = require('../controllers/district.controller')
   var router = require('express').Router()
   // Create new district
-  router.post('/create', district.create)
+  router.post('/add', district.create)
   // Retrieve all district
   router.get('/getall', district.findAll)
   // Retrieve a single district with id

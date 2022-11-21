@@ -4,6 +4,7 @@ import { RegisterComponent } from '../auth/containers/register/register.componen
 import { AddProductComponent } from '../product-manage/components/add-product/add-product.component';
 import { EditProductComponent } from '../product-manage/components/edit-product/edit-product.component';
 import { ViewProductComponent } from '../product-manage/components/view-product/view-product.component';
+import { BrandComponent } from '../product-manage/containers/brand/brand.component';
 import { ProductComponent } from '../product-manage/containers/product/product.component';
 import { AddSupplierComponent } from '../supplier-manage/components/add-supplier/add-supplier.component';
 import { EditSupplierComponent } from '../supplier-manage/components/edit-supplier/edit-supplier.component';
@@ -14,6 +15,10 @@ import { EditUserComponent } from '../user-manage/components/edit-user/edit-user
 import { ViewUserComponent } from '../user-manage/components/view-user/view-user.component';
 import { CustomerManageComponent } from '../user-manage/containers/customer-manage/customer-manage.component';
 import { EmployeeManageComponent } from '../user-manage/containers/employee-manage/employee-manage.component';
+import { ReceiptsAddComponent } from '../warehouse-manage/components/receipts-add/receipts-add.component';
+import { ReceiptsEditComponent } from '../warehouse-manage/components/receipts-edit/receipts-edit.component';
+import { ReceiptsViewComponent } from '../warehouse-manage/components/receipts-view/receipts-view.component';
+import { ReceiptsListComponent } from '../warehouse-manage/containers/receipts-list/receipts-list.component';
 
 export const mainRoutes: Routes = [];
 
@@ -38,9 +43,18 @@ export const supplierManageRoutes: Routes = [
   { path: 'supplier/view/:id', component: ViewSupplierComponent },
 ];
 
-export const productManage: Routes = [
+export const productManageRoutes: Routes = [
   { path: 'product', component: ProductComponent },
-  { path: 'product/edit/:id', component: EditProductComponent },
   { path: 'product/add', component: AddProductComponent },
-  { path: 'supplier/view/:id', component: ViewProductComponent },
+  { path: 'product/edit/:id', component: EditProductComponent },
+  { path: 'product/view/:id', component: ViewProductComponent },
+  //brand
+  { path: 'brands', component: BrandComponent },
+];
+
+export const warehouseManagerouts: Routes = [
+  { path: 'warehouse', component: ReceiptsListComponent },
+  { path: 'warehouse/add', component: ReceiptsAddComponent },
+  { path: 'warehouse/view/:id', component: ReceiptsViewComponent },
+  { path: 'warehouse/edit/:id', component: ReceiptsEditComponent },
 ];

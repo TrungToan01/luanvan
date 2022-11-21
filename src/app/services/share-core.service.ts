@@ -22,7 +22,7 @@ export class ShareCoreService extends BaseService {
 
   //get province
   public async getProvince() {
-    const response = await this.baseGetHttpClientUrl('province/getAll');
+    const response = await this.baseGetHttpClientUrl('province/getall');
     if (response.ok) {
       return response;
     } else {
@@ -32,7 +32,7 @@ export class ShareCoreService extends BaseService {
 
   // get district
   public async getDistrict() {
-    const response = await this.baseGetHttpClientUrl(`district/getAll`);
+    const response = await this.baseGetHttpClientUrl(`district/getall`);
     if (response.ok) {
       return response;
     } else {
@@ -42,7 +42,7 @@ export class ShareCoreService extends BaseService {
 
   //get wards
   public async getWards() {
-    const response = await this.baseGetHttpClientUrl(`wards/getAll`);
+    const response = await this.baseGetHttpClientUrl(`wards/getall`);
     if (response.ok) {
       return response;
     } else {

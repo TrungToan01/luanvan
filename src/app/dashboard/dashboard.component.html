@@ -4,7 +4,11 @@
     <div class="px-2">{{ 'home' | translate }}</div>
   </a>
 
-  <mat-expansion-panel hideToggle>
+  <mat-expansion-panel
+    hideToggle
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
     <mat-expansion-panel-header>
       <a mat-list-item>
         <mat-icon>people</mat-icon>
@@ -13,23 +17,47 @@
     </mat-expansion-panel-header>
 
     <a mat-list-item routerLink="/employee" routerLinkActive="list-item-active">
-      <mat-icon>people</mat-icon>
       <div class="px-2">{{ 'user.employee' | translate }}</div>
     </a>
     <a mat-list-item routerLink="/customer" routerLinkActive="list-item-active">
-      <mat-icon>people</mat-icon>
       <div class="px-2">{{ 'user.customer' | translate }}</div>
     </a>
   </mat-expansion-panel>
 
-  <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
+  <a
+    mat-list-item
+    routerLink="/product-config"
+    routerLinkActive="list-item-active"
+  >
     <mat-icon>settings</mat-icon>
     <div class="px-2">{{ 'product.product-configuration' | translate }}</div>
   </a>
-  <a mat-list-item routerLink="/product" routerLinkActive="list-item-active">
-    <mat-icon>stay_current_portrait</mat-icon>
-    <div class="px-2">{{ 'product.product' | translate }}</div>
+
+  <mat-expansion-panel
+    hideToggle
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <a mat-list-item>
+        <mat-icon>people</mat-icon>
+        <div>{{ 'product.product' | translate }}</div>
+      </a>
+    </mat-expansion-panel-header>
+
+    <a mat-list-item routerLink="/brands" routerLinkActive="list-item-active">
+      <div class="px-2">{{ 'brands' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink="/product" routerLinkActive="list-item-active">
+      <div class="px-2">{{ 'product.product' | translate }}</div>
+    </a>
+  </mat-expansion-panel>
+
+  <a mat-list-item routerLink="/warehouse" routerLinkActive="list-item-active">
+    <mat-icon>home</mat-icon>
+    <div class="px-2">{{ 'warehouse.warehouse' | translate }}</div>
   </a>
+
   <a mat-list-item routerLink="/supplier" routerLinkActive="list-item-active">
     <mat-icon>account_balance</mat-icon>
     <div class="px-2">{{ 'user.supplier' | translate }}</div>

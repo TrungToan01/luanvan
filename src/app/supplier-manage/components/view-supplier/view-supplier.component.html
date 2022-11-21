@@ -20,12 +20,12 @@
     <div class="col-md-8 col-12">
       <ul class="list-unstyled mb-1-9">
         <li
-          class="mb-2 mb-xl-3 bg-secondary display-28 py-4 text-white px-1 rounded fs-4"
+          class="mb-2 px-3 bg-secondary display-28 pt-4 pb-2 text-white px-1 rounded fs-4"
         >
-          <span class="display-26s text-warning me-2 font-weight-600">
+          <p class="display-26s text-warning me-2 font-weight-600">
             {{ 'user.supplier' | translate }}
-          </span>
-          {{ supplierInfo?.name }}
+          </p>
+          <p class="px-3">{{ supplierInfo?.name }}</p>
         </li>
         <li class="mb-2 mb-xl-3 display-28">
           <span class="display-26 text-secondary me-2 font-weight-600">
@@ -52,9 +52,7 @@
           </span>
 
           {{ supplierInfo?.address }}- {{ supplierInfo?.ward?.name }}-
-          {{ supplierInfo?.district?.name }} -{{
-            supplierInfo?.province?.name
-          }}-
+          {{ supplierInfo?.district?.name }} -{{ supplierInfo?.province?.name }}
         </li>
       </ul>
     </div>

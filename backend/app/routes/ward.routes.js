@@ -2,9 +2,9 @@ module.exports = (app) => {
   const wards = require('../controllers/wards.controller')
   var router = require('express').Router()
   // Create a new wards
-  router.post('/create', wards.create)
+  router.post('/add', wards.create)
   // Retrieve all wards
-  router.get('/getAll', wards.findAll)
+  router.get('/getall', wards.findAll)
   // Retrieve a single wards with id
   router.get('/getOne/:id', wards.findOne)
   // Update a wards with id

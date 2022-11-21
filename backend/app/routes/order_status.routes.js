@@ -1,16 +1,17 @@
 module.exports = (app) => {
-  const order_detail = require('../controllers/order_detail.controller')
+  const order_status = require('../controllers/order_status.controller')
   var router = require('express').Router()
-  // Create new order_detail
-  router.post('/create', order_detail.create)
-  // Retrieve all order_detail
-  router.get('/getall', order_detail.findAll)
-  // Retrieve a single order_detail with id
-  router.get('/getOne/:id', order_detail.findOne)
-  // Update a order_detail with id
-  router.put('/update/:id', order_detail.update)
-  // Delete a order_detail with id
-  router.delete('/delete/:id', order_detail.delete)
+  const verify = require('../middleware/verifyToken')
+  // Create new order_status
+  router.post('/add', verify, order_status.create)
+  // Retrieve all order_status
+  router.get('/getall', verify, order_status.findAll)
+  // Retrieve a single order_status with id
+  router.get('/getOne/:id', verify, order_status.findOne)
+  // Update a order_status with id
+  router.put('/update/:id', verify, order_status.update)
+  // Delete a order_status with id
+  router.delete('/delete/:id', verify, order_status.delete)
 
-  app.use('/api/order_detail', router)
+  app.use('/api/order_status', router)
 }

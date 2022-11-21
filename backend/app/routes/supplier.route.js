@@ -5,7 +5,7 @@ module.exports = (app) => {
   // Create a new supplier
   router.post('/add', verify, supplier.create)
   // Retrieve all supplier
-  router.get('/getAll', verify, supplier.findAll)
+  router.get('/getall', verify, supplier.findAll)
   // Retrieve a single supplier with id
   router.get('/getOne/:id', verify, supplier.findOne)
   // Update a supplier with id

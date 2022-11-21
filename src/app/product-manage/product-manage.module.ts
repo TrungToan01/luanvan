@@ -9,9 +9,11 @@ import { ProductComponent } from './containers/product/product.component';
 import { BrandComponent } from './containers/brand/brand.component';
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { productManage } from '../common/routes';
+import { productManageRoutes } from '../common/routes';
 import { ShareCoreService } from '../services/share-core.service';
 import { ProductService } from './service/product.service';
+import { AddBrandComponent } from './components/add-brand/add-brand.component';
+import { EditBrandComponent } from './components/edit-brand/edit-brand.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ProductService } from './service/product.service';
     BrandComponent,
     ViewProductComponent,
     EditProductComponent,
+    AddBrandComponent,
+    EditBrandComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,7 @@ import { ProductService } from './service/product.service';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterModule.forChild(productManage),
+    RouterModule.forChild(productManageRoutes),
   ],
   providers: [ShareCoreService, ProductService],
 })

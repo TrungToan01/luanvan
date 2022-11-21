@@ -65,4 +65,56 @@ export class ProductService extends BaseService {
       return response;
     }
   }
+  // ---------------------------------------------------------------------------------
+  //get all brand
+  public async createBrand(data: any): Promise<any> {
+    const response = await this.basePostHttpClientUrl('brands/add', data);
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //get all brand
+  public async getAllBrands(): Promise<any> {
+    const response = await this.baseGetHttpClientUrl('brands/getAll');
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //get all brand
+  public async getBrandsById(id: any): Promise<any> {
+    const response = await this.baseGetHttpClientUrl(`brands/getOne/${id}`);
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //get all brand
+  public async updateBrands(id: any, data: any): Promise<any> {
+    const response = await this.basePutHttpClientUrl(
+      `brands/update/${id}`,
+      data
+    );
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+  //get all brand
+  public async deleteBrand(id: any): Promise<any> {
+    const response = await this.baseDeleteHttpClientUrl(`brands/delete/${id}`);
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
 }

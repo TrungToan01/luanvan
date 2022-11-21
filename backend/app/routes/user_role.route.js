@@ -2,7 +2,7 @@ module.exports = (app) => {
   const user_role = require('../controllers/user_role.controller')
   var router = require('express').Router()
   // Create a new user_role
-  router.post('/create', user_role.create)
+  router.post('/add', user_role.create)
   // Retrieve all user_role
   router.get('/getall', user_role.findAll)
   // Retrieve a single user_role with id

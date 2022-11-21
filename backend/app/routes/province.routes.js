@@ -1,6 +1,7 @@
 module.exports = (app) => {
   const province = require('../controllers/province.controller')
   var router = require('express').Router()
+
   // Create new province
   router.post('/create', province.create)
   // Retrieve all province

@@ -95,7 +95,8 @@
     "invalid-supplier-name": "Tên nhà cung cấp là bắt buộc.",
     "invalid-province": "Tỉnh/thành phố là bắt buộc",
     "invalid-district": "Quận/huyện là bắt buộc",
-    "invalid-ward": "Xã/phường là bắt buộc"
+    "invalid-ward": "Xã/phường là bắt buộc",
+    "invalid-brand": "Tên thương hiệu là bắc buộc"
   },
   "placeholder": {
     "input-sup-name": "Nhập tên nhà cung cấp",
@@ -107,7 +108,8 @@
     "choose-province": "Chọn tỉnh/thành phố",
     "choose-district": "Chọn quận/huyện",
     "choose-ward": "Chọn phường/xã",
-    "input-des": "Nhập mô tả"
+    "input-des": "Nhập mô tả",
+    "input-brand": "Nhập tên thương hiệu"
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",
@@ -118,7 +120,15 @@
   },
   "help": "Trợ giúp",
   "home": "Trang chủ",
-  "brand": "Thương hiệu",
+  "brands": "Thương hiệu",
+  "brand": {
+    "list-brand": "Danh sách các thương hiệu",
+    "edit-brand": "Cập nhật thương hiệu",
+    "add-brand": "Thêm thương hiệu",
+    "delete-brand": "Xóa thương hiệu",
+    "name": "Tên thương hiệu",
+    "published": "Hiển thị"
+  },
   "save": "Lưu thông tin",
   "buy": "Chọn mua",
   "cancel": "Hủy bỏ",
@@ -126,7 +136,12 @@
   "id": "ID",
   "menu": "Tùy chọn",
   "message": "Tin nhắn",
-  "warehouse": "Kho hàng",
+  "warehouse": {
+    "warehouse": "Kho hàng",
+    "receipt-note": "Phiếu nhập kho hàng",
+    "add-receipt-note": "Thêm phiếu nhập kho hàng",
+    "list-receipt-note": "Danh sách phiếu nhập kho"
+  },
   "banner": "Banner trang chủ",
   "shop-info": "Thông tin cửa hàng",
   "edit": "Chỉnh sửa",

@@ -94,7 +94,8 @@
     "invalid-supplier-name": "Supplier name is required.",
     "invalid-province": "Province/City is required",
     "invalid-district": "Discount is required",
-    "invalid-ward": "Wards is required"
+    "invalid-ward": "Wards is required",
+    "invalid-brand": "Brand name is required"
   },
   "placeholder": {
     "input-sup-name": "Input supplier name",
@@ -118,7 +119,15 @@
   },
   "help": "Help",
   "home": "Home",
-  "brand": "Brand",
+  "brands": "Brands",
+  "brand": {
+    "list-brand": "List of brands",
+    "edit-brand": "Update brand",
+    "add-brand": "Create brand",
+    "delete-brand": "Delete brand",
+    "name": "Name",
+    "published": "Publish"
+  },
   "save": "Save",
   "buy": "Buy now",
   "cancel": "Cancel",
@@ -126,7 +135,12 @@
   "id": "ID",
   "menu": "Menu",
   "message": "Message",
-  "warehouse": "Warehouses",
+  "warehouse": {
+    "warehouse": "Warehouse",
+    "receipt-note": "Goods received note",
+    "add-receipt-note": "Add goods received note",
+    "list-receipt-note": "List of goods received note"
+  },
   "banner": "Banner",
   "shop-info": "Shop information",
   "edit": "Edit",
