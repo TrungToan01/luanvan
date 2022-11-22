@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
     'product',
     'stock',
     'sold',
-    'publish',
+    'published',
     'action',
   ];
 

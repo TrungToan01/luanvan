@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
   const brand = {
     name: req.body.name,
-    published: req?.body?.published || true,
+    published: req.body.published,
   }
   Brand.create(brand)
     .then((data) => {

@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { async } from '@angular/core/testing';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -70,6 +72,41 @@ export class BrandComponent implements OnInit {
     }
   }
 
+  //update published brand
+  async published(id: any, data: any) {
+    let formdata = new FormGroup({
+      published: new FormControl(!data),
+    });
+    if (this.doOk) {
+      let response = await this.productService.updateBrands(id, formdata.value);
+      if (response.ok) {
+        console.log(response);
+        this.doOk = false;
+        this.getAllBrand();
+      } else {
+        alert('không thể cập nhật');
+        this.doOk = false;
+      }
+    }
+  }
+
+  //confirm update published dialog
+  confirmUpdate(id: any, data: any) {
+    const updateDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      data: {
+        title: 'notification.notification',
+        content: 'brand.update-status',
+      },
+    });
+
+    updateDialog.afterClosed().subscribe((result) => {
+      this.doOk = result;
+      this.published(id, data);
+    });
+  }
+
+  //confirm delete dialog
   confirmDialog(id: any) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',

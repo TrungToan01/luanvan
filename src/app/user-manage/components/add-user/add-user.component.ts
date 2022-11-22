@@ -48,7 +48,6 @@ export class AddUserComponent implements OnInit {
       formData.set('userRoleId', data.userRoleId);
       formData.set('birthdate', data.birthdate);
       formData.set('gender', data.gender);
-      console.log(formData);
 
       let response = await this.userManageService.CreateUser(formData);
       if (response.ok) {

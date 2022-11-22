@@ -4,7 +4,7 @@
   </p>
 </div>
 <div class="container-fluid p-0">
-  <form id="AddBrandForm" #createUserForm="ngForm">
+  <form id="addBrandForm" #addBrandForm="ngForm">
     <div class="row justify-content-between">
       <div class="form-group w-100 col-12 flex-column d-flex">
         <label class="form-control-label pb-2">
@@ -33,13 +33,14 @@
         <label class="form-check-label" for="flexSwitchCheckDefault">
           {{ 'brand.published' | translate }}
         </label>
-        <div class="form-check form-switch">
+        <div class="form-check form-switch mx-3">
           <input
-            class="form-check-input mx-1"
-            style="width: 50px; height: 20px;"
+            [ngModel]="true"
+            name="published"
+            class="form-check-input"
+            style="width: 45px; height: 22px;"
             type="checkbox"
             id="flexSwitchCheckDefault"
-            checked
           />
         </div>
       </div>
@@ -49,7 +50,7 @@
     <button mat-button mat-dialog-close>
       {{ 'cancel' | translate }}
     </button>
-    <button mat-button color="primary" mat-dialog-close cdkFocusInitial>
+    <button (click)="onSubmit()" mat-button color="primary" cdkFocusInitial>
       {{ 'ok' | translate }}
     </button>
   </div>

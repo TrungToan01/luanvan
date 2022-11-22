@@ -127,7 +127,8 @@
     "add-brand": "Thêm thương hiệu",
     "delete-brand": "Xóa thương hiệu",
     "name": "Tên thương hiệu",
-    "published": "Hiển thị"
+    "published": "Hiển thị",
+    "update-status": "Cập nhật trạng thái thương hiệu?"
   },
   "save": "Lưu thông tin",
   "buy": "Chọn mua",
