@@ -27,7 +27,8 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Shop_info.findAll({ where: null })
     .then((data) => {
-      res.send(data)
+      const response = serverPage.getPagingData(data)
+      res.send(response)
     })
     .catch((err) => {
       res.status(500).send({

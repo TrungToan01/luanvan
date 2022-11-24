@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     return
   }
 
-  req.body && req.body.is_default ? req.body.is_default : true
+  req.body.is_default = req.body.is_default ? req.body.is_default : true
 
   User_address.create(req.body)
     .then((data) => {

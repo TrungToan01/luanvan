@@ -12,5 +12,5 @@ module.exports = (app) => {
   router.put('/update/:id', verify, rom_option.update)
   // Delete a rom_option with id
   router.delete('/delete/:id', verify, rom_option.delete)
-  app.use('/api/roms', router)
+  app.use('/api/rom', router)
 }

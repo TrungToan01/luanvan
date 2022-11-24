@@ -12,21 +12,10 @@ exports.create = (req, res) => {
     return
   }
 
-  const product = {
-    name: req.body.name,
-    specifications: req.body.specifications,
-    description: req.body.description,
-    width: req.body.width,
-    height: req.body.height,
-    weight: req.body.weight,
-    length: req.body.length,
-    published: req?.body?.published || true,
-    brandId: req.body / brandId,
-    userId: req.body.userId,
-  }
-  Products.create(product)
+  req.body.published = req.body.published ? req.body.published : true
+  Products.create(req.body)
     .then((data) => {
-      return res.send(data)
+      return res.send({ rows: data })
     })
     .catch((err) => {
       return res.status(500).send({
@@ -41,33 +30,33 @@ exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
   const { limit, offset } = serverPage.getPagination(page, size)
-  var condition
-  const product = {
-    name: req.body.name,
-    specifications: req.body.specifications,
-    description: req.body.description,
-    brandId: req.body.brandId,
-  }
-  if (product.name) {
-    condition = { name: { [Op.like]: `%${product.name}` } }
-  } else {
-    if (product.brandId) {
-      condition = { brandId: { [Op.like]: `%${product.brandId}` } }
-    } else {
-      if (product.specifications) {
-        condition = {
-          specifications: { [Op.like]: `%${product.specifications}` },
-        }
-      } else {
-        if (product.description) {
-          condition = { description: { [Op.like]: `%${product.description}` } }
-        } else {
-          condition = null
-        }
-      }
-    }
-  }
-  Products.findAndCountAll({ where: condition, limit, offset })
+  // var condition
+  // const product = {
+  //   name: req.body.name,
+  //   specifications: req.body.specifications,
+  //   description: req.body.description,
+  //   brandId: req.body.brandId,
+  // }
+  // if (product.name) {
+  //   condition = { name: { [Op.like]: `%${product.name}` } }
+  // } else {
+  //   if (product.brandId) {
+  //     condition = { brandId: { [Op.like]: `%${product.brandId}` } }
+  //   } else {
+  //     if (product.specifications) {
+  //       condition = {
+  //         specifications: { [Op.like]: `%${product.specifications}` },
+  //       }
+  //     } else {
+  //       if (product.description) {
+  //         condition = { description: { [Op.like]: `%${product.description}` } }
+  //       } else {
+  //         condition = null
+  //       }
+  //     }
+  //   }
+  // }
+  Products.findAndCountAll({ where: null, limit, offset })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
       res.send(response)
@@ -85,7 +74,7 @@ exports.findOne = (req, res) => {
   Products.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find product with id=${id}.`,

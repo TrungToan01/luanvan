@@ -1,0 +1,42 @@
+<div class="nav navbar d-block">
+  <p class="fs-4 text-black text-center text-capitalize">
+    {{ 'product.add-color' | translate }}
+  </p>
+</div>
+<div class="container-fluid p-0">
+  <form id="addColorForm" #addColorForm="ngForm">
+    <div class="row justify-content-between">
+      <div class="form-group w-100 col-12 flex-column d-flex">
+        <label class="form-control-label pb-2">
+          {{ 'product.color-config' | translate }}
+          <span class="text-danger">*</span>
+        </label>
+
+        <input
+          ngModel
+          #color="ngModel"
+          name="name"
+          placeholder="{{ 'placeholder.input-color' | translate }}"
+          type="text"
+          required
+          class="form-control form-control-lg"
+        />
+        <small
+          id="nameHid"
+          class="form-text text-muted"
+          *ngIf="!color?.valid && (color?.dirty || color?.touched)"
+        >
+          {{ 'notification.invalid-color' | translate }}
+        </small>
+      </div>
+    </div>
+  </form>
+  <div class="text-end mt-3 w-100">
+    <button mat-button mat-dialog-close>
+      {{ 'cancel' | translate }}
+    </button>
+    <button (click)="onSubmit()" mat-button color="primary" cdkFocusInitial>
+      {{ 'ok' | translate }}
+    </button>
+  </div>
+</div>

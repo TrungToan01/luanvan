@@ -7,9 +7,9 @@ import { RouterModule } from '@angular/router';
 import { supplierManageRoutes } from '../common/routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { ViewSupplierComponent } from './components/view-supplier/view-supplier.component';
-import { EditSupplierComponent } from './components/edit-supplier/edit-supplier.component';
-import { AddSupplierComponent } from './components/add-supplier/add-supplier.component';
+import { ViewSupplierComponent } from './components/supplier-view/view-supplier.component';
+import { EditSupplierComponent } from './components/supplier-edit/edit-supplier.component';
+import { AddSupplierComponent } from './components/supplier-add/add-supplier.component';
 import { SupplierService } from './service/supplier.service';
 import { BaseService } from '../services/base.service';
 

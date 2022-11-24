@@ -19,7 +19,7 @@ exports.create = (req, res) => {
   }
   District.create(district)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -54,7 +54,7 @@ exports.findOne = (req, res) => {
   District.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find District with id=${id}.`,

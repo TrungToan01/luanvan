@@ -1,0 +1,97 @@
+<div class="d-flex mt-3 mx-2">
+  <mat-button
+    class="btn border-0 circle"
+    matRipple
+    [matRippleCentered]="true"
+    routerLink="/product"
+  >
+    <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+      keyboard_backspace
+    </mat-icon>
+  </mat-button>
+  <p class="text-primary fw-bold fs-3 px-3 mt-3">
+    {{ 'product.add-product' | translate }}
+  </p>
+</div>
+
+<div class="container-fluid bg-white my-3 py-3">
+  <div class="row">
+    <div class="col-md-1 col-0"></div>
+    <form
+      class="col-md-10 col-12"
+      id="productForm"
+      enctype="multipart/form-data"
+      #productForm="ngForm"
+    >
+      <div class="row justify-content-between text-left">
+        <!-- name -->
+        <div class="form-group col-sm-6 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'product.product-name' | translate }}
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            class="text-capitalize"
+            ngModel
+            #productName="ngModel"
+            name="name"
+            placeholder="{{ 'placeholder.input-product-name' | translate }}"
+            type="text"
+            required
+          />
+          <small
+            id="nameHid"
+            class="form-text mx-3 text-muted"
+            *ngIf="
+              !productName?.valid &&
+              (productName?.dirty || productName?.touched)
+            "
+          >
+            {{ 'notification.invalid-product-name' | translate }}
+          </small>
+        </div>
+        <!-- phone -->
+        <div class="form-group col-sm-6 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'brands' | translate }}
+          </label>
+
+          <select
+            #brand="ngModel"
+            required
+            ngModel
+            name="brandId"
+            class="form-select"
+          >
+            <option *ngFor="let item of brandList" [value]="item.id">
+              {{ item.name }}
+            </option>
+          </select>
+          <small
+            id="usernameHid"
+            class="form-text text-muted"
+            *ngIf="!brand?.valid && (brand?.dirty || brand?.touched)"
+          >
+            {{ 'notification.invalid-brand' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div class="row justify-content-between text-left">
+        <div class="form-group col-12 flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'product.description' | translate }}
+          </label>
+          <textarea
+            ngModel
+            name="description"
+            placeholder="{{ 'placeholder.input-description' | translate }}"
+            type="text"
+            rows="5"
+          ></textarea>
+        </div>
+      </div>
+    </form>
+    <div class="col-md-1 col-0"></div>
+  </div>
+</div>

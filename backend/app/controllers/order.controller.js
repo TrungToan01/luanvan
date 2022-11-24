@@ -11,24 +11,9 @@ exports.create = (req, res) => {
     })
     return
   }
-
-  const order = {
-    total_price: req.body.total_price,
-    delivery_cost: req.body.delivery_cost,
-    couponsId: req.body.couponsId,
-    discount_value: req.body.discount_value,
-    statusId: req.body.statusId,
-    shop_name: req.body.shop_name,
-    shop_phone: req.body.shop_phone,
-    shop_address: req.body.shop_address,
-    userId: req.body.userId,
-    customer_name: req.body.customer_name,
-    customer_phone: req.body.customer_phone,
-    customer_address: req.body.customer_address,
-  }
-  Order.create(order)
+  Order.create(req.body)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -60,7 +45,7 @@ exports.findOne = (req, res) => {
   Order.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Order with id=${id}.`,

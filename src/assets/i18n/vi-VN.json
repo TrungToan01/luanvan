@@ -63,6 +63,7 @@
   },
   "product": {
     "product": "Sản phẩm",
+    "product-name": "Tên sản phẩm",
     "list-product": "Danh sách sản phẩm",
     "update-product": "Cập nhật sản phẩm",
     "add-product": "Thêm sản phẩm",
@@ -77,7 +78,20 @@
     "sale-price": "Giá khuyến mãi",
     "specifications": "Đặc điểm kỹ thuật",
     "color": "Màu sắc",
-    "sold": "Đã bán"
+    "sold": "Đã bán",
+    "ram": "RAM",
+    "rom": "ROM",
+    "ram-config": "Cấu hình RAM",
+    "rom-config": "Cấu hình ROM",
+    "color-config": "Cấu hình màu sắc",
+    "config": "Cấu hình",
+    "add-color": "Thêm màu sắc",
+    "edit-color": "Cập nhật màu sắc",
+    "add-rom": "Thêm cấu hình ROM",
+    "edit-rom": "Cập nhật cấu hình ROM",
+    "add-ram": "Thêm cấu hình RAM",
+    "edit-ram": "Cập nhật cấu hình RAM",
+    "description": "Mô tả sản phẩm"
   },
   "notification": {
     "notification": "Thông báo",
@@ -96,7 +110,11 @@
     "invalid-province": "Tỉnh/thành phố là bắt buộc",
     "invalid-district": "Quận/huyện là bắt buộc",
     "invalid-ward": "Xã/phường là bắt buộc",
-    "invalid-brand": "Tên thương hiệu là bắc buộc"
+    "invalid-brand": "Tên thương hiệu là bắc buộc",
+    "invalid-color": "Màu sắc là bắc buộc",
+    "invalid-rom": "ROM là bắc buộc",
+    "invalid-ram": "RAM là bắc buộc",
+    "invalid-product-name": "Tên sản phẩm là bắc buộc"
   },
   "placeholder": {
     "input-sup-name": "Nhập tên nhà cung cấp",
@@ -109,7 +127,11 @@
     "choose-district": "Chọn quận/huyện",
     "choose-ward": "Chọn phường/xã",
     "input-des": "Nhập mô tả",
-    "input-brand": "Nhập tên thương hiệu"
+    "input-brand": "Nhập tên thương hiệu",
+    "input-color": "Nhập tên màu sắc",
+    "input-ram": "Nhập cấu hình ram",
+    "input-rom": "Nhập cấu hình rom",
+    "input-description": "Nhập mô tả sản phẩm"
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",
@@ -153,5 +175,6 @@
   "update": "Cập nhật",
   "ok": "Đồng ý",
   "publish": "Hiển thị",
-  "change-password": "Đỗi mật khẩu"
+  "change-password": "Đỗi mật khẩu",
+  "no.": "ID"
 }

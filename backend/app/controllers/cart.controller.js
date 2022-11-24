@@ -13,15 +13,9 @@ exports.create = (req, res) => {
       message: 'Content can not be empty!',
     })
   }
-
-  const cart = {
-    userId: req.body.userId,
-    product_optionId: req.body.product_optionId,
-    quantity: req.body.quantity,
-  }
-  Cart.create(cart)
+  Cart.create(req.body)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -53,7 +47,7 @@ exports.findOne = (req, res) => {
   Cart.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find cart with id=${id}.`,

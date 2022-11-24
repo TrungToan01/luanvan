@@ -24,9 +24,6 @@ module.exports = (sequelize, Sequelize) => {
     userRoleId: {
       type: Sequelize.INTEGER,
     },
-    rolename: {
-      type: Sequelize.STRING,
-    },
   })
 
   return user

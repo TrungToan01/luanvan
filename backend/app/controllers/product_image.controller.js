@@ -18,7 +18,7 @@ exports.create = (req, res) => {
   }
   Product_img.create(pro_image)
     .then((data) => {
-      return res.send(data)
+      return res.send({ rows: data })
     })
     .catch((err) => {
       return res.status(500).send({
@@ -53,7 +53,7 @@ exports.findOne = (req, res) => {
   Product_img.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find product image with id=${id}.`,

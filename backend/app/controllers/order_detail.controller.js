@@ -16,16 +16,9 @@ exports.create = (req, res) => {
     })
     return
   }
-
-  const Product_detail = {
-    orderId: req.body.orderId,
-    quantity: req.body.quantity,
-    price: req.body.price,
-    productOptionId: req.body.productOptionId,
-  }
-  Product_detail.create(Product_detail)
+  Product_detail.create(req.body)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -72,7 +65,7 @@ exports.findOne = (req, res) => {
   Product_detail.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Product_detail with id=${id}.`,

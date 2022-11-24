@@ -41,7 +41,8 @@ exports.findAll = (req, res) => {
     : null
   Receipt.findAll({ where: condition })
     .then((data) => {
-      res.send(data)
+      const response = serverPage.getPagingData(data)
+      res.send(response)
     })
     .catch((err) => {
       res.status(500).send({
@@ -56,7 +57,7 @@ exports.findOne = (req, res) => {
   Receipt.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Receipt with id=${id}.`,

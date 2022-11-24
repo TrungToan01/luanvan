@@ -10,9 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { userManageRoutes } from '../common/routes';
 import { UserManageService } from './service/user-manage.service';
-import { ViewUserComponent } from './components/view-user/view-user.component';
-import { EditUserComponent } from './components/edit-user/edit-user.component';
-import { AddUserComponent } from './components/add-user/add-user.component';
+import { ViewUserComponent } from './components/user-view/view-user.component';
+import { EditUserComponent } from './components/user-edit/edit-user.component';
+import { AddUserComponent } from './components/user-add/add-user.component';
 
 @NgModule({
   declarations: [

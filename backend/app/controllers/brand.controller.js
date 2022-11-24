@@ -49,7 +49,7 @@ exports.findOne = (req, res) => {
   Brand.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Brand with id=${id}.`,

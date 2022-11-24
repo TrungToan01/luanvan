@@ -76,7 +76,13 @@
     "sale-price": "Sale price",
     "specifications": "Specifications",
     "color": "Color",
-    "sold": "Sold"
+    "sold": "Sold",
+    "ram": "RAM",
+    "rom": "ROM",
+    "ram-config": "RAM configuration",
+    "rom-config": "ROM configuration",
+    "color-config": "Color configuration",
+    "config": "configuration"
   },
   "notification": {
     "notification": "Notification",
@@ -151,5 +157,6 @@
   "update": "Update",
   "ok": "OK",
   "publish": "Publish",
-  "change-password": "Change password"
+  "change-password": "Change password",
+  "no.": "ID"
 }

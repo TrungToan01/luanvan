@@ -53,13 +53,9 @@ export class BaseService {
     let result: HttpResponse = {
       ok: true,
       msg: response && response.message ? response.message : undefined,
-      data:
-        response && response.data
-          ? response.data
-          : response.rows
-          ? response.rows
-          : undefined,
+      data: response && response.rows ? response.rows : undefined,
       token: response && response.token ? response.token : undefined,
+      length: response.length || undefined,
     };
     return result;
   }

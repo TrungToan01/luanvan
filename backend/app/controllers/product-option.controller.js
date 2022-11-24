@@ -5,26 +5,20 @@ const serverPage = require('./page')
 
 // ----------------------------------CREATE PRODUCT OPTION----------------------------------
 exports.create = (req, res) => {
-  if (!req.body) {
+  if (
+    !req.body.productId ||
+    !req.body.ramId ||
+    !req.body.romId ||
+    !req.body.quantity
+  ) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
     return
   }
-
-  const product_option = {
-    productId: req.body.productId,
-    ramId: req.body.ramId,
-    romId: req.body.romId,
-    colorId: req.body.colorId,
-    original_price: req.body.original_price,
-    sale_price: req.body.sale_price,
-    quantity: req.body.quantity,
-    sold_quantity: req.body.sold_quantity,
-  }
-  Products_option.create(product_option)
+  Products_option.create(req.body)
     .then((data) => {
-      return res.send(data)
+      return res.send({ rows: data })
     })
     .catch((err) => {
       return res.status(500).send({
@@ -58,7 +52,7 @@ exports.findOne = (req, res) => {
   Products_option.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find product option with id=${id}.`,

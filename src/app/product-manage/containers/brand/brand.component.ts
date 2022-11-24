@@ -7,8 +7,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
-import { AddBrandComponent } from '../../components/add-brand/add-brand.component';
-import { ProductService } from '../../service/product.service';
+import { AddBrandComponent } from '../../components/brand-add/add-brand.component';
+import { EditBrandComponent } from '../../components/brand-edit/edit-brand.component';
+import { BrandService } from '../../service/brand.service';
 
 @Component({
   selector: 'app-brand',
@@ -27,17 +28,14 @@ export class BrandComponent implements OnInit {
   displayedColumns = ['id', 'createdAt', 'name', 'published', 'action'];
   dataSource!: MatTableDataSource<any>;
   doOk = false;
-  constructor(
-    private productService: ProductService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private brandService: BrandService, public dialog: MatDialog) {}
 
   async ngOnInit() {
     await this.getAllBrand();
   }
 
   async getAllBrand() {
-    let response = await this.productService.getAllBrands();
+    let response = await this.brandService.getAllBrands();
     if (response.ok) {
       this.dataSource = new MatTableDataSource(response.data);
       this.dataSource.sort = this.sort;
@@ -58,12 +56,24 @@ export class BrandComponent implements OnInit {
     });
   }
 
+  //update brand
+  dialogUpdateBrand(id: any) {
+    const dialogEdit = this.dialog.open(EditBrandComponent, {
+      width: '400px',
+      data: {
+        id: id,
+      },
+    });
+    dialogEdit.afterClosed().subscribe((result) => {
+      this.getAllBrand();
+    });
+  }
+
   //delete brand
   async deleteUser(id: any) {
     if (this.doOk) {
-      const response = await this.productService.deleteBrand(id);
+      const response = await this.brandService.deleteBrand(id);
       if (response.ok) {
-        alert('đã xóa thành công');
         this.getAllBrand();
       } else {
         alert('không thể xóa');
@@ -78,7 +88,7 @@ export class BrandComponent implements OnInit {
       published: new FormControl(!data),
     });
     if (this.doOk) {
-      let response = await this.productService.updateBrands(id, formdata.value);
+      let response = await this.brandService.updateBrands(id, formdata.value);
       if (response.ok) {
         console.log(response);
         this.doOk = false;
@@ -88,6 +98,7 @@ export class BrandComponent implements OnInit {
         this.doOk = false;
       }
     }
+    this.getAllBrand();
   }
 
   //confirm update published dialog
@@ -99,7 +110,6 @@ export class BrandComponent implements OnInit {
         content: 'brand.update-status',
       },
     });
-
     updateDialog.afterClosed().subscribe((result) => {
       this.doOk = result;
       this.published(id, data);

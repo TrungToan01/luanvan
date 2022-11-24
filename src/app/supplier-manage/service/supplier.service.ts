@@ -11,7 +11,7 @@ export class SupplierService extends BaseService {
   }
 
   //get all supplier
-  public async getAllSupplier(pageinfo?: any, position?: any): Promise<any> {
+  public async getAllSupplier(pageinfo?: any): Promise<any> {
     const response = await this.baseGetHttpClientUrl(
       'supplier/getAll',
       pageinfo

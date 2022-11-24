@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   User_role.findAll()
     .then((data) => {
-      return res.status(200).json({ data })
+      return res.status(200).json({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({

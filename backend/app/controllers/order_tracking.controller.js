@@ -18,7 +18,7 @@ exports.create = (req, res) => {
   }
   Order_tracking.create(order_tracking)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -51,7 +51,7 @@ exports.findOne = (req, res) => {
   Order_tracking.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Order_tracking with id=${id}.`,

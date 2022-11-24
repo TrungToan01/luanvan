@@ -20,7 +20,7 @@ exports.create = (req, res) => {
   }
   Notification.create(notification)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -35,32 +35,8 @@ exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
 
-  const notif = {
-    title: req.body.title,
-    content: req.body.content,
-    userId: req.body.userId,
-    viewed: req.body.viewed,
-  }
-  var condition
-  if (notif.title) {
-    condition = { title: { [Op.like]: `%${notif.title}%` } }
-  } else {
-    if (notif.content) {
-      condition = { content: { [Op.like]: `%${notif.content}%` } }
-    } else {
-      if (notif.userId) {
-        condition = { userId: { [Op.like]: `%${notif.userId}%` } }
-      } else {
-        if (notif.viewed) {
-          condition = { viewed: { [Op.like]: `%${notif.viewed}%` } }
-        } else {
-          condition = null
-        }
-      }
-    }
-  }
   const { limit, offset } = serverPage.getPagination(page, size)
-  Notification.findAndCountAll({ where: condition, limit, offset })
+  Notification.findAndCountAll({ where: null, limit, offset })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
       res.send(response)
@@ -79,7 +55,7 @@ exports.findOne = (req, res) => {
   Notification.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Notification with id=${id}.`,

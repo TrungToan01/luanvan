@@ -16,7 +16,7 @@ exports.create = (req, res) => {
   }
   Province.create(province)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -50,7 +50,7 @@ exports.findOne = (req, res) => {
   Province.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Province with id=${id}.`,

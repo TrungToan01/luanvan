@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductComponent } from './containers/product/product.component';
 import { BrandComponent } from './containers/brand/brand.component';
-import { ViewProductComponent } from './components/view-product/view-product.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { ViewProductComponent } from './components/product-view/view-product.component';
+import { EditProductComponent } from './components/product-edit/edit-product.component';
 import { productManageRoutes } from '../common/routes';
 import { ShareCoreService } from '../services/share-core.service';
 import { ProductService } from './service/product.service';
-import { AddBrandComponent } from './components/add-brand/add-brand.component';
-import { EditBrandComponent } from './components/edit-brand/edit-brand.component';
+import { AddBrandComponent } from './components/brand-add/add-brand.component';
+import { EditBrandComponent } from './components/brand-edit/edit-brand.component';
+import { BrandService } from './service/brand.service';
+import { ProductAddComponent } from './components/product-add/product-add.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { EditBrandComponent } from './components/edit-brand/edit-brand.component
     EditProductComponent,
     AddBrandComponent,
     EditBrandComponent,
+    ProductAddComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +36,6 @@ import { EditBrandComponent } from './components/edit-brand/edit-brand.component
     TranslateModule,
     RouterModule.forChild(productManageRoutes),
   ],
-  providers: [ShareCoreService, ProductService],
+  providers: [ShareCoreService, ProductService, BrandService],
 })
 export class ProductManageModule {}

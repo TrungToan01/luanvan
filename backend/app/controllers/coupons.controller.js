@@ -16,18 +16,9 @@ exports.create = (req, res) => {
     })
     return
   }
-  const coupons = {
-    code: req.body.code,
-    start_date: req.body.start_date,
-    end_date: req.body.end_date,
-    quantity: req.body.quantity,
-    used_quantity: req.body.used_quantity,
-    discount_value: req.body.discount_value,
-    userId: req.body.userId,
-  }
-  Coupons.create(coupons)
+  Coupons.create(req.body)
     .then((data) => {
-      res.send(data)
+      res.send({ rows: data })
     })
     .catch((err) => {
       res.status(500).send({
@@ -61,7 +52,7 @@ exports.findOne = (req, res) => {
   Coupons.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data)
+        res.send({ rows: data })
       } else {
         res.status(404).send({
           message: `Cannot find Coupons with id=${id}.`,

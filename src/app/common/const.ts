@@ -27,4 +27,5 @@ export interface HttpResponse {
   msg?: any[];
   data?: any;
   token?: any;
+  length?: any;
 }

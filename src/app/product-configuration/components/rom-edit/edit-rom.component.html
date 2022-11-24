@@ -1,0 +1,42 @@
+<div class="nav navbar d-block">
+  <p class="fs-4 text-black text-center text-capitalize">
+    {{ 'product.edit-color' | translate }}
+  </p>
+</div>
+<div class="container-fluid p-0">
+  <form id="romForm" #romForm="ngForm">
+    <div class="row justify-content-between">
+      <div class="form-group w-100 col-12 flex-column d-flex">
+        <label class="form-control-label pb-2">
+          {{ 'product.color' | translate }}
+          <span class="text-danger">*</span>
+        </label>
+
+        <input
+          [ngModel]="romInfo?.name"
+          #rom="ngModel"
+          name="name"
+          placeholder="{{ 'placeholder.input-rom' | translate }}"
+          type="text"
+          required
+          class="form-control form-control-lg"
+        />
+        <small
+          id="nameHid"
+          class="form-text text-muted"
+          *ngIf="!rom?.valid && (rom?.dirty || rom?.touched)"
+        >
+          {{ 'notification.invalid-rom' | translate }}
+        </small>
+      </div>
+    </div>
+  </form>
+  <div class="text-end mt-3 w-100">
+    <button mat-button mat-dialog-close>
+      {{ 'cancel' | translate }}
+    </button>
+    <button (click)="onSubmit()" mat-button color="primary" cdkFocusInitial>
+      {{ 'ok' | translate }}
+    </button>
+  </div>
+</div>

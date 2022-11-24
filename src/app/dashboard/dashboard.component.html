@@ -12,7 +12,7 @@
     <mat-expansion-panel-header>
       <a mat-list-item>
         <mat-icon>people</mat-icon>
-        <div>{{ 'user.user-manage' | translate }}</div>
+        <div class="px-2">{{ 'user.user-manage' | translate }}</div>
       </a>
     </mat-expansion-panel-header>
 
@@ -24,14 +24,30 @@
     </a>
   </mat-expansion-panel>
 
-  <a
-    mat-list-item
-    routerLink="/product-config"
-    routerLinkActive="list-item-active"
+  <mat-expansion-panel
+    hideToggle
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
   >
-    <mat-icon>settings</mat-icon>
-    <div class="px-2">{{ 'product.product-configuration' | translate }}</div>
-  </a>
+    <mat-expansion-panel-header>
+      <a mat-list-item routerLinkActive="list-item-active">
+        <mat-icon>settings</mat-icon>
+        <div class="px-2">
+          {{ 'product.product-configuration' | translate }}
+        </div>
+      </a>
+    </mat-expansion-panel-header>
+
+    <a mat-list-item routerLink="/ram" routerLinkActive="list-item-active">
+      <div class="px-2">{{ 'product.ram' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink="/rom" routerLinkActive="list-item-active">
+      <div class="px-2">{{ 'product.rom' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink="/color" routerLinkActive="list-item-active">
+      <div class="px-2">{{ 'product.color' | translate }}</div>
+    </a>
+  </mat-expansion-panel>
 
   <mat-expansion-panel
     hideToggle
@@ -41,7 +57,7 @@
     <mat-expansion-panel-header>
       <a mat-list-item>
         <mat-icon>phone_iphone</mat-icon>
-        <div>{{ 'product.product' | translate }}</div>
+        <div class="px-2">{{ 'product.product' | translate }}</div>
       </a>
     </mat-expansion-panel-header>
 
@@ -59,7 +75,7 @@
   </a>
 
   <a mat-list-item routerLink="/supplier" routerLinkActive="list-item-active">
-    <mat-icon>account_balance</mat-icon>
+    <mat-icon>work_outline</mat-icon>
     <div class="px-2">{{ 'user.supplier' | translate }}</div>
   </a>
   <a mat-list-item routerLink="/home" routerLinkActive="list-item-active">
