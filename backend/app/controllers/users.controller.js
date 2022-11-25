@@ -85,34 +85,6 @@ exports.create = async (req, res) => {
 exports.findAll = (req, res) => {
   const page = req?.query?.page
   const size = req?.query?.size
-
-  // var condition
-  // if (user.email) {
-  //   condition = { email: { [Op.like]: `%${user.email}%` } }
-  // } else {
-  //   if (user.name) {
-  //     condition = { name: { [Op.like]: `%${user.name}` } }
-  //   } else {
-  //     if (user.birthdate) {
-  //       condition = { birthdate: { [Op.like]: `%${user.birthdate}` } }
-  //     } else {
-  //       if (user.phone) {
-  //         condition = { phone: { [Op.like]: `%${user.phone}` } }
-  //       } else {
-  //         if (user.gender) {
-  //           condition = { gender: { [Op.like]: `%${user.gender}` } }
-  //         } else {
-  //           if (user.userRoleId) {
-  //             condition = { userRoleId: { [Op.like]: `%${user.userRoleId}` } }
-  //           } else {
-  //             condition = null
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
   const { limit, offset } = serverPage.getPagination(page, size)
 
   User.findAndCountAll({

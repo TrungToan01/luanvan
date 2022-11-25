@@ -14,84 +14,197 @@
   </p>
 </div>
 
-<div class="container-fluid bg-white my-3 py-3">
-  <div class="row">
-    <div class="col-md-1 col-0"></div>
-    <form
-      class="col-md-10 col-12"
-      id="productForm"
-      enctype="multipart/form-data"
-      #productForm="ngForm"
-    >
-      <div class="row justify-content-between text-left">
-        <!-- name -->
-        <div class="form-group col-sm-6 flex-column d-flex">
-          <label class="form-control-label px-3">
-            {{ 'product.product-name' | translate }}
-            <span class="text-danger">*</span>
-          </label>
-          <input
-            class="text-capitalize"
-            ngModel
-            #productName="ngModel"
-            name="name"
-            placeholder="{{ 'placeholder.input-product-name' | translate }}"
-            type="text"
-            required
-          />
-          <small
-            id="nameHid"
-            class="form-text mx-3 text-muted"
-            *ngIf="
-              !productName?.valid &&
-              (productName?.dirty || productName?.touched)
-            "
-          >
-            {{ 'notification.invalid-product-name' | translate }}
-          </small>
-        </div>
-        <!-- phone -->
-        <div class="form-group col-sm-6 flex-column d-flex">
-          <label class="form-control-label px-3">
-            {{ 'brands' | translate }}
-          </label>
+<div *ngIf="product; then created; else uncreate"></div>
+<ng-template #uncreate>
+  <div class="container-fluid my-3">
+    <div class="row">
+      <div class="col-md-1 col-0"></div>
+      <form
+        class="col-md-10 col-12 bg-white rounded p-3"
+        style="
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+            rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        "
+        id="productForm"
+        enctype="multipart/form-data"
+        #productForm="ngForm"
+      >
+        <div class="row justify-content-between text-left">
+          <!-- name -->
+          <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.product-name' | translate }}
+              <span class="text-danger">*</span>
+            </label>
+            <input
+              class="text-capitalize"
+              ngModel
+              #productName="ngModel"
+              name="name"
+              placeholder="{{ 'placeholder.input-product-name' | translate }}"
+              type="text"
+              required
+            />
+            <small
+              id="nameHid"
+              class="form-text mx-3 text-muted"
+              *ngIf="
+                !productName?.valid &&
+                (productName?.dirty || productName?.touched)
+              "
+            >
+              {{ 'notification.invalid-product-name' | translate }}
+            </small>
+          </div>
+          <!-- brand -->
+          <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'brands' | translate }}
+            </label>
 
-          <select
-            #brand="ngModel"
-            required
-            ngModel
-            name="brandId"
-            class="form-select"
-          >
-            <option *ngFor="let item of brandList" [value]="item.id">
-              {{ item.name }}
-            </option>
-          </select>
-          <small
-            id="usernameHid"
-            class="form-text text-muted"
-            *ngIf="!brand?.valid && (brand?.dirty || brand?.touched)"
-          >
-            {{ 'notification.invalid-brand' | translate }}
-          </small>
+            <select
+              #brand="ngModel"
+              required
+              ngModel
+              name="brandId"
+              class="form-select"
+            >
+              <option *ngFor="let item of brandList" [value]="item.id">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              id="usernameHid"
+              class="form-text text-muted"
+              *ngIf="!brand?.valid && (brand?.dirty || brand?.touched)"
+            >
+              {{ 'notification.invalid-brand' | translate }}
+            </small>
+          </div>
         </div>
-      </div>
 
-      <div class="row justify-content-between text-left">
-        <div class="form-group col-12 flex-column d-flex">
-          <label class="form-control-label px-3">
-            {{ 'product.description' | translate }}
-          </label>
-          <textarea
-            ngModel
-            name="description"
-            placeholder="{{ 'placeholder.input-description' | translate }}"
-            type="text"
-            rows="5"
-          ></textarea>
+        <p class="fw-bold">Thông số kĩ thuật</p>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-2 flex-column d-flex">
+            <label class="form-control-label px-3">
+              Core
+            </label>
+            <input
+              class="text-capitalize"
+              ngModel
+              name="width"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-2 flex-column d-flex">
+            <label class="form-control-label px-3">
+              CPU
+            </label>
+            <input
+              class="text-capitalize"
+              ngModel
+              name="width"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-2 flex-column d-flex">
+            <label class="form-control-label px-3">
+              Width
+            </label>
+            <input
+              class="text-capitalize"
+              ngModel
+              name="width"
+              type="text"
+              required
+            />
+          </div>
+          <div class="form-group col-sm-2 flex-column d-flex">
+            <label class="form-control-label px-3">
+              Height
+            </label>
+            <input
+              class="text-capitalize"
+              ngModel
+              name="width"
+              type="text"
+              required
+            />
+          </div>
+          <div class="form-group col-sm-2 flex-column d-flex">
+            <label class="form-control-label px-3">
+              Weight
+            </label>
+            <input
+              class="text-capitalize"
+              ngModel
+              name="width"
+              type="text"
+              required
+            />
+          </div>
+          <div class="form-group col-sm-2 flex-column d-flex">
+            <label class="form-control-label px-3">
+              Lenght
+            </label>
+            <input
+              class="text-capitalize"
+              ngModel
+              name="width"
+              type="text"
+              required
+            />
+          </div>
         </div>
-      </div>
-    </form>
-    <div class="col-md-1 col-0"></div>
+
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-12 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.description' | translate }}
+            </label>
+            <textarea
+              ngModel
+              name="description"
+              placeholder="{{ 'placeholder.input-description' | translate }}"
+              type="text"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+
+        <button (click)="createProduct()" class="btn btn-primary float-end">
+          {{ 'save' | translate }}
+        </button>
+      </form>
+      <div class="col-md-1 col-0"></div>
+    </div>
   </div>
-</div>
+</ng-template>
+<ng-template #created>
+  <div
+    class="container-fluid bg-white rounded p-3"
+    style="
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+        rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    "
+  >
+    <div class="d-flex">
+      <p class="fw-bold" style="padding-right: 10px;">
+        {{ 'product.product-name' | translate }}:
+      </p>
+      <p class="fs-3">
+        {{ productInfo?.name }}
+      </p>
+    </div>
+    <div class="d-flex">
+      <p class="fw-bold" style="padding-right: 10px;">
+        {{ 'brands' | translate }}:
+      </p>
+      <p class="text-danger">{{ productInfo?.brand }}</p>
+    </div>
+  </div>
+</ng-template>

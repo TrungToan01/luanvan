@@ -13,11 +13,11 @@ exports.create = (req, res) => {
 
   const brand = {
     name: req.body.name,
-    published: req.body.published,
+    published: req.body.published || true,
   }
   Brand.create(brand)
     .then((data) => {
-      return res.send(data)
+      return res.send({ rows: data })
     })
     .catch((err) => {
       return res.status(500).send({

@@ -55,7 +55,7 @@ export class AddUserComponent implements OnInit {
       } else {
         console.log(response);
       }
-      this.doOk = false;
+      return (this.doOk = false);
     }
     return;
   }

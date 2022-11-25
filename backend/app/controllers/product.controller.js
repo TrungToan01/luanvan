@@ -2,20 +2,34 @@ const db = require('../models')
 const Products = db.products
 const Op = db.Sequelize.Op
 const serverPage = require('./page')
+const Brand = db.brand
+const Product_Op = db.product_option
+
+Brand.hasMany(Products)
+Products.belongsTo(Brand)
+
+Products.hasMany(Product_Op)
+Product_Op.belongsTo(Products)
 
 // ----------------------------------CREATE PRODUCT----------------------------------
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   if (!req.body) {
-    res.status(400).send({
+    return res.status(400).send({
       message: 'Content can not be empty!',
     })
-    return
   }
 
   req.body.published = req.body.published ? req.body.published : true
-  Products.create(req.body)
+
+  const brand = await Brand.findOne({ where: { id: req.body.brandId } })
+
+  await Products.create(req.body, { include: Brand })
     .then((data) => {
-      return res.send({ rows: data })
+      const response = {
+        name: data.name,
+        brand: brand.name,
+      }
+      return res.send({ rows: response, message: 'Create success!' })
     })
     .catch((err) => {
       return res.status(500).send({
@@ -30,33 +44,7 @@ exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
   const { limit, offset } = serverPage.getPagination(page, size)
-  // var condition
-  // const product = {
-  //   name: req.body.name,
-  //   specifications: req.body.specifications,
-  //   description: req.body.description,
-  //   brandId: req.body.brandId,
-  // }
-  // if (product.name) {
-  //   condition = { name: { [Op.like]: `%${product.name}` } }
-  // } else {
-  //   if (product.brandId) {
-  //     condition = { brandId: { [Op.like]: `%${product.brandId}` } }
-  //   } else {
-  //     if (product.specifications) {
-  //       condition = {
-  //         specifications: { [Op.like]: `%${product.specifications}` },
-  //       }
-  //     } else {
-  //       if (product.description) {
-  //         condition = { description: { [Op.like]: `%${product.description}` } }
-  //       } else {
-  //         condition = null
-  //       }
-  //     }
-  //   }
-  // }
-  Products.findAndCountAll({ where: null, limit, offset })
+  Products.findAndCountAll({ include: [Brand, Product_Op], limit, offset })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
       res.send(response)
@@ -71,7 +59,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID PRODUCT----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Products.findByPk(id)
+  Products.findByPk(id, { include: [Brand, Product_Op] })
     .then((data) => {
       if (data) {
         res.send({ rows: data })

@@ -131,7 +131,8 @@
     "input-color": "Nhập tên màu sắc",
     "input-ram": "Nhập cấu hình ram",
     "input-rom": "Nhập cấu hình rom",
-    "input-description": "Nhập mô tả sản phẩm"
+    "input-description": "Nhập mô tả sản phẩm",
+    "input-product-name": "Nhập tên sản phẩm "
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",

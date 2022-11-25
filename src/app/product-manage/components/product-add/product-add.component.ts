@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { BrandService } from '../../service/brand.service';
 import { ProductService } from '../../service/product.service';
 
@@ -9,6 +10,10 @@ import { ProductService } from '../../service/product.service';
 })
 export class ProductAddComponent implements OnInit {
   brandList: any;
+  product = false;
+  @ViewChild('productForm')
+  productForm!: NgForm;
+  productInfo: any;
   constructor(
     private brandService: BrandService,
     private productService: ProductService
@@ -27,6 +32,20 @@ export class ProductAddComponent implements OnInit {
       this.brandList = newArray;
     } else {
       alert(response);
+    }
+  }
+
+  async createProduct() {
+    console.log(this.productForm.value);
+    let response = await this.productService.createProduct(
+      this.productForm.value
+    );
+    if (response.ok) {
+      this.product = true;
+      this.productInfo = response.data;
+      console.log(response);
+    } else {
+      alert('không thể tạo');
     }
   }
 }
