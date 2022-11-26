@@ -48,7 +48,6 @@ export class AddUserComponent implements OnInit {
       formData.set('userRoleId', data.userRoleId);
       formData.set('birthdate', data.birthdate);
       formData.set('gender', data.gender);
-
       let response = await this.userManageService.CreateUser(formData);
       if (response.ok) {
         alert('da tao thanh cong');
@@ -62,7 +61,6 @@ export class AddUserComponent implements OnInit {
 
   async getAllRole() {
     let response = await this.shareCoreService.getAllRole();
-    console.log(response);
     if (response.ok) {
       this.roleList = response.data;
     } else {

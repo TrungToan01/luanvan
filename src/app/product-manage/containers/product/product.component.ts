@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -38,18 +39,83 @@ export class ProductComponent implements OnInit {
     public dialog: MatDialog,
     private productService: ProductService
   ) {}
-  async ngOnInit() {}
+  async ngOnInit() {
+    await this.getAllProduct();
+  }
 
+  async getAllProduct() {
+    let response = await this.productService.getAllProduct();
+    if (response.ok) {
+      console.log(response.data);
+      this.dataSource = new MatTableDataSource(response.data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.PageInfo.total = response.length;
+    }
+  }
+
+  //update published brand
+  async published(id: any, data: any) {
+    let formdata = new FormGroup({
+      published: new FormControl(!data),
+    });
+    if (this.doOk) {
+      let response = await this.productService.updateProduct(
+        id,
+        formdata.value
+      );
+      if (response.ok) {
+        console.log(response);
+        this.doOk = false;
+        this.getAllProduct();
+      } else {
+        alert('không thể cập nhật');
+        this.doOk = false;
+      }
+    }
+    this.getAllProduct();
+  }
+
+  //confirm update published dialog
+  confirmUpdate(id: any, data: any) {
+    const updateDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      data: {
+        title: 'notification.notification',
+        content: 'product.update-status',
+      },
+    });
+    updateDialog.afterClosed().subscribe((result) => {
+      this.doOk = result;
+      this.published(id, data);
+    });
+  }
+
+  //delete product
+  async delete(id: any) {
+    if (this.doOk) {
+      let response = await this.productService.deleteProduct(id);
+      if (response.ok) {
+        alert('đẫ xóa thành công');
+        this.getAllProduct();
+      } else {
+        alert('có lỗi xảy ra');
+      }
+    }
+  }
+
+  //confirm delete dialog
   confirmDialog(id: any) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: {
-        title: 'product.delete-product',
+        title: 'notification.notification',
         content: 'notification.confirm-delete',
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.doOk = result;
+      this.delete(id);
     });
   }
 }

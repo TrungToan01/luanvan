@@ -53,7 +53,7 @@ exports.register = async (req, res) => {
         { email: req.body.email, password: req.body.password },
         process.env.JWT_KEY,
         {
-          expiresIn: '240h',
+          expiresIn: '5d',
         },
       )
       var data = {
@@ -99,7 +99,7 @@ exports.login = async (req, res) => {
           { email: email, password: password },
           process.env.JWT_KEY,
           {
-            expiresIn: '24h',
+            expiresIn: '5d',
           },
         )
         var data = {

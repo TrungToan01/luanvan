@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
       this.confirmPass = true;
       let response = await this.authService.register(this.registerForm.value);
       if (response && response.ok) {
-        this.router.navigate(['']);
+        this.router.navigate(['/']);
       } else {
         response.mgs;
       }

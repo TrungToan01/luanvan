@@ -4,24 +4,28 @@ const serverPage = require('./page')
 
 // ----------------------------------CREATE PRODUCT IMAGE----------------------------------
 exports.create = (req, res) => {
-  if (!req.body.productId) {
+  if (!req.body.productOptionId) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
     return
   }
-
-  const pro_image = {
-    productId: req.body.productId,
-    image: req?.file?.filename ? 'products' + req?.file?.filename : null,
-    colorId: req.body.colorId,
+  const result = []
+  if (req.files.length >= 0) {
+    req.files.forEach((element) => {
+      const pro_image = {
+        productOptionId: req.body.productOptionId,
+        image: element.filename ? 'products' + element.filename : null,
+      }
+      result.push(pro_image)
+    })
   }
-  Product_img.create(pro_image)
+  Product_img.bulkCreate(result)
     .then((data) => {
-      return res.send({ rows: data })
+      res.send({ rows: data })
     })
     .catch((err) => {
-      return res.status(500).send({
+      res.status(500).send({
         message:
           err.message ||
           'Some error occurred while creating the product image.',

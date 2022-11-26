@@ -2,11 +2,19 @@ const db = require('../models')
 const Products_option = db.product_option
 const Op = db.Sequelize.Op
 const serverPage = require('./page')
+const Brand = db.brand
+const Image = db.product_image
+
+Products_option.hasMany(Image)
+Image.belongsTo(Products_option)
+
+Brand.hasMany(Products_option)
+Products_option.belongsTo(Brand)
 
 // ----------------------------------CREATE PRODUCT OPTION----------------------------------
 exports.create = (req, res) => {
   if (
-    !req.body.productId ||
+    !req.body.name ||
     !req.body.ramId ||
     !req.body.romId ||
     !req.body.quantity
@@ -16,6 +24,8 @@ exports.create = (req, res) => {
     })
     return
   }
+
+  req.body.published = req?.body?.published || true
   Products_option.create(req.body)
     .then((data) => {
       return res.send({ rows: data })
@@ -33,7 +43,7 @@ exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
   const { limit, offset } = serverPage.getPagination(page, size)
-  Products_option.findAndCountAll({ where: null, limit, offset })
+  Products_option.findAndCountAll({ include: [Brand, Image], limit, offset })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
       res.send(response)
@@ -49,7 +59,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID PRODUCT OPTION----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Products_option.findByPk(id)
+  Products_option.findByPk(id, { include: [Brand, Image] })
     .then((data) => {
       if (data) {
         res.send({ rows: data })

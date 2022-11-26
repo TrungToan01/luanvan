@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       this.confirmPass = true;
       let response = await this.authService.login(this.loginForm.value);
       if (response && response.ok) {
-        this.router.navigate(['']);
+        this.router.navigate(['/']);
       } else {
         this.generalError = 'auth.error.login-failed';
       }

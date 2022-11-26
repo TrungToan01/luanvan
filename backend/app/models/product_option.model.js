@@ -1,6 +1,51 @@
 module.exports = (sequelize, Sequelize) => {
   const product_option = sequelize.define('product_option', {
-    productId: {
+    name: {
+      type: Sequelize.STRING,
+    },
+    description: {
+      type: Sequelize.STRING,
+    },
+    width: {
+      type: Sequelize.DOUBLE,
+    },
+    height: {
+      type: Sequelize.DOUBLE,
+    },
+    weight: {
+      type: Sequelize.DOUBLE,
+    },
+    length: {
+      type: Sequelize.DOUBLE,
+    },
+    camera: {
+      type: Sequelize.STRING,
+    },
+    camera_selfie: {
+      type: Sequelize.STRING,
+    },
+    CPU: {
+      type: Sequelize.STRING,
+    },
+    origin: {
+      type: Sequelize.STRING,
+    },
+    core: {
+      type: Sequelize.INTEGER,
+    },
+    warranty_time: {
+      type: Sequelize.STRING,
+    },
+    screen: {
+      type: Sequelize.STRING,
+    },
+    published: {
+      type: Sequelize.BOOLEAN,
+    },
+    brandId: {
+      type: Sequelize.INTEGER,
+    },
+    userId: {
       type: Sequelize.INTEGER,
     },
     ramId: {
@@ -23,6 +68,12 @@ module.exports = (sequelize, Sequelize) => {
     },
     sold_quantity: {
       type: Sequelize.INTEGER,
+    },
+    GPU: {
+      type: Sequelize.STRING,
+    },
+    system: {
+      type: Sequelize.STRING,
     },
   })
   return product_option
