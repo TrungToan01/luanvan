@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { SupplierService } from '../../service/supplier.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class ViewSupplierComponent implements OnInit {
   supplierInfo: any;
   constructor(
     private route: ActivatedRoute,
-    private supManageService: SupplierService
+    private supManageService: SupplierService,
+    private shareCoreService: ShareCoreService
   ) {}
 
   async ngOnInit() {
@@ -23,9 +25,12 @@ export class ViewSupplierComponent implements OnInit {
     let response = await this.supManageService.GetSupplierById(id);
     if (response.ok) {
       this.supplierInfo = response.data;
-      console.log(response.data);
     } else {
       alert(response.msg);
     }
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

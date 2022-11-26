@@ -13,7 +13,7 @@ module.exports = (app) => {
   var router = require('express').Router()
   const verify = require('../middleware/verifyToken')
   //create
-  router.post('/add', verify, uploadImage.array('image', 10), products.create)
+  router.post('/add', verify, uploadImage.array('image', 20), products.create)
   // Retrieve all products
   router.get('/getall', products.findAll)
   // Retrieve a single products with id

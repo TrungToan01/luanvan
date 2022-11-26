@@ -109,7 +109,8 @@
     "edit-rom": "Cập nhật cấu hình ROM",
     "add-ram": "Thêm cấu hình RAM",
     "edit-ram": "Cập nhật cấu hình RAM",
-    "description": "Mô tả sản phẩm"
+    "description": "Mô tả sản phẩm",
+    "add_image": "Hình ảnh sản phẩm"
   },
   "notification": {
     "notification": "Thông báo",

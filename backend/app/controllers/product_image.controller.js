@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     req.files.forEach((element) => {
       const pro_image = {
         productOptionId: req.body.productOptionId,
-        image: element.filename ? 'products' + element.filename : null,
+        image: element.filename ? '/products/' + element.filename : null,
       }
       result.push(pro_image)
     })

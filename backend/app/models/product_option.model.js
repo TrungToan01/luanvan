@@ -48,13 +48,13 @@ module.exports = (sequelize, Sequelize) => {
     userId: {
       type: Sequelize.INTEGER,
     },
-    ramId: {
+    ramOptionId: {
       type: Sequelize.INTEGER,
     },
-    romId: {
+    romOptionId: {
       type: Sequelize.INTEGER,
     },
-    colorId: {
+    colorOptionId: {
       type: Sequelize.INTEGER,
     },
     original_price: {
@@ -73,6 +73,9 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
     system: {
+      type: Sequelize.STRING,
+    },
+    material: {
       type: Sequelize.STRING,
     },
   })

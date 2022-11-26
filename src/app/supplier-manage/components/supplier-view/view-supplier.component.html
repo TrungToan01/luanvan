@@ -3,7 +3,7 @@
     class="btn border-0 circle"
     matRipple
     [matRippleCentered]="true"
-    routerLink="/supplier"
+    (click)="goBack()"
   >
     <mat-icon title="back" class="fs-2 mt-1 fw-bold">
       keyboard_backspace
@@ -14,13 +14,13 @@
   </p>
 </div>
 
-<div class="container sup-data bg-white py-4 mt-3">
-  <div class="row">
+<div class="container bg-white shadow py-4 mt-3">
+  <div class="row p-3">
     <div class="col-md-2 col-0"></div>
     <div class="col-md-8 col-12">
       <ul class="list-unstyled mb-1-9">
         <li
-          class="mb-2 px-3 bg-secondary display-28 pt-4 pb-2 text-white px-1 rounded fs-4"
+          class="mb-2 px-3 d-flex bg-secondary display-28 pt-4 pb-2 text-white px-1 rounded fs-4"
         >
           <p class="display-26s text-warning me-2 font-weight-600">
             {{ 'user.supplier' | translate }}
@@ -57,5 +57,12 @@
       </ul>
     </div>
     <div class="col-md-2 col-0"></div>
+    <div class="col-sm-9 col-0"></div>
+    <button
+      [routerLink]="['/supplier/edit', supId]"
+      class="col-sm-3 btn btn-primary"
+    >
+      {{ 'user.edit-user' | translate }}
+    </button>
   </div>
 </div>

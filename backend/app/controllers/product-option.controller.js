@@ -4,6 +4,22 @@ const Op = db.Sequelize.Op
 const serverPage = require('./page')
 const Brand = db.brand
 const Image = db.product_image
+const Color = db.color_option
+const Ram = db.ram_option
+const Rom = db.rom_option
+const User = db.user
+
+Ram.hasMany(Products_option)
+Products_option.belongsTo(Ram)
+
+Rom.hasMany(Products_option)
+Products_option.belongsTo(Rom)
+
+User.hasMany(Products_option)
+Products_option.belongsTo(User)
+
+Color.hasMany(Products_option)
+Products_option.belongsTo(Color)
 
 Products_option.hasMany(Image)
 Image.belongsTo(Products_option)
@@ -15,9 +31,10 @@ Products_option.belongsTo(Brand)
 exports.create = (req, res) => {
   if (
     !req.body.name ||
-    !req.body.ramId ||
-    !req.body.romId ||
-    !req.body.quantity
+    !req.body.quantity ||
+    !req.body.colorOptionId ||
+    !req.body.ramOptionId ||
+    !req.body.romOptionId
   ) {
     res.status(400).send({
       message: 'Content can not be empty!',
@@ -43,7 +60,11 @@ exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
   const { limit, offset } = serverPage.getPagination(page, size)
-  Products_option.findAndCountAll({ include: [Brand, Image], limit, offset })
+  Products_option.findAndCountAll({
+    include: [Brand, Image, Color, User, Ram, Rom],
+    limit,
+    offset,
+  })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
       res.send(response)
@@ -59,7 +80,9 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID PRODUCT OPTION----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Products_option.findByPk(id, { include: [Brand, Image] })
+  Products_option.findByPk(id, {
+    include: [Brand, Image, Color, User, Ram, Rom],
+  })
     .then((data) => {
       if (data) {
         res.send({ rows: data })

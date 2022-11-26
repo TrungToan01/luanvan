@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ColorService } from 'src/app/product-configuration/service/color.service';
 import { RamService } from 'src/app/product-configuration/service/ram.service';
 import { RomService } from 'src/app/product-configuration/service/rom.service';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { BrandService } from '../../service/brand.service';
 import { ProductService } from '../../service/product.service';
 
@@ -20,13 +21,13 @@ export class ProductAddComponent implements OnInit {
   productForm!: NgForm;
   imageSrc: any = [];
   imageList: any = [];
-  formData = new FormData();
   constructor(
     private brandService: BrandService,
     private productService: ProductService,
     private colorService: ColorService,
     private ramService: RamService,
-    private romService: RomService
+    private romService: RomService,
+    private coreShareService: ShareCoreService
   ) {}
 
   async ngOnInit() {
@@ -43,7 +44,6 @@ export class ProductAddComponent implements OnInit {
     for (let index = 0; index < files.length; index++) {
       const element = files[index];
       this.imageList.push(element);
-      // this.formData.append('image', element);
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = e.target?.result;
@@ -51,8 +51,16 @@ export class ProductAddComponent implements OnInit {
       };
       reader.readAsDataURL(element);
     }
-    console.log(this.imageList);
+    console.log(this.imageSrc);
   }
+
+  //------------filter list image-----------
+  filterList(data: any) {
+    let position = this.imageSrc.indexOf(data);
+    this.imageSrc.splice(position, 1);
+    this.imageList.splice(position, 1);
+  }
+
   // -----------brand-----------
   async getAllBrand() {
     let response = await this.brandService.getAllBrands();
@@ -92,9 +100,28 @@ export class ProductAddComponent implements OnInit {
       this.productForm.value
     );
     if (response.ok) {
-      alert('đã thêm thành công');
+      await this.createImage(response.data.id);
     } else {
       alert('không thể tạo');
     }
+  }
+
+  //-------------add image product------------
+  async createImage(id: any) {
+    let formData = new FormData();
+    this.imageList.forEach((element: string | Blob) => {
+      formData.append('image', element);
+    });
+    formData.set('productOptionId', id);
+    let response = await this.productService.createImage(formData);
+    if (response.ok) {
+      alert('đã thêm thành công');
+    } else {
+      alert('không thể thêm hình ảnh sản phẩm');
+    }
+  }
+
+  goBack() {
+    this.coreShareService.goBack();
   }
 }

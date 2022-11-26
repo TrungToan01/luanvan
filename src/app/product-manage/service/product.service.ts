@@ -19,7 +19,7 @@ export class ProductService extends BaseService {
     if (response.ok) {
       return response;
     } else {
-      return response;
+      return response.msg;
     }
   }
 
@@ -29,7 +29,7 @@ export class ProductService extends BaseService {
     if (response.ok) {
       return response;
     } else {
-      return response;
+      return response.msg;
     }
   }
 
@@ -39,7 +39,7 @@ export class ProductService extends BaseService {
     if (response.ok) {
       return response;
     } else {
-      return response;
+      return response.msg;
     }
   }
 
@@ -52,7 +52,7 @@ export class ProductService extends BaseService {
     if (response.ok) {
       return response;
     } else {
-      return response;
+      return response.msg;
     }
   }
 
@@ -62,7 +62,33 @@ export class ProductService extends BaseService {
     if (response.ok) {
       return response;
     } else {
+      return response.msg;
+    }
+  }
+
+  //create image product
+  public async createImage(data: any): Promise<any> {
+    const response = await this.basePostHttpClientUrl(
+      'products_image/add',
+      data
+    );
+    if (response.ok) {
       return response;
+    } else {
+      return response.msg;
+    }
+  }
+
+  //delete image product
+  public async deleteImage(id: any): Promise<any> {
+    const response = await this.baseDeleteHttpClientUrl(
+      `products_image/delete/${id}`
+    );
+
+    if (response.ok) {
+      return response;
+    } else {
+      return response.msg;
     }
   }
 }

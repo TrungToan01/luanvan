@@ -1,1 +1,548 @@
-<p>edit-product works!</p>
+<div class="d-flex mt-3 mx-2">
+  <mat-button
+    class="btn border-0 circle"
+    matRipple
+    [matRippleCentered]="true"
+    (click)="goBack()"
+  >
+    <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+      keyboard_backspace
+    </mat-icon>
+  </mat-button>
+  <p class="text-primary fw-bold fs-3 px-3 mt-3">
+    {{ 'product.update-product' | translate }}
+  </p>
+</div>
+
+<div class="container-fluid my-3">
+  <div class="row">
+    <div class="col-md-1 col-0"></div>
+    <form
+      class="col-md-10 col-12"
+      id="productForm"
+      enctype="multipart/form-data"
+      #productForm="ngForm"
+    >
+      <div
+        class="bg-white rounded p-3"
+        style="
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+            rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        "
+      >
+        <p class="fw-bold">{{ 'product.product-info' | translate }}</p>
+
+        <div class="row justify-content-between text-left">
+          <!-- name -->
+          <div class="form-group col-12 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.product-name' | translate }}
+              <span class="text-danger">*</span>
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.name"
+              #productName="ngModel"
+              name="name"
+              placeholder="{{ 'placeholder.input-product-name' | translate }}"
+              type="text"
+              required
+            />
+            <small
+              class="form-text mx-3 text-muted"
+              *ngIf="
+                !productName?.valid &&
+                (productName?.dirty || productName?.touched)
+              "
+            >
+              {{ 'notification.invalid-product-name' | translate }}
+            </small>
+          </div>
+        </div>
+        <div class="row justify-content-between text-left">
+          <!-- brand -->
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'brands' | translate }}
+              <span class="text-danger">*</span>
+            </label>
+
+            <select
+              #brand="ngModel"
+              required
+              [ngModel]="productInfo?.brandId"
+              name="brandId"
+              class="form-select"
+            >
+              <option *ngFor="let item of brandList" [value]="item.id">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              class="form-text text-muted"
+              *ngIf="!brand?.valid && (brand?.dirty || brand?.touched)"
+            >
+              {{ 'notification.invalid-brand' | translate }}
+            </small>
+          </div>
+          <!-- origin -->
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.origin' | translate }}
+              <span class="text-danger">*</span>
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.origin"
+              #origin="ngModel"
+              name="origin"
+              placeholder="{{ 'placeholder.input-origin' | translate }}"
+              type="text"
+              required
+            />
+            <small
+              class="form-text text-muted"
+              *ngIf="!origin?.valid && (origin?.dirty || origin?.touched)"
+            >
+              {{ 'notification.invalid-origin' | translate }}
+            </small>
+          </div>
+
+          <!-- warranty-time -->
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.warranty-time' | translate }}
+              <span class="text-danger">*</span>
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.warranty_time"
+              #warrantyTime="ngModel"
+              name="warranty_time"
+              placeholder="{{ 'placeholder.input-warranty-time' | translate }}"
+              type="text"
+              required
+            />
+            <small
+              class="form-text mx-3 text-muted"
+              *ngIf="
+                !warrantyTime?.valid &&
+                (warrantyTime?.dirty || warrantyTime?.touched)
+              "
+            >
+              {{ 'notification.invalid-warranty-time' | translate }}
+            </small>
+          </div>
+        </div>
+        <!-- mô tả -->
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-12 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.description' | translate }}
+            </label>
+            <textarea
+              [ngModel]="productInfo?.description"
+              name="description"
+              placeholder="{{ 'placeholder.input-description' | translate }}"
+              type="text"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <div
+        class="bg-white rounded p-3 mt-4"
+        style="
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+            rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        "
+      >
+        <p class="fw-bold">{{ 'product.specifications' | translate }}</p>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.system' | translate }}
+              <span class="text-danger">*</span>
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.system"
+              name="system"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.core' | translate }}
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.core"
+              name="core"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.CPU' | translate }}
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.CPU"
+              name="CPU"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.ram' | translate }}
+            </label>
+            <select
+              #ram="ngModel"
+              required
+              [ngModel]="productInfo?.ramOptionId"
+              name="ramOptionId"
+              class="form-select"
+            >
+              <option *ngFor="let item of ramList" [value]="item.id">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              class="form-text text-muted"
+              *ngIf="!ram?.valid && (ram?.dirty || ram?.touched)"
+            >
+              {{ 'notification.invalid-ram' | translate }}
+            </small>
+          </div>
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.rom' | translate }}
+            </label>
+            <select
+              #rom="ngModel"
+              required
+              [ngModel]="productInfo?.romOptionId"
+              name="romOptionId"
+              class="form-select"
+            >
+              <option *ngFor="let item of romList" [value]="item.id">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              class="form-text text-muted"
+              *ngIf="!rom?.valid && (rom?.dirty || rom?.touched)"
+            >
+              {{ 'notification.invalid-rom' | translate }}
+            </small>
+          </div>
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.GPU' | translate }}
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.GPU"
+              name="GPU"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <div
+        class="bg-white rounded p-3 mt-4"
+        style="
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+            rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        "
+      >
+        <p class="fw-bold">{{ 'product.design' | translate }}</p>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.camera' | translate }}
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.camera"
+              name="camera"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.camera-selfie' | translate }}
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.camera_selfie"
+              name="camera_selfie"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.color' | translate }}
+            </label>
+            <select
+              #color="ngModel"
+              required
+              [ngModel]="productInfo?.colorOptionId"
+              name="colorOptionId"
+              class="form-select"
+            >
+              <option *ngFor="let item of colorList" [value]="item.id">
+                {{ item.name }}
+              </option>
+            </select>
+            <small
+              id="colorHid"
+              class="form-text text-muted"
+              *ngIf="!color?.valid && (color?.dirty || color?.touched)"
+            >
+              {{ 'notification.invalid-color' | translate }}
+            </small>
+          </div>
+
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.screen' | translate }}
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.screen"
+              name="screen"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-4 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.material' | translate }}
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.material"
+              name="material"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-3 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.width' | translate }} (mm)
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.width"
+              name="width"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-3 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.height' | translate }} (mm)
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.height"
+              name="height"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-3 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.weight' | translate }} (gram)
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.weight"
+              name="weight"
+              type="text"
+              required
+            />
+          </div>
+          <div class="form-group col-sm-3 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.length' | translate }} (mm)
+            </label>
+            <input
+              class="text-capitalize"
+              [ngModel]="productInfo?.length"
+              name="length"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <div
+        class="bg-white rounded p-3 mt-4"
+        style="
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+            rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        "
+      >
+        <p class="fw-bold">{{ 'product.prices' | translate }}</p>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.price' | translate }} (VNĐ)
+            </label>
+            <input
+              class="fs-4 fw-bold text-danger"
+              [ngModel]="productInfo?.original_price"
+              name="original_price"
+              min="0"
+              type="number"
+              required
+            />
+            <small
+              class="form-text text-muted"
+              *ngIf="!color?.valid && (color?.dirty || color?.touched)"
+            >
+              {{ 'notification.invalid-color' | translate }}
+            </small>
+          </div>
+
+          <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.quantity' | translate }}
+            </label>
+            <input
+              class="fs-4"
+              [ngModel]="productInfo?.quantity"
+              name="quantity"
+              min="0"
+              type="number"
+              required
+            />
+            <small
+              class="form-text text-muted"
+              *ngIf="!color?.valid && (color?.dirty || color?.touched)"
+            >
+              {{ 'notification.invalid-color' | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <div
+        class="bg-white rounded p-3 mt-4"
+        style="
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+            rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        "
+      >
+        <p class="fw-bold">{{ 'product.add_image' | translate }}</p>
+        <div class="row justify-content-between text-left">
+          <div class="form-group row flex-column d-flex">
+            <div class="d-flex row">
+              <label
+                *ngFor="let item of productInfo?.product_images"
+                class="col-sm-2 col-4 d-flex"
+              >
+                <div class="mt-3 position-relative">
+                  <img
+                    [src]="'http://localhost:5000' + item?.image"
+                    class="avatar img-circle img-thumbnail"
+                    alt="avatar"
+                  />
+
+                  <span
+                    (click)="deleteImage(item.id)"
+                    style="cursor: pointer;"
+                    class="icon p-0 d-flex position-absolute top-0 justify-items-center start-100 translate-middle badge unded-pill"
+                  >
+                    <i
+                      style="padding: 3px;"
+                      class="bi icon bi-x-lg fs-5 text-black border rounded-circle"
+                    ></i>
+                  </span>
+                </div>
+              </label>
+
+              <label
+                *ngFor="let item of imageSrc"
+                class="col-sm-2 col-4 d-flex"
+              >
+                <div class="mt-3 position-relative">
+                  <img
+                    [src]="item"
+                    class="avatar img-circle img-thumbnail"
+                    alt="avatar"
+                  />
+
+                  <span
+                    (click)="filterList(item)"
+                    style="cursor: pointer;"
+                    class="icon p-0 d-flex position-absolute top-0 justify-items-center start-100 translate-middle badge unded-pill"
+                  >
+                    <i
+                      style="padding: 3px;"
+                      class="bi icon bi-x-lg fs-5 text-black border rounded-circle"
+                    ></i>
+                  </span>
+                </div>
+              </label>
+            </div>
+            <div class="w-50 mt-4">
+              <input
+                (change)="filechange($event)"
+                type="file"
+                id="image1"
+                class="d-none"
+                multiple
+              />
+              <label class="btn btn-warning w-50" for="image1">Chọn file</label>
+              <span>{{ imageList.length }} file</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row rounded mt-3 justify-content-between text-left">
+        <div class="col-sm-6 col-0"></div>
+        <div class="col-sm-4 col-6">
+          <button class="btn btn-primary w-100" (click)="createProduct()">
+            {{ 'save' | translate }}
+          </button>
+        </div>
+        <div class="col-sm-2 col-6">
+          <button class="btn btn-secondary w-100">
+            {{ 'cancel' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="col-md-1 col-0"></div>
+  </div>
+</div>

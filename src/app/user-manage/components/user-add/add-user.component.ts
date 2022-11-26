@@ -91,4 +91,8 @@ export class AddUserComponent implements OnInit {
       this.onSubmit();
     });
   }
+
+  goBack() {
+    this.shareCoreService.goBack();
+  }
 }

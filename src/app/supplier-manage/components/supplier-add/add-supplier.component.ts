@@ -89,4 +89,7 @@ export class AddSupplierComponent implements OnInit {
       alert(response.msg);
     }
   }
+  goBack() {
+    this.shareCoreService.goBack();
+  }
 }

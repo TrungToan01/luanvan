@@ -104,4 +104,8 @@ export class EditSupplierComponent implements OnInit {
       alert(response.msg);
     }
   }
+
+  goBack() {
+    this.shareCoreService.goBack();
+  }
 }

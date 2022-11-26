@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivationStart, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './auth/service/auth.service';
 import { AppConst } from './common/const';
+import { ShareCoreService } from './services/share-core.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
   constructor(
     private router: Router,
     public translate: TranslateService,
-    private authService: AuthService
+    private authService: AuthService,
+    private coreShareService: ShareCoreService
   ) {
     translate.addLangs(this.languages);
 
@@ -36,6 +38,12 @@ export class AppComponent {
   }
 
   async ngOnInit() {
+    this.router.events.subscribe(async (event) => {
+      if (event instanceof NavigationStart) {
+        // await this.checkAuth();
+        this.coreShareService.addNewHistoryUrl(event.url);
+      }
+    });
     let info = localStorage.getItem(AppConst.LocalStorage.Auth.UserInfo);
     if (info) {
       this.userInfo = JSON.parse(info);

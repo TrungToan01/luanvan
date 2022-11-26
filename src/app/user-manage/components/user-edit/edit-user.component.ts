@@ -97,4 +97,8 @@ export class EditUserComponent implements OnInit {
       this.onSubmit();
     });
   }
+
+  goBack() {
+    this.shareCoreService.goBack();
+  }
 }
