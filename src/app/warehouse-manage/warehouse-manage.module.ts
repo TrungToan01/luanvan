@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReceiptsListComponent } from './containers/receipts-list/receipts-list.component';
-import { ReceiptsViewComponent } from './components/receipts-view/receipts-view.component';
-import { ReceiptsEditComponent } from './components/receipts-edit/receipts-edit.component';
-import { ReceiptsAddComponent } from './components/receipts-add/receipts-add.component';
+import { ReceiptsEditComponent } from './containers/receipts-edit/receipts-edit.component';
+import { ReceiptsAddComponent } from './containers/receipts-add/receipts-add.component';
 import { WarehouseService } from './service/warehouse.service';
 import { BaseService } from '../services/base.service';
 import { AppShareMaterialUiModule } from '../base-core-ui/app.share.material.ui.module';
@@ -16,7 +15,6 @@ import { warehouseManageRoutes } from '../common/routes';
 @NgModule({
   declarations: [
     ReceiptsListComponent,
-    ReceiptsViewComponent,
     ReceiptsEditComponent,
     ReceiptsAddComponent,
   ],

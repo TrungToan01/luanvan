@@ -19,9 +19,8 @@ import { EditUserComponent } from '../user-manage/components/user-edit/edit-user
 import { ViewUserComponent } from '../user-manage/components/user-view/view-user.component';
 import { CustomerManageComponent } from '../user-manage/containers/customer-manage/customer-manage.component';
 import { EmployeeManageComponent } from '../user-manage/containers/employee-manage/employee-manage.component';
-import { ReceiptsAddComponent } from '../warehouse-manage/components/receipts-add/receipts-add.component';
-import { ReceiptsEditComponent } from '../warehouse-manage/components/receipts-edit/receipts-edit.component';
-import { ReceiptsViewComponent } from '../warehouse-manage/components/receipts-view/receipts-view.component';
+import { ReceiptsEditComponent } from '../warehouse-manage/containers/receipts-edit/receipts-edit.component';
+import { ReceiptsAddComponent } from '../warehouse-manage/containers/receipts-add/receipts-add.component';
 import { ReceiptsListComponent } from '../warehouse-manage/containers/receipts-list/receipts-list.component';
 
 export const mainRoutes: Routes = [];
@@ -57,10 +56,9 @@ export const productManageRoutes: Routes = [
 ];
 
 export const warehouseManageRoutes: Routes = [
-  { path: 'warehouse', component: ReceiptsListComponent },
-  { path: 'warehouse/add', component: ReceiptsAddComponent },
-  { path: 'warehouse/view/:id', component: ReceiptsViewComponent },
-  { path: 'warehouse/edit/:id', component: ReceiptsEditComponent },
+  { path: 'receipts', component: ReceiptsListComponent },
+  { path: 'receipt/add', component: ReceiptsAddComponent },
+  { path: 'receipts/edit/:id', component: ReceiptsEditComponent },
 ];
 
 export const ConfigurationManageRoutes: Routes = [

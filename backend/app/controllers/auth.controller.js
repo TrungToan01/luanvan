@@ -18,7 +18,7 @@ exports.register = async (req, res) => {
   }
   const checkEmail = await User.findOne({ where: { email: email } })
   if (checkEmail) {
-    return res.status(409).send('account is already.')
+    return res.status(409).send({ message: 'account is already.' })
   }
 
   //check phone number
@@ -29,7 +29,7 @@ exports.register = async (req, res) => {
   }
   const checkPhone = await User.findOne({ where: { phone: phone } })
   if (checkPhone) {
-    return res.status(409).send('Your phone is already.')
+    return res.status(409).send({ message: 'Your phone is already' })
   }
 
   //handle data
@@ -92,7 +92,7 @@ exports.login = async (req, res) => {
 
     const isPasswordValid = bcrypt.compareSync(password, user.password)
     if (!isPasswordValid) {
-      return res.status(401).send('Password is wrong.')
+      return res.status(401).send({ message: 'Password is wrong' })
     } else {
       if (user) {
         var token = jwt.sign(
@@ -117,7 +117,7 @@ exports.login = async (req, res) => {
           .status(200)
           .json({ message: 'Login is success.', rows: data, token })
       } else {
-        return res.status(200).json('Account does not exist.')
+        return res.status(200).json({ message: 'Account does not exist.' })
       }
     }
   } catch (err) {

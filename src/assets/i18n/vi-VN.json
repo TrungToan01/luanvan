@@ -208,7 +208,7 @@
   "warehouse": {
     "warehouse": "Kho hàng",
     "receipt-note": "Phiếu nhập kho hàng",
-    "add-receipt-note": "Thêm phiếu nhập kho hàng",
+    "create-receipt-note": "Tạo phiếu nhập kho",
     "list-receipt-note": "Danh sách phiếu nhập kho",
     "user": "Người lập phiếu"
   },
