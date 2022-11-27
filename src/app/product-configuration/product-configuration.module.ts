@@ -13,7 +13,7 @@ import { BaseService } from '../services/base.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ConfigurationManagerouts } from '../common/routes';
+import { ConfigurationManageRoutes } from '../common/routes';
 import { HttpClientModule } from '@angular/common/http';
 import { AppShareMaterialUiModule } from '../base-core-ui/app.share.material.ui.module';
 import { RomService } from './service/rom.service';
@@ -36,7 +36,7 @@ import { ColorService } from './service/color.service';
     CommonModule,
     AppShareMaterialUiModule,
     HttpClientModule,
-    RouterModule.forChild(ConfigurationManagerouts),
+    RouterModule.forChild(ConfigurationManageRoutes),
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,

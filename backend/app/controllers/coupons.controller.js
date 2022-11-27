@@ -3,7 +3,7 @@ const Coupons = db.coupons
 const serverPage = require('./page')
 
 // ----------------------------------FIND ALL COUPON----------------------------------
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   if (
     !req.body.code ||
     !req.body.start_date ||
@@ -16,6 +16,14 @@ exports.create = (req, res) => {
     })
     return
   }
+
+  let code = req.body.code
+  const checkCode = await Coupons.findOne({ where: { code: code } })
+
+  if (checkCode) {
+    return res.status(409).send({ message: 'code is already' })
+  }
+  req.body.disabled = req?.body?.disabled || false
   Coupons.create(req.body)
     .then((data) => {
       res.send({ rows: data })

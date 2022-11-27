@@ -135,7 +135,14 @@
     "invalid-ram": "RAM là bắc buộc",
     "invalid-product-name": "Tên sản phẩm là bắc buộc",
     "invalid-origin": "Xuất xứ sản phẩm là bắc buộc",
-    "invalid-warranty-time": "Thời gian bảo hành là bắc buộc"
+    "invalid-warranty-time": "Thời gian bảo hành là bắc buộc",
+    "confirm-disabled-coupons": "Vô hiệu hóa mã giảm giá?",
+    "invalid-coupons": "Mã giảm giá là bắc buộc",
+    "invalid-startdate": "Ngày bất đầu là bắc buộc",
+    "invalid-enddate": "Ngày kết thúc là bắc buộc",
+    "invalid-quantity": "Số lượng là bắc buộc",
+    "invalid-discount_value": "Giá trị mã là bắc buộc",
+    "invalid_date": "Định dạng ngày không hợp lệ"
   },
   "placeholder": {
     "input-sup-name": "Nhập tên nhà cung cấp",
@@ -155,7 +162,10 @@
     "input-description": "Nhập mô tả sản phẩm",
     "input-product-name": "Nhập tên sản phẩm ",
     "input-origin": "Nhập xuất xứ sản phẩm",
-    "input-warranty-time": "Nhập thời gian bảo hành sản phẩm"
+    "input-warranty-time": "Nhập thời gian bảo hành sản phẩm",
+    "input_code": "Nhâp mã giảm giá",
+    "input_quantity": "Nhập số lượng",
+    "input_discount_value": "Nhập giá trị"
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",
@@ -176,6 +186,18 @@
     "published": "Hiển thị",
     "update-status": "Cập nhật trạng thái thương hiệu?"
   },
+  "coupons": {
+    "coupons-list": "Danh sách mã giảm giá",
+    "start-date": "Ngày bất đầu",
+    "end-date": "Ngày kết thúc",
+    "discount-value": "Trị giá",
+    "disabled": "Vô hiệu",
+    "used-quantity": "Đã sử dụng",
+    "code": "Mã giảm giá",
+    "add-coupons": "Thêm mã giảm giá",
+    "update-coupons": "Cập nhật mã giảm giá",
+    "date": "Ngày áp dụng"
+  },
   "save": "Lưu thông tin",
   "buy": "Chọn mua",
   "cancel": "Hủy bỏ",
@@ -187,7 +209,8 @@
     "warehouse": "Kho hàng",
     "receipt-note": "Phiếu nhập kho hàng",
     "add-receipt-note": "Thêm phiếu nhập kho hàng",
-    "list-receipt-note": "Danh sách phiếu nhập kho"
+    "list-receipt-note": "Danh sách phiếu nhập kho",
+    "user": "Người lập phiếu"
   },
   "banner": "Banner trang chủ",
   "shop-info": "Thông tin cửa hàng",
@@ -200,5 +223,7 @@
   "ok": "Đồng ý",
   "publish": "Hiển thị",
   "change-password": "Đỗi mật khẩu",
-  "no.": "ID"
+  "no.": "ID",
+  "close ": "Đống",
+  "total-price": "Tổng tiền"
 }

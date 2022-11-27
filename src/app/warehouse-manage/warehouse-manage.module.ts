@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { warehouseManagerouts } from '../common/routes';
+import { warehouseManageRoutes } from '../common/routes';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { warehouseManagerouts } from '../common/routes';
     CommonModule,
     AppShareMaterialUiModule,
     HttpClientModule,
-    RouterModule.forChild(warehouseManagerouts),
+    RouterModule.forChild(warehouseManageRoutes),
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,

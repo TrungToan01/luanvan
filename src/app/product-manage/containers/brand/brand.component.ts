@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { async } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -41,8 +40,6 @@ export class BrandComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.PageInfo.total = response.length;
-    } else {
-      alert(response);
     }
   }
 
@@ -70,7 +67,7 @@ export class BrandComponent implements OnInit {
   }
 
   //delete brand
-  async deleteUser(id: any) {
+  async deleteBrand(id: any) {
     if (this.doOk) {
       const response = await this.brandService.deleteBrand(id);
       if (response.ok) {
@@ -127,7 +124,7 @@ export class BrandComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.doOk = result;
-      this.deleteUser(id);
+      this.deleteBrand(id);
     });
   }
 }

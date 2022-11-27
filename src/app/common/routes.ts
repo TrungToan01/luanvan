@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from '../auth/containers/login/login.component';
 import { RegisterComponent } from '../auth/containers/register/register.component';
+import { CouponsComponent } from '../coupons-manage/containers/coupons/coupons.component';
 import { ColorComponent } from '../product-configuration/containers/color/color.component';
 import { RamComponent } from '../product-configuration/containers/ram/ram.component';
 import { RomComponent } from '../product-configuration/containers/rom/rom.component';
@@ -55,15 +56,19 @@ export const productManageRoutes: Routes = [
   { path: 'brands', component: BrandComponent },
 ];
 
-export const warehouseManagerouts: Routes = [
+export const warehouseManageRoutes: Routes = [
   { path: 'warehouse', component: ReceiptsListComponent },
   { path: 'warehouse/add', component: ReceiptsAddComponent },
   { path: 'warehouse/view/:id', component: ReceiptsViewComponent },
   { path: 'warehouse/edit/:id', component: ReceiptsEditComponent },
 ];
 
-export const ConfigurationManagerouts: Routes = [
+export const ConfigurationManageRoutes: Routes = [
   { path: 'ram', component: RamComponent },
   { path: 'rom', component: RomComponent },
   { path: 'color', component: ColorComponent },
+];
+
+export const couponsManageRoutes: Routes = [
+  { path: 'coupons', component: CouponsComponent },
 ];

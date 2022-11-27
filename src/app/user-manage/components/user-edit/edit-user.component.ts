@@ -45,7 +45,9 @@ export class EditUserComponent implements OnInit {
     if (this.doOk) {
       let data = this.UserForm.value;
       const formData = new FormData();
-      formData.append('avatar', this.fileToUpload);
+      if (this.fileToUpload) {
+        formData.append('avatar', this.fileToUpload);
+      }
       formData.set('name', data.name);
       formData.set('phone', data.phone);
       formData.set('userRoleId', data.userRoleId);

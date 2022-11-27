@@ -1,0 +1,160 @@
+<div class="nav navbar d-block pt-0">
+  <mat-icon
+    mat-dialog-close
+    title="{{ 'close' | translate }}"
+    class="float-end"
+    style="cursor: pointer;"
+  >
+    close
+  </mat-icon>
+  <p class="fs-4 text-black text-center text-capitalize">
+    {{ 'coupons.update-coupons' | translate }}
+  </p>
+</div>
+
+<div class="container-fluid p-0">
+  <form id="addCouponsForm" #addCouponsForm="ngForm">
+    <div class="row justify-content-between">
+      <!-- code -->
+      <div class="form-group row mb-4">
+        <label class="col-3 m-auto col-form-label text-end">
+          {{ 'coupons.code' | translate }}
+        </label>
+        <div class="col-9">
+          <input
+            [ngModel]="couponsInfo?.code"
+            #code="ngModel"
+            name="code"
+            class="form-control"
+            placeholder="{{ 'placeholder.input_code' | translate }}"
+            type="text"
+            required
+          />
+          <small
+            id="codeHid"
+            class="form-text text-muted"
+            *ngIf="!code?.valid && (code?.dirty || code?.touched)"
+          >
+            {{ 'notification.invalid-coupons' | translate }}
+          </small>
+        </div>
+      </div>
+      <!-- start date -- end date -->
+      <div class="form-group row mb-4">
+        <label class="col-3 m-auto col-form-label text-end">
+          {{ 'coupons.date' | translate }}
+        </label>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-6">
+              <input
+                [ngModel]="couponsInfo?.start_date | date: 'yyyy-MM-dd'"
+                #code="ngModel"
+                name="start_date"
+                class="form-control"
+                type="date"
+                required
+              />
+              <small
+                id="codeHid"
+                class="form-text text-muted"
+                *ngIf="!code?.valid && (code?.dirty || code?.touched)"
+              >
+                {{ 'notification.invalid-startdate' | translate }}
+              </small>
+            </div>
+
+            <div class="col-6">
+              <input
+                [ngModel]="couponsInfo?.end_date | date: 'yyyy-MM-dd'"
+                #code="ngModel"
+                name="end_date"
+                class="form-control"
+                type="date"
+                required
+              />
+              <small
+                id="codeHid"
+                class="form-text text-muted"
+                *ngIf="!code?.valid && (code?.dirty || code?.touched)"
+              >
+                {{ 'notification.invalid-enddate' | translate }}
+              </small>
+            </div>
+          </div>
+          <small *ngIf="validateDate" class="from-text text-muted">
+            {{ 'notification.invalid_date' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <!-- quantity -->
+      <div class="form-group row mb-4">
+        <label class="col-3 m-auto col-form-label text-end">
+          {{ 'product.quantity' | translate }}
+        </label>
+        <div class="col-9">
+          <input
+            [ngModel]="couponsInfo?.quantity"
+            #quantity="ngModel"
+            name="quantity"
+            class="form-control"
+            placeholder="{{ 'placeholder.input_quantity' | translate }}"
+            type="text"
+            required
+          />
+          <small
+            class="form-text text-muted"
+            *ngIf="!quantity?.valid && (quantity?.dirty || quantity?.touched)"
+          >
+            {{ 'notification.invalid-quantity' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <!-- discount value -->
+      <div class="form-group row mb-4">
+        <label class="col-3 m-auto col-form-label text-end">
+          {{ 'coupons.discount-value' | translate }}
+        </label>
+        <div class="col-9">
+          <div class="input-group">
+            <input
+              [ngModel]="couponsInfo?.discount_value"
+              #discount_value="ngModel"
+              name="discount_value"
+              class="form-control"
+              placeholder="{{ 'placeholder.input_discount_value' | translate }}"
+              type="text"
+              required
+            />
+            <span class="input-group-text">VNĐ</span>
+          </div>
+          <small
+            id="codeHid"
+            class="form-text text-muted"
+            *ngIf="
+              !discount_value?.valid &&
+              (discount_value?.dirty || discount_value?.touched)
+            "
+          >
+            {{ 'notification.invalid-discount_value' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group row mb-4">
+        <div class="col-3"></div>
+        <div class="col-9">
+          <button
+            (click)="onSubmit()"
+            class="btn btn-primary py-2 w-100"
+            cdkFocusInitial
+          >
+            {{ 'update' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

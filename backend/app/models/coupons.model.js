@@ -18,6 +18,9 @@ module.exports = (sequelize, Sequelize) => {
     discount_value: {
       type: Sequelize.INTEGER,
     },
+    disabled: {
+      type: Sequelize.BOOLEAN,
+    },
     userId: {
       type: Sequelize.INTEGER,
     },

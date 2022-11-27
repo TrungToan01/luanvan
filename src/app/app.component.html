@@ -1,8 +1,10 @@
 <mat-drawer-container class="example-container p-0" autosize>
   <mat-drawer #drawer [(opened)]="showFiller" mode="side">
-    <mat-toolbar class="shopname fs-3 text-white">
-      <span>Phonestore</span>
-    </mat-toolbar>
+    <div class="position-relative">
+      <mat-toolbar class="shopname fs-3 text-white">
+        <span>Phonestore</span>
+      </mat-toolbar>
+    </div>
     <app-dashboard></app-dashboard>
   </mat-drawer>
 
