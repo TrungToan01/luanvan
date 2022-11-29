@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
       this.dataSource = new MatTableDataSource(response.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.PageInfo.total = response.length;
+      this.PageInfo.total = response.data.length;
     }
   }
 

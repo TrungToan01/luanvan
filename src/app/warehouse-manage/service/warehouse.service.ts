@@ -67,4 +67,71 @@ export class WarehouseService extends BaseService {
       response.message;
     }
   }
+  // -------------------------------------------------------------------------------------
+
+  //Get all Receipt detail
+  public async getAllReceiptDetail(
+    pageinfo?: any,
+    position?: any
+  ): Promise<any> {
+    const response = await this.baseGetHttpClientUrl(
+      'receipt_detail/getall',
+      pageinfo
+    );
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //create new Receipt detail
+  public async CreateReceiptDetail(data: any): Promise<any> {
+    const response = await this.basePostHttpClientUrl(
+      'receipt_detail/add',
+      data
+    );
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //update Receipt detail
+  public async UpdateReceiptDetail(data: any, id: any): Promise<any> {
+    const response = await this.basePutHttpClientUrl(
+      `receipt_detail/update/${id}`,
+      data
+    );
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //get Receipt by id
+  public async GetReceiptDetailById(id: any) {
+    const response = await this.baseGetHttpClientUrl(
+      `receipt_detail/getOne/${id}`
+    );
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //delete Receipt
+  public async DeleteReceiptDetail(id: any) {
+    const response = await this.baseDeleteHttpClientUrl(
+      `receipt_detail/delete/${id}`
+    );
+    if (response.ok) {
+      return response;
+    } else {
+      response.message;
+    }
+  }
 }

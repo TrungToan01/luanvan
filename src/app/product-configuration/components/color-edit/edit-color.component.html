@@ -1,8 +1,16 @@
-<div class="nav navbar d-block">
+<div class="nav navbar d-block position-relative">
   <p class="fs-4 text-black text-center text-capitalize">
     {{ 'product.edit-color' | translate }}
   </p>
+  <mat-icon
+    mat-dialog-close
+    class="position-absolute"
+    style="right: 0; top: 0;"
+  >
+    close
+  </mat-icon>
 </div>
+
 <div class="container-fluid p-0">
   <form id="ColorForm" #ColorForm="ngForm">
     <div class="row justify-content-between">
@@ -19,7 +27,7 @@
           placeholder="{{ 'placeholder.input-color' | translate }}"
           type="text"
           required
-          class="form-control form-control-lg"
+          class="form-control input-customize"
         />
         <small
           id="nameHid"

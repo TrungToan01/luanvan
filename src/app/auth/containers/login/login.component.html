@@ -22,7 +22,8 @@
                 ngModel
                 #email="ngModel"
                 name="email"
-                class="form-control form-control-lg"
+                class="form-control"
+                placeholder="{{ 'placeholder.input-email' | translate }}"
                 aria-describedby="email"
                 type="email"
                 required
@@ -45,19 +46,17 @@
             <div class="col-9">
               <div class="d-flex position-relative">
                 <input
-                  class="form-control form-control-lg"
+                  class="form-control"
                   ngModel
                   #password="ngModel"
                   name="password"
-                  type="text"
+                  type="password"
+                  placeholder="{{ 'placeholder.input-password' | translate }}"
                   aria-describedby="password"
                   required
                   style="padding-right: 30px;"
                 />
-                <div
-                  class="d-flex form-control-lg position-absolute"
-                  style="right: 0;"
-                >
+                <div class="d-flex icon position-absolute" style="right: 0;">
                   <i class="bi bi-eye m-auto"></i>
                 </div>
               </div>
@@ -83,19 +82,19 @@
             <div class="col-9">
               <div class="d-flex position-relative">
                 <input
-                  class="form-control form-control-lg"
+                  class="form-control"
                   ngModel
                   #passwordconfirm="ngModel"
                   name="passwordconfirm"
                   required
                   aria-describedby="passwordconfirm"
-                  type="text"
+                  type="password"
+                  placeholder="{{
+                    'placeholder.input-password-confirm' | translate
+                  }}"
                   style="padding-right: 30px;"
                 />
-                <div
-                  class="d-flex form-control-lg position-absolute"
-                  style="right: 0;"
-                >
+                <div class="icon d-flex position-absolute" style="right: 0;">
                   <i class="bi bi-eye m-auto"></i>
                 </div>
               </div>

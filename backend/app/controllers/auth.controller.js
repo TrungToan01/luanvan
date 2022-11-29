@@ -57,6 +57,7 @@ exports.register = async (req, res) => {
         },
       )
       var data = {
+        userId: response.id,
         name: response.name,
         birthdate: response.birthdate,
         gender: response.gender,
@@ -103,6 +104,7 @@ exports.login = async (req, res) => {
           },
         )
         var data = {
+          userId: user.id,
           username: user.name,
           birthdate: user.birthdate,
           gender: user.gender,

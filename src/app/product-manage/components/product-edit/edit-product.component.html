@@ -40,7 +40,7 @@
               <span class="text-danger">*</span>
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.name"
               #productName="ngModel"
               name="name"
@@ -72,8 +72,11 @@
               required
               [ngModel]="productInfo?.brandId"
               name="brandId"
-              class="form-select"
+              class="form-select input-customize form-control"
             >
+              <option hidden value="">
+                {{ 'placeholder.choose-brand' }}
+              </option>
               <option *ngFor="let item of brandList" [value]="item.id">
                 {{ item.name }}
               </option>
@@ -92,7 +95,7 @@
               <span class="text-danger">*</span>
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.origin"
               #origin="ngModel"
               name="origin"
@@ -115,7 +118,7 @@
               <span class="text-danger">*</span>
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.warranty_time"
               #warrantyTime="ngModel"
               name="warranty_time"
@@ -146,6 +149,7 @@
               placeholder="{{ 'placeholder.input-description' | translate }}"
               type="text"
               rows="4"
+              class="input-customize form-control"
             ></textarea>
           </div>
         </div>
@@ -164,13 +168,13 @@
           <div class="form-group col-sm-4 flex-column d-flex">
             <label class="form-control-label px-3">
               {{ 'product.system' | translate }}
-              <span class="text-danger">*</span>
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.system"
               name="system"
               type="text"
+              placeholder="{{ 'placeholder.input-system' | translate }}"
               required
             />
           </div>
@@ -180,8 +184,9 @@
               {{ 'product.core' | translate }}
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.core"
+              placeholder="{{ 'placeholder.input-core' | translate }}"
               name="core"
               type="text"
               required
@@ -193,9 +198,10 @@
               {{ 'product.CPU' | translate }}
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.CPU"
               name="CPU"
+              placeholder="{{ 'placeholder.input-CPU' | translate }}"
               type="text"
               required
             />
@@ -211,8 +217,11 @@
               required
               [ngModel]="productInfo?.ramOptionId"
               name="ramOptionId"
-              class="form-select"
+              class="form-select input-customize form-control"
             >
+              <option hidden value="">
+                {{ 'placeholder.choose-ram' | translate }}
+              </option>
               <option *ngFor="let item of ramList" [value]="item.id">
                 {{ item.name }}
               </option>
@@ -233,8 +242,11 @@
               required
               [ngModel]="productInfo?.romOptionId"
               name="romOptionId"
-              class="form-select"
+              class="form-select input-customize form-control"
             >
+              <option hidden value="">
+                {{ 'placeholder.choose-rom' | translate }}
+              </option>
               <option *ngFor="let item of romList" [value]="item.id">
                 {{ item.name }}
               </option>
@@ -251,8 +263,9 @@
               {{ 'product.GPU' | translate }}
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.GPU"
+              placeholder="{{ 'placeholder.input-GPU' | translate }}"
               name="GPU"
               type="text"
               required
@@ -273,31 +286,45 @@
         <div class="row justify-content-between text-left">
           <div class="form-group col-sm-6 flex-column d-flex">
             <label class="form-control-label px-3">
+              {{ 'product.camera-selfie' | translate }}
+            </label>
+            <input
+              class="input-customize form-control"
+              [ngModel]="productInfo?.camera_selfie"
+              placeholder="{{ 'placeholder.input-camera-selfie' | translate }}"
+              name="camera_selfie"
+              type="text"
+              required
+            />
+          </div>
+          <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">
               {{ 'product.camera' | translate }}
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
+              placeholder="{{ 'placeholder.input-camera' | translate }}"
               [ngModel]="productInfo?.camera"
               name="camera"
               type="text"
               required
             />
           </div>
-
-          <div class="form-group col-sm-6 flex-column d-flex">
+        </div>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-4 flex-column d-flex">
             <label class="form-control-label px-3">
-              {{ 'product.camera-selfie' | translate }}
+              {{ 'product.weight' | translate }} (grams)
             </label>
             <input
-              class="text-capitalize"
-              [ngModel]="productInfo?.camera_selfie"
-              name="camera_selfie"
+              class="input-customize form-control"
+              [ngModel]="productInfo?.weight"
+              name="weight"
+              placeholder="{{ 'placeholder.input-weight' | translate }}"
               type="text"
               required
             />
           </div>
-        </div>
-        <div class="row justify-content-between text-left">
           <div class="form-group col-sm-4 flex-column d-flex">
             <label class="form-control-label px-3">
               {{ 'product.color' | translate }}
@@ -307,8 +334,11 @@
               required
               [ngModel]="productInfo?.colorOptionId"
               name="colorOptionId"
-              class="form-select"
+              class="form-select input-customize form-control"
             >
+              <option hidden value="">
+                {{ 'placeholder.choose-color' | translate }}
+              </option>
               <option *ngFor="let item of colorList" [value]="item.id">
                 {{ item.name }}
               </option>
@@ -321,81 +351,73 @@
               {{ 'notification.invalid-color' | translate }}
             </small>
           </div>
-
-          <div class="form-group col-sm-4 flex-column d-flex">
-            <label class="form-control-label px-3">
-              {{ 'product.screen' | translate }}
-            </label>
-            <input
-              class="text-capitalize"
-              [ngModel]="productInfo?.screen"
-              name="screen"
-              type="text"
-              required
-            />
-          </div>
-
           <div class="form-group col-sm-4 flex-column d-flex">
             <label class="form-control-label px-3">
               {{ 'product.material' | translate }}
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.material"
               name="material"
-              type="text"
+              placeholder="{{ 'placeholder.input-material' | translate }}"
+              type="text input-customize form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="row justify-content-between text-left">
+          <div class="form-group col-sm-12 flex-column d-flex">
+            <label class="form-control-label px-3">
+              {{ 'product.screen' | translate }}
+            </label>
+            <input
+              class="input-customize form-control"
+              [ngModel]="productInfo?.screen"
+              name="screen"
+              placeholder="{{ 'placeholder.input-screen' | translate }}"
+              type="text input-customize form-control"
               required
             />
           </div>
         </div>
 
         <div class="row justify-content-between text-left">
-          <div class="form-group col-sm-3 flex-column d-flex">
+          <div class="form-group col-sm-4 flex-column d-flex">
             <label class="form-control-label px-3">
               {{ 'product.width' | translate }} (mm)
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.width"
               name="width"
+              placeholder="{{ 'placeholder.input-width' | translate }}"
               type="text"
               required
             />
           </div>
 
-          <div class="form-group col-sm-3 flex-column d-flex">
+          <div class="form-group col-sm-4 flex-column d-flex">
             <label class="form-control-label px-3">
               {{ 'product.height' | translate }} (mm)
             </label>
             <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.height"
               name="height"
+              placeholder="{{ 'placeholder.input-height' | translate }}"
               type="text"
               required
             />
           </div>
-
-          <div class="form-group col-sm-3 flex-column d-flex">
+          <div class="form-group col-sm-4 flex-column d-flex">
             <label class="form-control-label px-3">
-              {{ 'product.weight' | translate }} (gram)
+              {{ 'product.depth' | translate }} (mm)
             </label>
             <input
-              class="text-capitalize"
-              [ngModel]="productInfo?.weight"
-              name="weight"
-              type="text"
-              required
-            />
-          </div>
-          <div class="form-group col-sm-3 flex-column d-flex">
-            <label class="form-control-label px-3">
-              {{ 'product.length' | translate }} (mm)
-            </label>
-            <input
-              class="text-capitalize"
+              class="input-customize form-control"
               [ngModel]="productInfo?.length"
               name="length"
+              placeholder="{{ 'placeholder.input-depth' | translate }}"
               type="text"
               required
             />
@@ -417,14 +439,18 @@
             <label class="form-control-label px-3">
               {{ 'product.price' | translate }} (VNĐ)
             </label>
-            <input
-              class="fs-4 fw-bold text-danger"
-              [ngModel]="productInfo?.original_price"
-              name="original_price"
-              min="0"
-              type="number"
-              required
-            />
+            <div class="input-group">
+              <input
+                class="fs-4 py-0 fw-bold text-danger form-control input-customize"
+                [ngModel]="productInfo?.original_price"
+                name="original_price"
+                min="0"
+                type="number"
+                required
+              />
+              <span class="input-group-text input-customize">VNĐ</span>
+            </div>
+
             <small
               class="form-text text-muted"
               *ngIf="!color?.valid && (color?.dirty || color?.touched)"
@@ -437,14 +463,17 @@
             <label class="form-control-label px-3">
               {{ 'product.quantity' | translate }}
             </label>
+
             <input
-              class="fs-4"
+              disabled
+              class="form-control input-customize"
               [ngModel]="productInfo?.quantity"
               name="quantity"
               min="0"
               type="number"
               required
             />
+
             <small
               class="form-text text-muted"
               *ngIf="!color?.valid && (color?.dirty || color?.touched)"
@@ -463,7 +492,7 @@
             rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
         "
       >
-        <p class="fw-bold">{{ 'product.add_image' | translate }}</p>
+        <p class="fw-bold">{{ 'product.add-image' | translate }}</p>
         <div class="row justify-content-between text-left">
           <div class="form-group row flex-column d-flex">
             <div class="d-flex row">
@@ -515,7 +544,7 @@
                 </div>
               </label>
             </div>
-            <div class="w-50 mt-4">
+            <div class="w-100 mt-4">
               <input
                 (change)="filechange($event)"
                 type="file"
@@ -523,16 +552,25 @@
                 class="d-none"
                 multiple
               />
-              <label class="btn btn-warning w-50" for="image1">Chọn file</label>
-              <span>{{ imageList.length }} file</span>
+              <label class="btn btn-warning w-50" for="image1">
+                {{ 'placeholder.choose-file' | translate }}
+              </label>
+              <span class="float-end text-danger">
+                Đã thêm
+                {{ imageList.length + productInfo?.product_images?.length }}
+                {{ 'file' | translate }}
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <div class="row rounded mt-3 justify-content-between text-left">
+      <div class="row rounded my-5 justify-content-between text-left">
         <div class="col-sm-6 col-0"></div>
         <div class="col-sm-4 col-6">
-          <button class="btn btn-primary w-100" (click)="createProduct()">
+          <button
+            class="btn btn-primary w-100"
+            (click)="updateProduct(productId)"
+          >
             {{ 'save' | translate }}
           </button>
         </div>

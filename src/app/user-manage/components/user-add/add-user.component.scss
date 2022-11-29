@@ -22,6 +22,14 @@ body {
 .form-control-label {
   margin-bottom: 0;
 }
+.input-customize {
+  padding: 8px 15px;
+  border-radius: 5px !important;
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  font-weight: 300;
+}
 input:focus,
 textarea:focus,
 select:focus {
@@ -50,4 +58,11 @@ button:focus {
 }
 a {
   text-decoration: none;
+}
+
+.icon {
+  margin-top: 15px;
+  font-size: 18px;
+  margin-right: 10px;
+  cursor: pointer;
 }

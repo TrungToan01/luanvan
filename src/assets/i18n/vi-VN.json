@@ -72,7 +72,7 @@
     "width": "Độ rộng",
     "height": "Độ cao",
     "weight": "Trọng lượng",
-    "length": "Độ dầy",
+    "depth": "Độ dầy",
     "core": "Số nhân",
     "CPU": "Phiên bản CPU",
     "system": "Hệ điều hành",
@@ -110,7 +110,7 @@
     "add-ram": "Thêm cấu hình RAM",
     "edit-ram": "Cập nhật cấu hình RAM",
     "description": "Mô tả sản phẩm",
-    "add_image": "Hình ảnh sản phẩm"
+    "add-image": "Hình ảnh sản phẩm"
   },
   "notification": {
     "notification": "Thông báo",
@@ -126,6 +126,7 @@
     "confirm-update": "Bạn có chắc cập nhật không?",
     "confirm-create": "Bạn có chắc chắn tạo?",
     "invalid-supplier-name": "Tên nhà cung cấp là bắt buộc.",
+    "invalid-supplier": "Nhà cug cấp là bắc buộc",
     "invalid-province": "Tỉnh/thành phố là bắt buộc",
     "invalid-district": "Quận/huyện là bắt buộc",
     "invalid-ward": "Xã/phường là bắt buộc",
@@ -134,6 +135,7 @@
     "invalid-rom": "ROM là bắc buộc",
     "invalid-ram": "RAM là bắc buộc",
     "invalid-product-name": "Tên sản phẩm là bắc buộc",
+    "invalid-product": "Sản phẩm là bắc buộc",
     "invalid-origin": "Xuất xứ sản phẩm là bắc buộc",
     "invalid-warranty-time": "Thời gian bảo hành là bắc buộc",
     "confirm-disabled-coupons": "Vô hiệu hóa mã giảm giá?",
@@ -142,13 +144,18 @@
     "invalid-enddate": "Ngày kết thúc là bắc buộc",
     "invalid-quantity": "Số lượng là bắc buộc",
     "invalid-discount_value": "Giá trị mã là bắc buộc",
-    "invalid_date": "Định dạng ngày không hợp lệ"
+    "invalid-date": "Định dạng ngày không hợp lệ",
+    "invalid-role": "Vai trò người dùng là bắc buộc"
   },
   "placeholder": {
+    "input-fullname": "Nhập họ tên",
+    "choose-role": "Chọn vai trò người dùng",
+    "input-birthdate": "Nhập ngày sinh",
     "input-sup-name": "Nhập tên nhà cung cấp",
     "input-phone": "Nhập số điện thoại",
     "input-email": "Nhập địa chỉ mail",
     "input-password": "Nhập mật khẩu của bạn",
+    "input-password-confirm": "Xác nhận xác nhận",
     "input-address": "Nhập địa chỉ",
     "input-sup-address": "Nhập địa chỉ nhà cung cấp",
     "choose-province": "Chọn tỉnh/thành phố",
@@ -163,9 +170,28 @@
     "input-product-name": "Nhập tên sản phẩm ",
     "input-origin": "Nhập xuất xứ sản phẩm",
     "input-warranty-time": "Nhập thời gian bảo hành sản phẩm",
-    "input_code": "Nhâp mã giảm giá",
-    "input_quantity": "Nhập số lượng",
-    "input_discount_value": "Nhập giá trị"
+    "input-code": "Nhâp mã giảm giá",
+    "input-quantity": "Nhập số lượng",
+    "input-discount_value": "Nhập giá trị",
+    "choose-supplier": "Chọn nhà cung cấp",
+    "choose-product": "Chọn sản phẩm",
+    "choose-brand": "Chọn thương hiệu",
+    "input-system": "Nhập hệ điều hành",
+    "input-core": "Nhập số nhân",
+    "input-CPU": "Nhập phiên bản CPU",
+    "choose-ram": "Chọn dung lượng ram",
+    "choose-rom": "Chọn dung lượng rom",
+    "choose-color": "Chọn màu",
+    "input-GPU": "Nhập thông tin bộ xử lý đồ họa",
+    "input-camera": "Nhập thông số camera sau",
+    "input-camera-selfie": "Nhập thông số camera selfie",
+    "input-screen": "Nhâp thông sô màn hình",
+    "input-material": "Nhập chất liệu sản phẩm",
+    "input-width": "Nhập độ rộng màn hình",
+    "input-height": "Nhập độ cao màn hình",
+    "input-depth": "Nhập độ dầy sản phẩm",
+    "input-weight": "Nhập trọng lượng sản phẩm",
+    "choose-file": "Chọn hình ảnh"
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",
@@ -225,5 +251,6 @@
   "change-password": "Đỗi mật khẩu",
   "no.": "ID",
   "close ": "Đống",
-  "total-price": "Tổng tiền"
+  "total-price": "Tổng tiền",
+  "file": "tập tin"
 }

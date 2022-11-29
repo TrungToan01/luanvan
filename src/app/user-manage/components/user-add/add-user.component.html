@@ -20,7 +20,6 @@
         {{ 'user.create-user' | translate }}
       </p>
     </div>
-
     <hr />
     <div class="row">
       <!-- left column -->
@@ -40,7 +39,7 @@
             name="avatar"
             id="avatar"
             type="file"
-            class="form-control mt-3"
+            class="form-control input-customize mt-3"
             (change)="filechange($event)"
           />
         </div>
@@ -56,11 +55,28 @@
               {{ 'user.role' | translate }}
             </label>
             <div class="col-9">
-              <select required ngModel name="userRoleId" class="form-select">
+              <select
+                #role="ngModel"
+                required
+                ngModel
+                name="userRoleId"
+                class="form-select form-control input-customize"
+              >
+                <option hidden value="">
+                  {{ 'placeholder.choose-role' | translate }}
+                </option>
                 <option *ngFor="let item of roleList" [value]="item.id">
                   {{ item.name }}
                 </option>
               </select>
+
+              <small
+                id="roleHid"
+                class="form-text text-muted"
+                *ngIf="!role?.valid && (role?.dirty || role?.touched)"
+              >
+                {{ 'notification.invalid-role' | translate }}
+              </small>
             </div>
           </div>
           <!-- username -->
@@ -71,10 +87,11 @@
             <div class="col-9">
               <input
                 class="text-capitalize"
+                placeholder="{{ 'placeholder.input-fullname' | translate }}"
                 ngModel
                 #username="ngModel"
                 name="name"
-                class="form-control"
+                class="form-control input-customize"
                 type="text"
                 required
               />
@@ -89,90 +106,6 @@
               </small>
             </div>
           </div>
-          <!-- phone -->
-          <div class="form-group row mb-4">
-            <label class="col-3 m-auto col-form-label text-end">
-              {{ 'user.phone-number' | translate }}
-            </label>
-            <div class="col-9">
-              <input
-                ngModel
-                #phone="ngModel"
-                name="phone"
-                class="form-control"
-                aria-describedby="phone"
-                type="text"
-                required
-              />
-              <small
-                id="phoneHid"
-                class="form-text text-muted"
-                *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
-              >
-                {{ 'notification.invalid-phone' | translate }}
-              </small>
-            </div>
-          </div>
-          <!-- birthdate -->
-          <div class="form-group row mb-4">
-            <label class="col-3 m-auto col-form-label text-end">
-              {{ 'user.birthdate' | translate }}
-            </label>
-            <div class="col-9">
-              <input
-                ngModel
-                #birthdate="ngModel"
-                name="birthdate"
-                class="form-control"
-                aria-describedby="birthdate"
-                type="date"
-                required
-              />
-              <small
-                id="birthdateHid"
-                class="form-text text-muted"
-                *ngIf="
-                  !birthdate?.valid && (birthdate?.dirty || birthdate?.touched)
-                "
-              >
-                {{ 'notification.invalid-birthdate' | translate }}
-              </small>
-            </div>
-          </div>
-          <!-- gender -->
-          <div class="form-group row mb-4">
-            <label class="col-3 m-auto col-form-label text-end">
-              {{ 'user.gender' | translate }}
-            </label>
-            <div class="col-9 d-flex align-items-center">
-              <div class="form-check">
-                <input
-                  ngModel
-                  class="form-check-input"
-                  type="radio"
-                  name="gender"
-                  id="male"
-                  [value]="true"
-                />
-                <label class="form-check-label" for="male">
-                  {{ 'user.male' | translate }}
-                </label>
-              </div>
-              <div class="form-check mx-3">
-                <input
-                  ngModel
-                  class="form-check-input"
-                  type="radio"
-                  name="gender"
-                  id="female"
-                  [value]="false"
-                />
-                <label class="form-check-label" for="female">
-                  {{ 'user.female' | translate }}
-                </label>
-              </div>
-            </div>
-          </div>
           <!-- email -->
           <div class="form-group row mb-4">
             <label class="col-3 m-auto col-form-label text-end">
@@ -183,7 +116,8 @@
                 ngModel
                 #email="ngModel"
                 name="email"
-                class="form-control"
+                placeholder="{{ 'placeholder.input-email' | translate }}"
+                class="form-control input-customize"
                 type="email"
                 placeholder="example@gamilcom"
                 required
@@ -197,6 +131,104 @@
               </small>
             </div>
           </div>
+
+          <!-- birthdate -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.birthdate' | translate }}
+            </label>
+            <div class="col-9">
+              <div class="row p-0">
+                <div class="col-6">
+                  <input
+                    ngModel
+                    #birthdate="ngModel"
+                    name="birthdate"
+                    class="form-control input-customize"
+                    placeholder="{{
+                      'placeholder.input-birthdate' | translate
+                    }}"
+                    aria-describedby="birthdate"
+                    type="date"
+                    required
+                  />
+                  <small
+                    id="birthdateHid"
+                    class="form-text text-muted"
+                    *ngIf="
+                      !birthdate?.valid &&
+                      (birthdate?.dirty || birthdate?.touched)
+                    "
+                  >
+                    {{ 'notification.invalid-birthdate' | translate }}
+                  </small>
+                </div>
+                <div class="col-6">
+                  <!-- gender -->
+                  <div class="form-group mt-2 row">
+                    <label class="col-3 m-auto col-form-label text-end">
+                      {{ 'user.gender' | translate }}
+                    </label>
+                    <div class="col-9 d-flex align-items-center">
+                      <div class="form-check">
+                        <input
+                          ngModel
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="male"
+                          [value]="true"
+                        />
+                        <label class="form-check-label" for="male">
+                          {{ 'user.male' | translate }}
+                        </label>
+                      </div>
+                      <div class="form-check mx-3">
+                        <input
+                          ngModel
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="female"
+                          [value]="false"
+                        />
+                        <label class="form-check-label" for="female">
+                          {{ 'user.female' | translate }}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- phone -->
+          <div class="form-group row mb-4">
+            <label class="col-3 m-auto col-form-label text-end">
+              {{ 'user.phone-number' | translate }}
+            </label>
+            <div class="col-9">
+              <input
+                ngModel
+                #phone="ngModel"
+                name="phone"
+                class="form-control input-customize"
+                aria-describedby="phone"
+                placeholder="{{ 'placeholder.input-phone' | translate }}"
+                type="text"
+                required
+              />
+              <small
+                id="phoneHid"
+                class="form-text text-muted"
+                *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
+              >
+                {{ 'notification.invalid-phone' | translate }}
+              </small>
+            </div>
+          </div>
+
           <!-- password -->
           <div class="form-group row mb-4">
             <label for="password" class="col-3 m-auto col-form-label text-end">
@@ -206,19 +238,17 @@
             <div class="col-9">
               <div class="d-flex position-relative">
                 <input
-                  class="form-control"
+                  class="form-control input-customize"
                   ngModel
                   #password="ngModel"
                   name="password"
-                  type="text"
+                  type="password"
+                  placeholder="{{ 'placeholder.input-password' | translate }}"
                   aria-describedby="password"
                   required
                   style="padding-right: 30px;"
                 />
-                <div
-                  class="d-flex position-absolute"
-                  style="right: 0; top: 8px; right: 10px;"
-                >
+                <div class="d-flex position-absolute icon" style="right: 0;">
                   <i class="bi bi-eye m-auto"></i>
                 </div>
               </div>
@@ -244,19 +274,19 @@
             <div class="col-9">
               <div class="d-flex position-relative">
                 <input
-                  class="form-control"
+                  class="form-control input-customize"
                   ngModel
                   #passwordconfirm="ngModel"
+                  placeholder="{{
+                    'placeholder.input-password-confirm' | translate
+                  }}"
                   name="passwordconfirm"
                   required
                   aria-describedby="passwordconfirm"
-                  type="text"
+                  type="password"
                   style="padding-right: 30px;"
                 />
-                <div
-                  class="d-flex position-absolute"
-                  style="right: 0; top: 8px; right: 10px;"
-                >
+                <div class="d-flex position-absolute icon" style="right: 0;">
                   <i class="bi bi-eye m-auto"></i>
                 </div>
               </div>
@@ -296,5 +326,4 @@
       </div>
     </div>
   </div>
-  <hr />
 </form>

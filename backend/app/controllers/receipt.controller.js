@@ -1,7 +1,18 @@
 const db = require('../models')
 const Receipt = db.receipt
 const Op = db.Sequelize.Op
+const Receipt_detail = db.receipt_detail
+const User = db.user
+const Supplier = db.supplier
 
+Supplier.hasMany(Receipt)
+Receipt.belongsTo(Supplier)
+
+User.hasMany(Receipt)
+Receipt.belongsTo(User)
+
+Receipt.hasMany(Receipt_detail)
+Receipt_detail.belongsTo(Receipt)
 // ----------------------------------CREATE RECEIPT----------------------------------
 exports.create = (req, res) => {
   if (
@@ -35,14 +46,9 @@ exports.create = (req, res) => {
 
 // ----------------------------------FIND ALL RECEIPT----------------------------------
 exports.findAll = (req, res) => {
-  const supplierId = req.query.supplierId
-  var condition = supplierId
-    ? { supplierId: { [Op.like]: `%${supplierId}%` } }
-    : null
-  Receipt.findAll({ where: condition })
+  Receipt.findAll({ include: [User, Supplier, Receipt_detail] })
     .then((data) => {
-      const response = serverPage.getPagingData(data)
-      res.send(response)
+      return res.send({ rows: data, status: 200 })
     })
     .catch((err) => {
       res.status(500).send({
@@ -54,7 +60,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID RECEIPT----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Receipt.findByPk(id)
+  Receipt.findByPk(id, { include: [User, Supplier, Receipt_detail] })
     .then((data) => {
       if (data) {
         res.send({ rows: data })

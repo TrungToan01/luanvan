@@ -1,7 +1,14 @@
-<div class="nav navbar d-block">
+<div class="nav navbar d-block position-relative">
   <p class="fs-4 text-black text-center text-capitalize">
     {{ 'brand.add-brand' | translate }}
   </p>
+  <mat-icon
+    mat-dialog-close
+    class="position-absolute"
+    style="right: 0; top: 0;"
+  >
+    close
+  </mat-icon>
 </div>
 <div class="container-fluid p-0">
   <form id="addBrandForm" #addBrandForm="ngForm">
@@ -19,7 +26,7 @@
           placeholder="{{ 'placeholder.input-brand' | translate }}"
           type="text"
           required
-          class="form-control form-control-lg"
+          class="form-control input-customize"
         />
         <small
           id="nameHid"
@@ -33,24 +40,19 @@
         <label class="form-check-label" for="flexSwitchCheckDefault">
           {{ 'brand.published' | translate }}
         </label>
-        <div class="form-check form-switch mx-3">
-          <input
-            [ngModel]="true"
-            name="published"
-            class="form-check-input"
-            style="width: 45px; height: 22px;"
-            type="checkbox"
-            id="flexSwitchCheckDefault"
-          />
-        </div>
+        <input
+          [ngModel]="true"
+          name="published"
+          class="text-danger"
+          style="width: 45px; height: 22px;"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
       </div>
     </div>
   </form>
   <div class="text-end mt-3 w-100">
-    <button mat-button mat-dialog-close>
-      {{ 'cancel' | translate }}
-    </button>
-    <button (click)="onSubmit()" mat-button color="primary" cdkFocusInitial>
+    <button (click)="onSubmit()" class="btn btn-primary w-50" cdkFocusInitial>
       {{ 'ok' | translate }}
     </button>
   </div>

@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { warehouseManageRoutes } from '../common/routes';
+import { ProductService } from '../product-manage/service/product.service';
+import { SupplierService } from '../supplier-manage/service/supplier.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,6 @@ import { warehouseManageRoutes } from '../common/routes';
     ReactiveFormsModule,
     TranslateModule,
   ],
-  providers: [WarehouseService, BaseService],
+  providers: [WarehouseService, BaseService, ProductService, SupplierService],
 })
 export class WarehouseManageModule {}

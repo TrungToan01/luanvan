@@ -1,15 +1,14 @@
-<div class="nav navbar d-block pt-0">
-  <mat-icon
-    mat-dialog-close
-    title="{{ 'close' | translate }}"
-    class="float-end"
-    style="cursor: pointer;"
-  >
-    close
-  </mat-icon>
+<div class="nav navbar d-block position-relative">
   <p class="fs-4 text-black text-center text-capitalize">
     {{ 'coupons.update-coupons' | translate }}
   </p>
+  <mat-icon
+    mat-dialog-close
+    class="position-absolute"
+    style="right: 0; top: 0;"
+  >
+    close
+  </mat-icon>
 </div>
 
 <div class="container-fluid p-0">
@@ -25,7 +24,7 @@
             [ngModel]="couponsInfo?.code"
             #code="ngModel"
             name="code"
-            class="form-control"
+            class="form-control input-customize"
             placeholder="{{ 'placeholder.input_code' | translate }}"
             type="text"
             required
@@ -51,7 +50,7 @@
                 [ngModel]="couponsInfo?.start_date | date: 'yyyy-MM-dd'"
                 #code="ngModel"
                 name="start_date"
-                class="form-control"
+                class="form-control input-customize"
                 type="date"
                 required
               />
@@ -69,7 +68,7 @@
                 [ngModel]="couponsInfo?.end_date | date: 'yyyy-MM-dd'"
                 #code="ngModel"
                 name="end_date"
-                class="form-control"
+                class="form-control input-customize"
                 type="date"
                 required
               />
@@ -98,7 +97,7 @@
             [ngModel]="couponsInfo?.quantity"
             #quantity="ngModel"
             name="quantity"
-            class="form-control"
+            class="form-control input-customize"
             placeholder="{{ 'placeholder.input_quantity' | translate }}"
             type="text"
             required
@@ -123,12 +122,12 @@
               [ngModel]="couponsInfo?.discount_value"
               #discount_value="ngModel"
               name="discount_value"
-              class="form-control"
+              class="form-control input-customize"
               placeholder="{{ 'placeholder.input_discount_value' | translate }}"
               type="text"
               required
             />
-            <span class="input-group-text">VNĐ</span>
+            <span class="input-group-text input-customize">VNĐ</span>
           </div>
           <small
             id="codeHid"

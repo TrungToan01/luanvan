@@ -106,13 +106,14 @@ export class EditProductComponent implements OnInit {
       this.ramList = response.data;
     }
   }
-  // -----------create product-----------
-  async createProduct() {
-    let response = await this.productService.createProduct(
+  // -----------update product-----------
+  async updateProduct(id: any) {
+    let response = await this.productService.updateProduct(
+      id,
       this.productForm.value
     );
     if (response.ok) {
-      await this.createImage(response.data.id);
+      await this.createImage(this.productId);
     } else {
       alert('không thể tạo');
     }
