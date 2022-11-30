@@ -6,9 +6,14 @@
 
 <div class="container-fluid p-3">
   <div class="row pb-4 mx-auto">
+    <div class="row"></div>
     <div class="row">
       <div class="col-sm-6">
-        <form id="FormData" #FormData="ngForm">
+        <form
+          class="form-card"
+          id="formReceiptDetail"
+          #formReceiptDetail="ngForm"
+        >
           <div class="row justify-content-between">
             <!-- supplierId -->
             <div class="form-group row mb-4">
@@ -17,9 +22,10 @@
               </label>
               <div class="col-9">
                 <select
+                  disabled="true"
+                  [ngModel]="data?.supplierId"
                   #supplierId="ngModel"
                   required
-                  ngModel
                   name="supplierId"
                   class="form-select input-customize form-group"
                 >
@@ -52,10 +58,10 @@
               </label>
               <div class="col-9">
                 <select
+                  ngModel
                   #productId="ngModel"
                   required
-                  ngModel
-                  name="productId"
+                  name="productOptionId"
                   class="form-select input-customize"
                 >
                   <option hidden value="" disabled selected>
@@ -81,6 +87,28 @@
                 >
                   {{ 'notification.invalid-product' | translate }}
                 </small>
+              </div>
+            </div>
+            <!-- price -->
+            <div class="form-group row mb-4">
+              <label class="col-3 m-auto col-form-label text-end">
+                {{ 'product.price' | translate }}
+              </label>
+              <div class="col-9">
+                <div class="input-group">
+                  <input
+                    class="form-control input-customize"
+                    ngModel
+                    name="price"
+                    min="0"
+                    type="number"
+                    placeholder="{{ 'placeholder.input-price' | translate }}"
+                    required
+                  />
+                  <span class="input-group-text input-customize">
+                    VNĐ
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -118,56 +146,54 @@
                 <span>50000000 (VNĐ)</span>
               </div>
             </div>
-            <!-- button -->
-            <div class="form-group row mb-4">
-              <div class="col-6">
-                <button class="btn btn-secondary form-control">
-                  Thêm sản phẩm
-                </button>
-              </div>
-
-              <div class="col-6">
-                <button class="btn btn-danger form-control">
-                  Xóa sản phẩm
-                </button>
-              </div>
-            </div>
           </div>
         </form>
+        <!-- button -->
+        <div class="form-group row mb-4">
+          <div class="col-6">
+            <button
+              (click)="createReDetail()"
+              class="btn btn-secondary form-control"
+            >
+              {{ 'product.add-product' | translate }}
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button class="btn btn-danger form-control">
+              {{ 'delete' | translate }}
+            </button>
+          </div>
+        </div>
       </div>
       <div class="col-sm-6 mb-5">
         <section class="example-container border" tabindex="0">
           <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="id">
               <th mat-header-cell *matHeaderCellDef>{{ 'id' | translate }}</th>
-              <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.id }}</td>
             </ng-container>
 
             <ng-container matColumnDef="product">
               <th mat-header-cell *matHeaderCellDef>
                 {{ 'product.product' | translate }}
               </th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.product_option?.name }}
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="quantity">
               <th mat-header-cell *matHeaderCellDef>
                 {{ 'product.quantity' | translate }}
               </th>
-              <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
             </ng-container>
             <ng-container matColumnDef="price">
               <th mat-header-cell *matHeaderCellDef>
                 {{ 'product.price' | translate }}
               </th>
-              <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="total-price">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ 'total-price' | translate }}
-              </th>
-              <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.price }}</td>
             </ng-container>
 
             <ng-container matColumnDef="action">
@@ -189,7 +215,7 @@
     <div class="form-group row mb-4">
       <div class="col-sm-8"></div>
       <div class="col-sm-4">
-        <button class="btn btn-primary py-2 w-100" cdkFocusInitial>
+        <button class="btn btn-primary py-2 w-100">
           {{ 'save' | translate }}
         </button>
       </div>

@@ -1,120 +1,133 @@
-<mat-drawer-container class="example-container p-0" autosize>
-  <mat-drawer #drawer [(opened)]="showFiller" mode="side">
-    <div class="position-relative">
-      <mat-toolbar class="shopname fs-3 text-white">
-        <span>Phonestore</span>
-      </mat-toolbar>
-    </div>
-    <app-dashboard></app-dashboard>
-  </mat-drawer>
+<div *ngIf="isAdmin; then Auth; else noAuth"></div>
 
-  <div class="cotainer-fluid">
-    <div class="nav navbar bg-white shadow">
-      <button
-        title="{{ 'Menu' | translate }}"
-        mat-icon-button
-        class="example-icon"
-        type="button"
-        (click)="drawer.toggle()"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <span class="example-spacer d-none d-md-flex"></span>
-
-      <div
-        class="mx-2 d-flex m-auto border rounded-pill"
-        style="flex: 1; background-color: whitesmoke;"
-      >
-        <input
-          class="search-field border-0"
-          placeholder="{{ 'search' | translate }}"
-          type="search"
-        />
-        <button
-          mat-stroked-button
-          mat-icon-button
-          class="example-icon favorite-icon bg-dark text-white"
-          aria-label="Example icon-button with heart icon"
-          title="{{ 'search' | translate }}"
-        >
-          <mat-icon>search</mat-icon>
-        </button>
+<ng-template #Auth>
+  <mat-drawer-container class="example-container p-0" autosize>
+    <mat-drawer #drawer opened="true" mode="side">
+      <div class="position-relative">
+        <mat-toolbar class="shopname fs-3 text-white">
+          <span>Phonestore</span>
+        </mat-toolbar>
       </div>
-      <div class="mx-2 d-md-flex d-none">
+      <app-dashboard></app-dashboard>
+    </mat-drawer>
+
+    <div class="cotainer-fluid">
+      <div class="nav navbar bg-white shadow">
         <button
-          mat-stroked-button
-          mat-icon-button
-          class="example-icon favorite-icon"
-          aria-label="Example icon-button with heart icon"
-          title="{{ 'message' | translate }}"
-        >
-          <i class="bi bi-chat-dots fs-4 fw-bold"></i>
-        </button>
-      </div>
-      <div class="mx-2 mx-2 d-md-flex d-none">
-        <button
-          [matMenuTriggerFor]="notification"
-          mat-stroked-button
+          title="{{ 'Menu' | translate }}"
           mat-icon-button
           class="example-icon"
-          title="{{ 'notification.notification' | translate }}"
+          type="button"
+          (click)="drawer.toggle()"
         >
-          <mat-icon>notifications_none</mat-icon>
-        </button>
-        <mat-menu #notification="matMenu">
-          <button mat-menu-item>
-            thông báo đơn hàng 1
-          </button>
-        </mat-menu>
-      </div>
-      <div class="mx-2">
-        <button
-          [matMenuTriggerFor]="menu"
-          mat-stroked-button
-          mat-icon-button
-          class="example-icon"
-          title="{{ 'menu' | translate }}"
-        >
-          <mat-icon>more_horiz</mat-icon>
+          <mat-icon>menu</mat-icon>
         </button>
 
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item [matMenuTriggerFor]="language">
-            {{ 'language.languages' | translate }}
-          </button>
-          <mat-menu #language="matMenu">
-            <div *ngFor="let lang of languages" (click)="changeLanguage(lang)">
-              <button mat-menu-item>
-                {{ getLanguageDisplay(lang, true) }}
-              </button>
-            </div>
-          </mat-menu>
-          <button mat-menu-item>{{ 'account' | translate }}</button>
-          <button mat-menu-item>{{ 'change-password' | translate }}</button>
-          <button mat-menu-item>{{ 'auth.logout' | translate }}</button>
-        </mat-menu>
-      </div>
+        <span class="example-spacer d-none d-md-flex"></span>
 
-      <div class="mx-2 d-md-flex d-none" style="height: 50px;">
-        <div class="rounded-circle" style="width: 50px; height: 50px;">
-          <img
-            class="img-fluid rounded-circle"
-            [src]="'http://localhost:5000' + userInfo?.avatar"
-            style="width: 50px; height: 50px;"
+        <div
+          class="mx-2 d-flex m-auto border rounded-pill"
+          style="flex: 1; background-color: whitesmoke;"
+        >
+          <input
+            class="search-field border-0"
+            placeholder="{{ 'search' | translate }}"
+            type="search"
           />
+          <button
+            mat-stroked-button
+            mat-icon-button
+            class="example-icon favorite-icon bg-dark text-white"
+            aria-label="Example icon-button with heart icon"
+            title="{{ 'search' | translate }}"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
         </div>
-        <div class="px-2 mt-2 h-100">
-          <div class="fs-4 text-capitalize">{{ userInfo?.username }}</div>
-          <div class="fs-6">
-            {{ userInfo?.rolename }}
+        <div class="mx-2 d-md-flex d-none">
+          <button
+            mat-stroked-button
+            mat-icon-button
+            class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon"
+            title="{{ 'message' | translate }}"
+          >
+            <i class="bi bi-chat-dots fs-4 fw-bold"></i>
+          </button>
+        </div>
+        <div class="mx-2 mx-2 d-md-flex d-none">
+          <button
+            [matMenuTriggerFor]="notification"
+            mat-stroked-button
+            mat-icon-button
+            class="example-icon"
+            title="{{ 'notification.notification' | translate }}"
+          >
+            <mat-icon>notifications_none</mat-icon>
+          </button>
+          <mat-menu #notification="matMenu">
+            <button mat-menu-item>
+              thông báo đơn hàng 1
+            </button>
+          </mat-menu>
+        </div>
+        <div class="mx-2">
+          <button
+            [matMenuTriggerFor]="menu"
+            mat-stroked-button
+            mat-icon-button
+            class="example-icon"
+            title="{{ 'menu' | translate }}"
+          >
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="language">
+              {{ 'language.languages' | translate }}
+            </button>
+            <mat-menu #language="matMenu">
+              <div
+                *ngFor="let lang of languages"
+                (click)="changeLanguage(lang)"
+              >
+                <button mat-menu-item>
+                  {{ getLanguageDisplay(lang, true) }}
+                </button>
+              </div>
+            </mat-menu>
+            <button mat-menu-item>{{ 'account' | translate }}</button>
+            <button mat-menu-item>{{ 'change-password' | translate }}</button>
+            <button (click)="logout()" mat-menu-item>
+              {{ 'auth.logout' | translate }}
+            </button>
+          </mat-menu>
+        </div>
+
+        <div class="mx-2 d-md-flex d-none" style="height: 50px;">
+          <div class="rounded-circle" style="width: 50px; height: 50px;">
+            <img
+              class="img-fluid rounded-circle"
+              [src]="'http://localhost:5000' + userInfo?.avatar"
+              style="width: 50px; height: 50px;"
+            />
+          </div>
+          <div class="px-2 mt-2 h-100">
+            <div class="fs-4 text-capitalize">{{ userInfo?.username }}</div>
+            <div class="fs-6">
+              {{ userInfo?.rolename }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="contents-main">
-    <router-outlet></router-outlet>
-  </div>
-</mat-drawer-container>
+    <div class="contents-main">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</ng-template>
+
+<ng-template #noAuth>
+  <router-outlet></router-outlet>
+</ng-template>

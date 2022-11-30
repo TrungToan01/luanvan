@@ -28,4 +28,5 @@ export interface HttpResponse {
   data?: any;
   token?: any;
   length?: any;
+  role?: any;
 }

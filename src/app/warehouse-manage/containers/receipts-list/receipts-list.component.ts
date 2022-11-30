@@ -31,8 +31,8 @@ export class ReceiptsListComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   doOk = false;
   constructor(
-    private warehouseService: WarehouseService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private warehouseService: WarehouseService
   ) {}
 
   async ngOnInit() {}

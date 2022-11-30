@@ -52,6 +52,7 @@ export class BaseService {
   private handleData(response: any): HttpResponse {
     let result: HttpResponse = {
       ok: true,
+      role: response && response.role ? response.role : undefined,
       msg: response && response.message ? response.message : undefined,
       data: response && response.rows ? response.rows : undefined,
       token: response && response.token ? response.token : undefined,

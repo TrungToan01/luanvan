@@ -44,13 +44,10 @@ export class SupplierComponent implements OnInit {
   async getAllSupplier() {
     let response = await this.supplierService.getAllSupplier();
     if (response.ok) {
-      console.log(response.data);
       this.dataSource = new MatTableDataSource(response.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.PageInfo.total = response.data.length;
-    } else {
-      alert(response);
     }
   }
 

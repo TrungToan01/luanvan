@@ -11,11 +11,7 @@ Product.hasMany(Receipt_detail)
 Receipt_detail.belongsTo(Product)
 // ----------------------------------CREATE Receipt_detail----------------------------------
 exports.create = (req, res) => {
-  if (
-    !req.body.Receipt_detailId ||
-    !req.body.productOptionId ||
-    req.body.quantity <= 0
-  ) {
+  if (!req.body.receiptId || !req.body.productOptionId || !req.body.price) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })

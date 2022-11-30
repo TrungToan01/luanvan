@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppConst } from 'src/app/common/const';
 import { ProductService } from 'src/app/product-manage/service/product.service';
 import { SupplierService } from 'src/app/supplier-manage/service/supplier.service';
+import { DialogCreateReceiptComponent } from '../../components/dialog-create-receipt/dialog-create-receipt.component';
 import { WarehouseService } from '../../service/warehouse.service';
 
 @Component({
@@ -13,21 +14,15 @@ import { WarehouseService } from '../../service/warehouse.service';
   styleUrls: ['./receipts-add.component.scss'],
 })
 export class ReceiptsAddComponent implements OnInit {
-  @ViewChild('FormData')
+  @ViewChild('formReceiptDetail')
+  formReceiptDetail!: NgForm;
   userInfo: any;
-  FormData!: NgForm;
   supplierList: any;
   productList: any;
   totalprice: any;
+  data: any;
   doOk = false;
-  displayedColumns = [
-    'id',
-    'product',
-    'quantity',
-    'price',
-    'total-price',
-    'action',
-  ];
+  displayedColumns = ['id', 'product', 'quantity', 'price', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   constructor(
@@ -38,13 +33,13 @@ export class ReceiptsAddComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    await this.createNewReceipt();
     await this.getSupplier();
     await this.getProduct();
     let info = localStorage.getItem(AppConst.LocalStorage.Auth.UserInfo);
     if (info) {
       this.userInfo = JSON.parse(info);
     }
-    console.log(this.FormData);
   }
 
   async getSupplier() {
@@ -57,16 +52,41 @@ export class ReceiptsAddComponent implements OnInit {
     let response = await this.productService.getAllProduct();
     if (response.ok) {
       this.productList = response.data;
-      console.log(this.productList);
+    }
+  }
+  async getReceiptsDetail() {
+    let response = await this.warehouseService.getAllReceiptDetail();
+    if (response.ok) {
+      this.dataSource = new MatTableDataSource(response.data);
     }
   }
 
-  //create receipt
-
-  async createReceipt(data: any) {
-    let response = await this.warehouseService.CreateReceipt(data);
+  async createReDetail() {
+    const fmData = new FormGroup({
+      receiptId: new FormControl(this.data.id),
+      productOptionId: new FormControl(
+        this.formReceiptDetail.value.productOptionId
+      ),
+      price: new FormControl(this.formReceiptDetail.value.price),
+      quantity: new FormControl(this.formReceiptDetail.value.quantity),
+    });
+    console.log(fmData.value);
+    let response = await this.warehouseService.CreateReceiptDetail(
+      fmData.value
+    );
     if (response.ok) {
-      alert('tạo thành công');
+      this.getReceiptsDetail();
+    } else {
+      alert('không thể thêm sản phẩm');
     }
+  }
+  createNewReceipt() {
+    let dialogRef = this.dialog.open(DialogCreateReceiptComponent, {
+      width: '400px',
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.data = result;
+    });
   }
 }

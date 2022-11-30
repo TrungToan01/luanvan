@@ -191,7 +191,9 @@
     "input-height": "Nhập độ cao màn hình",
     "input-depth": "Nhập độ dầy sản phẩm",
     "input-weight": "Nhập trọng lượng sản phẩm",
-    "choose-file": "Chọn hình ảnh"
+    "choose-file": "Chọn hình ảnh",
+    "input-price": "Nhập giá sản phẩm",
+    "input-sale-price": "Nhập giá giảm"
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",
@@ -252,5 +254,6 @@
   "no.": "ID",
   "close ": "Đống",
   "total-price": "Tổng tiền",
-  "file": "tập tin"
+  "file": "tập tin",
+  "choose": "Chọn"
 }

@@ -32,6 +32,7 @@ export class AuthService extends BaseService {
       this.getUerDetail();
       return response;
     } else {
+      console.log(response);
       return response;
     }
   }
@@ -83,13 +84,24 @@ export class AuthService extends BaseService {
     localStorage.removeItem(AppConst.LocalStorage.Auth.TokenName);
     localStorage.removeItem(AppConst.LocalStorage.Auth.UserInfo);
     localStorage.removeItem(AppConst.LocalStorage.Auth.Permissions);
+    localStorage.removeItem(AppConst.role);
     sessionStorage.clear();
+    this.router.navigate([`/` + this.baseLoginSourceUrl]);
   }
 
   isAuthenticated() {
     return localStorage.getItem(AppConst.LocalStorage.Auth.TokenName)
       ? true
       : false;
+  }
+
+  isAdmin() {
+    let role = localStorage.getItem(AppConst.role);
+    if (role == '1') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   get getLanguage() {

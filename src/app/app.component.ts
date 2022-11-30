@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivationStart, NavigationStart, Router } from '@angular/router';
+import {  NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './auth/service/auth.service';
 import { AppConst } from './common/const';
@@ -17,7 +17,7 @@ export class AppComponent {
   userInfo: any;
   languages: string[] = Object.values(AppConst.Languages);
   currentLanguage = AppConst.Languages.Vietnamese;
-  showFiller = true;
+  isAdmin = false;
 
   constructor(
     private router: Router,
@@ -40,7 +40,7 @@ export class AppComponent {
   async ngOnInit() {
     this.router.events.subscribe(async (event) => {
       if (event instanceof NavigationStart) {
-        // await this.checkAuth();
+        await this.checkAuth();
         this.coreShareService.addNewHistoryUrl(event.url);
       }
     });
@@ -52,7 +52,6 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
-    this.router.navigate([`/login`]);
   }
 
   changeLanguage(value: any) {
@@ -84,5 +83,9 @@ export class AppComponent {
       languageDisplay += this.currentLanguage === lang ? ' (\u2713)' : '';
     }
     return languageDisplay;
+  }
+
+  async checkAuth() {
+    this.isAdmin = this.authService.isAdmin();
   }
 }

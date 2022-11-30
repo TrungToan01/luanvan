@@ -66,10 +66,10 @@ exports.register = async (req, res) => {
         avatar: response?.avatar,
         userRoleId: response?.userRoleId,
       }
-
+      let role = user.userRoleId
       return res
         .status(200)
-        .json({ message: 'login is success.', rows: data, token })
+        .json({ message: 'login is success.', role, rows: data, token })
     })
     .catch((err) => {
       return res.status(500).send({
@@ -114,10 +114,11 @@ exports.login = async (req, res) => {
           userRoleId: user.userRoleId,
           rolename: user.user_role.name,
         }
+        let role = user.userRoleId
 
         return res
           .status(200)
-          .json({ message: 'Login is success.', rows: data, token })
+          .json({ message: 'Login is success.', role, rows: data, token })
       } else {
         return res.status(200).json({ message: 'Account does not exist.' })
       }

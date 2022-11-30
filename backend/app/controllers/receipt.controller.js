@@ -15,12 +15,8 @@ Receipt.hasMany(Receipt_detail)
 Receipt_detail.belongsTo(Receipt)
 // ----------------------------------CREATE RECEIPT----------------------------------
 exports.create = (req, res) => {
-  if (
-    !req.body.supplierId ||
-    !req.body.userId ||
-    req.body.total_price <= 0 ||
-    !req.body.total_price
-  ) {
+  console.log(req.body)
+  if (!req.body.supplierId || !req.body.userId) {
     res.status(400).send({
       message: 'Content can not be empty!',
     })
@@ -30,7 +26,7 @@ exports.create = (req, res) => {
   const receipt = {
     supplierId: req.body.supplierId,
     userId: req.body.userId,
-    total_price: req.body.total_price,
+    total_price: req.body.total_price || 0,
   }
   Receipt.create(receipt)
     .then((data) => {

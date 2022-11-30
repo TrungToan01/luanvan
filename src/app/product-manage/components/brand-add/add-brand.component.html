@@ -2,13 +2,15 @@
   <p class="fs-4 text-black text-center text-capitalize">
     {{ 'brand.add-brand' | translate }}
   </p>
-  <mat-icon
+  <mat-button-toggle
     mat-dialog-close
     class="position-absolute"
     style="right: 0; top: 0;"
   >
-    close
-  </mat-icon>
+    <mat-icon>
+      close
+    </mat-icon>
+  </mat-button-toggle>
 </div>
 <div class="container-fluid p-0">
   <form id="addBrandForm" #addBrandForm="ngForm">
@@ -43,7 +45,6 @@
         <input
           [ngModel]="true"
           name="published"
-          class="text-danger"
           style="width: 45px; height: 22px;"
           type="checkbox"
           id="flexSwitchCheckDefault"
@@ -53,7 +54,7 @@
   </form>
   <div class="text-end mt-3 w-100">
     <button (click)="onSubmit()" class="btn btn-primary w-50" cdkFocusInitial>
-      {{ 'ok' | translate }}
+      {{ 'save' | translate }}
     </button>
   </div>
 </div>
