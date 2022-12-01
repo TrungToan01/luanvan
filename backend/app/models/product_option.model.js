@@ -58,10 +58,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
     },
     original_price: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DOUBLE,
     },
     sale_price: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DOUBLE,
     },
     quantity: {
       type: Sequelize.INTEGER,

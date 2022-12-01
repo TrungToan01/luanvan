@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
     },
     total_price: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DOUBLE,
     },
   })
   return receipt

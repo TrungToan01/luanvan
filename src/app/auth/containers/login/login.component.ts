@@ -15,7 +15,9 @@ export class LoginComponent implements OnInit {
   generalError: string = '';
   constructor(private router: Router, private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.logout();
+  }
 
   async onSubmit() {
     this.generalError = '';

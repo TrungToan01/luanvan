@@ -9,7 +9,7 @@
       keyboard_backspace
     </mat-icon>
   </mat-button>
-  <p class="text-black-50 fw-bold fs-3 px-3 mt-3">
+  <p class="text-primary fw-bold fs-3 px-3 mt-3">
     {{ 'user.update-supplier' | translate }}
   </p>
 </div>
@@ -203,7 +203,7 @@
                 {{ 'save' | translate }}
               </button>
               <button
-                (click)="formSupplier.reset()"
+                (click)="goBack()"
                 type="button"
                 class="btn btn-secondary"
               >

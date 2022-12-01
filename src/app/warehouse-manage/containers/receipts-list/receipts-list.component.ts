@@ -35,5 +35,17 @@ export class ReceiptsListComponent implements OnInit {
     private warehouseService: WarehouseService
   ) {}
 
-  async ngOnInit() {}
+  async ngOnInit() {
+    await this.getRecipts();
+  }
+
+  async getRecipts() {
+    let response = await this.warehouseService.getAllReceipt();
+    if (response.ok) {
+      this.dataSource = new MatTableDataSource(response.data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.PageInfo.total = response.length;
+    }
+  }
 }

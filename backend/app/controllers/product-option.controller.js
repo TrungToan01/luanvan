@@ -31,7 +31,6 @@ Products_option.belongsTo(Brand)
 exports.create = (req, res) => {
   if (
     !req.body.name ||
-    !req.body.quantity ||
     !req.body.colorOptionId ||
     !req.body.ramOptionId ||
     !req.body.romOptionId
@@ -41,7 +40,9 @@ exports.create = (req, res) => {
     })
     return
   }
-
+  req.body.original_price = req?.body?.original_price || '0'
+  req.body.sale_price = req?.body?.sale_price || '0'
+  req.body.quantity = req?.body?.quantity || '0'
   req.body.published = req?.body?.published || true
   Products_option.create(req.body)
     .then((data) => {

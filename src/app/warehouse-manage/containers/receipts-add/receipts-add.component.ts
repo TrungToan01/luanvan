@@ -19,7 +19,7 @@ export class ReceiptsAddComponent implements OnInit {
   userInfo: any;
   supplierList: any;
   productList: any;
-  totalprice: any;
+  totalprice = 0;
   data: any;
   doOk = false;
   displayedColumns = ['id', 'product', 'quantity', 'price', 'action'];
@@ -55,9 +55,17 @@ export class ReceiptsAddComponent implements OnInit {
     }
   }
   async getReceiptsDetail() {
+    var receiptId = this.data.id;
     let response = await this.warehouseService.getAllReceiptDetail();
     if (response.ok) {
-      this.dataSource = new MatTableDataSource(response.data);
+      var newArray = response.data.filter(function (el: any) {
+        return el.receiptId == receiptId;
+      });
+
+      newArray.forEach((element: any) => {
+        this.totalprice = this.totalprice + element.price * element.quantity;
+      });
+      this.dataSource = new MatTableDataSource(newArray);
     }
   }
 
@@ -70,16 +78,17 @@ export class ReceiptsAddComponent implements OnInit {
       price: new FormControl(this.formReceiptDetail.value.price),
       quantity: new FormControl(this.formReceiptDetail.value.quantity),
     });
-    console.log(fmData.value);
     let response = await this.warehouseService.CreateReceiptDetail(
       fmData.value
     );
     if (response.ok) {
       this.getReceiptsDetail();
+      this.formReceiptDetail.reset();
     } else {
       alert('không thể thêm sản phẩm');
     }
   }
+
   createNewReceipt() {
     let dialogRef = this.dialog.open(DialogCreateReceiptComponent, {
       width: '400px',
@@ -88,5 +97,19 @@ export class ReceiptsAddComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.data = result;
     });
+  }
+
+  async submit() {
+    let data = new FormGroup({
+      total_price: new FormControl(this.totalprice),
+    });
+    console.log(data.value);
+    let response = await this.warehouseService.UpdateReceipt(
+      data.value,
+      this.data.id
+    );
+    if (response.ok) {
+      this.formReceiptDetail.reset();
+    }
   }
 }

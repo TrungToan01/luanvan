@@ -23,10 +23,8 @@
               <div class="col-9">
                 <select
                   disabled="true"
-                  [ngModel]="data?.supplierId"
-                  #supplierId="ngModel"
+                  [value]="data?.supplierId"
                   required
-                  name="supplierId"
                   class="form-select input-customize form-group"
                 >
                   <option hidden value="" disabled selected>
@@ -36,18 +34,6 @@
                     {{ item.name }}
                   </option>
                 </select>
-
-                <small
-                  class="form-text text-muted"
-                  *ngIf="
-                    (supplierList?.value == '' &&
-                      (supplierId?.dirty || supplierId?.touched)) ||
-                    (!supplierId?.valid &&
-                      (supplierId?.dirty || supplierId?.touched))
-                  "
-                >
-                  {{ 'notification.invalid-supplier' | translate }}
-                </small>
               </div>
             </div>
             <hr />
@@ -97,7 +83,7 @@
               <div class="col-9">
                 <div class="input-group">
                   <input
-                    class="form-control input-customize"
+                    class="fs-4 py-0 fw-bold text-danger form-control input-customize"
                     ngModel
                     name="price"
                     min="0"
@@ -143,7 +129,7 @@
                 {{ 'total-amount' | translate }}
               </label>
               <div class="col-9 d-flex" style="align-items: center;">
-                <span>50000000 (VNĐ)</span>
+                <span>{{ totalprice }} (VNĐ)</span>
               </div>
             </div>
           </div>
@@ -215,7 +201,7 @@
     <div class="form-group row mb-4">
       <div class="col-sm-8"></div>
       <div class="col-sm-4">
-        <button class="btn btn-primary py-2 w-100">
+        <button (click)="submit()" class="btn btn-primary py-2 w-100">
           {{ 'save' | translate }}
         </button>
       </div>

@@ -75,7 +75,7 @@
               class="form-select input-customize form-control"
             >
               <option hidden value="">
-                {{ 'placeholder.choose-brand' }}
+                {{ 'placeholder.choose-brand' | translate }}
               </option>
               <option *ngFor="let item of brandList" [value]="item.id">
                 {{ item.name }}
@@ -465,8 +465,7 @@
             </label>
 
             <input
-              disabled
-              class="form-control input-customize"
+              class="fs-4 py-1 fw-bold text-danger form-control input-customize"
               [ngModel]="productInfo?.quantity"
               name="quantity"
               min="0"
@@ -481,6 +480,29 @@
               {{ 'notification.invalid-color' | translate }}
             </small>
           </div>
+        </div>
+        <div class="form-group flex-column d-flex">
+          <label class="form-control-label px-3">
+            {{ 'product.sale-price' | translate }} (VNĐ)
+          </label>
+          <div class="input-group">
+            <input
+              class="fs-4 py-0 fw-bold text-danger form-control input-customize"
+              [ngModel]="productInfo?.original_price"
+              name="sale_price"
+              min="0"
+              type="number"
+              required
+            />
+            <span class="input-group-text py-1 input-customize">VNĐ</span>
+          </div>
+
+          <small
+            class="form-text text-muted"
+            *ngIf="!color?.valid && (color?.dirty || color?.touched)"
+          >
+            {{ 'notification.invalid-color' | translate }}
+          </small>
         </div>
       </div>
 
@@ -552,6 +574,7 @@
                 class="d-none"
                 multiple
               />
+
               <label class="btn btn-warning w-50" for="image1">
                 {{ 'placeholder.choose-file' | translate }}
               </label>
