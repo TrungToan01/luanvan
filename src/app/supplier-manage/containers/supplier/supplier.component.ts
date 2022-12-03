@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { SupplierService } from '../../service/supplier.service';
 
 @Component({
@@ -33,6 +34,7 @@ export class SupplierComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   doOk = false;
   constructor(
+    private shareCoreService: ShareCoreService,
     private supplierService: SupplierService,
     public dialog: MatDialog
   ) {}
@@ -77,5 +79,9 @@ export class SupplierComponent implements OnInit {
       this.doOk = result;
       this.DeleteSupplier(id);
     });
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

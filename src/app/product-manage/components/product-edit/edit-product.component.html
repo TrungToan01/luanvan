@@ -10,7 +10,7 @@
     </mat-icon>
   </mat-button>
   <p class="text-primary fw-bold fs-3 px-3 mt-3">
-    {{ 'product.update-product' | translate }}
+    {{ 'product.product-update' | translate }}
   </p>
 </div>
 
@@ -598,7 +598,7 @@
           </button>
         </div>
         <div class="col-sm-2 col-6">
-          <button class="btn btn-secondary w-100">
+          <button (click)="goBack()" class="btn btn-secondary w-100">
             {{ 'cancel' | translate }}
           </button>
         </div>

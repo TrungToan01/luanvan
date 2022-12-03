@@ -1,4 +1,4 @@
-<div class="container mt-4 d-flex">
+<div class="container align-items-center mt-4 d-flex">
   <mat-button
     class="btn border-0 circle"
     matRipple
@@ -10,7 +10,7 @@
     </mat-icon>
   </mat-button>
   <p class="text-primary fw-bold fs-3 px-3 mt-3">
-    {{ 'user.supplier-list' | translate }}
+    {{ 'supplier.supplier-create' | translate }}
   </p>
 </div>
 <div class="container bg-white shadow px-3">
@@ -27,7 +27,7 @@
           <!-- name -->
           <div class="form-group col-sm-6 flex-column d-flex">
             <label class="form-control-label px-3">
-              {{ 'user.supplier' | translate }}
+              {{ 'supplier.supplier-name' | translate }}
               <span class="text-danger">*</span>
             </label>
             <input
@@ -237,7 +237,7 @@
                 type="button"
                 class="btn btn-secondary"
               >
-                {{ 'cancel' | translate }}
+                {{ 'clear' | translate }}
               </button>
             </div>
           </div>

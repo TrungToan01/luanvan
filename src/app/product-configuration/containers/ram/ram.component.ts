@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { AddRamComponent } from '../../components/ram-add/add-ram.component';
 import { EditRamComponent } from '../../components/ram-edit/edit-ram.component';
 import { RamService } from '../../service/ram.service';
@@ -26,7 +27,11 @@ export class RamComponent implements OnInit {
   displayedColumns = ['id', 'createdAt', 'name', 'action'];
   dataSource!: MatTableDataSource<any>;
   doOk = false;
-  constructor(private ramService: RamService, public dialog: MatDialog) {}
+  constructor(
+    private shareCoreService: ShareCoreService,
+    private ramService: RamService,
+    public dialog: MatDialog
+  ) {}
 
   async ngOnInit() {
     await this.getRams();
@@ -87,5 +92,9 @@ export class RamComponent implements OnInit {
       this.doOk = result;
       this.deleteRam(id);
     });
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { AddRomComponent } from '../../components/rom-add/add-rom.component';
 import { EditRomComponent } from '../../components/rom-edit/edit-rom.component';
 import { RomService } from '../../service/rom.service';
@@ -26,7 +27,11 @@ export class RomComponent implements OnInit {
   displayedColumns = ['id', 'createdAt', 'name', 'action'];
   dataSource!: MatTableDataSource<any>;
   doOk = false;
-  constructor(private romService: RomService, public dialog: MatDialog) {}
+  constructor(
+    private shareCoreService: ShareCoreService,
+    private romService: RomService,
+    public dialog: MatDialog
+  ) {}
 
   async ngOnInit() {
     await this.getRoms();
@@ -87,5 +92,9 @@ export class RomComponent implements OnInit {
       this.doOk = result;
       this.deleteRom(id);
     });
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

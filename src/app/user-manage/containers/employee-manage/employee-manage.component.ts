@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 
 @Component({
   selector: 'app-employee-manage',
@@ -33,6 +34,7 @@ export class EmployeeManageComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   doOk = false;
   constructor(
+    private shareCoreService: ShareCoreService,
     private userService: UserManageService,
     public dialog: MatDialog
   ) {}
@@ -81,5 +83,9 @@ export class EmployeeManageComponent implements OnInit {
       this.doOk = result;
       this.deleteUser(id);
     });
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

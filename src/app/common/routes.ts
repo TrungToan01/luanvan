@@ -14,14 +14,15 @@ import { AddSupplierComponent } from '../supplier-manage/components/supplier-add
 import { EditSupplierComponent } from '../supplier-manage/components/supplier-edit/edit-supplier.component';
 import { ViewSupplierComponent } from '../supplier-manage/components/supplier-view/view-supplier.component';
 import { SupplierComponent } from '../supplier-manage/containers/supplier/supplier.component';
-import { AddUserComponent } from '../user-manage/components/user-add/add-user.component';
-import { EditUserComponent } from '../user-manage/components/user-edit/edit-user.component';
+import { AddUserComponent } from '../user-manage/components/employee-add/add-user.component';
+import { EditUserComponent } from '../user-manage/components/employee-edit/edit-user.component';
 import { ViewUserComponent } from '../user-manage/components/user-view/view-user.component';
 import { CustomerManageComponent } from '../user-manage/containers/customer-manage/customer-manage.component';
 import { EmployeeManageComponent } from '../user-manage/containers/employee-manage/employee-manage.component';
 import { ReceiptsEditComponent } from '../warehouse-manage/containers/receipts-edit/receipts-edit.component';
 import { ReceiptsAddComponent } from '../warehouse-manage/containers/receipts-add/receipts-add.component';
 import { ReceiptsListComponent } from '../warehouse-manage/containers/receipts-list/receipts-list.component';
+import { BannersComponent } from '../banner-manage/containers/banners/banners.component';
 
 export const mainRoutes: Routes = [];
 
@@ -69,4 +70,8 @@ export const ConfigurationManageRoutes: Routes = [
 
 export const couponsManageRoutes: Routes = [
   { path: 'coupons', component: CouponsComponent },
+];
+
+export const BannerManageRoutes: Routes = [
+  { path: 'banner', component: BannersComponent },
 ];

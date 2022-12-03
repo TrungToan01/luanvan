@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppConst } from 'src/app/common/const';
 import { ProductService } from 'src/app/product-manage/service/product.service';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { SupplierService } from 'src/app/supplier-manage/service/supplier.service';
-import { DialogCreateReceiptComponent } from '../../components/dialog-create-receipt/dialog-create-receipt.component';
 import { WarehouseService } from '../../service/warehouse.service';
 
 @Component({
@@ -20,20 +19,19 @@ export class ReceiptsAddComponent implements OnInit {
   supplierList: any;
   productList: any;
   totalprice = 0;
-  data: any;
   doOk = false;
   displayedColumns = ['id', 'product', 'quantity', 'price', 'action'];
   dataSource!: MatTableDataSource<any>;
+  receiptId: any;
 
   constructor(
-    public dialog: MatDialog,
+    private shareCoreService: ShareCoreService,
     private supplierService: SupplierService,
     private warehouseService: WarehouseService,
     private productService: ProductService
   ) {}
 
   async ngOnInit() {
-    await this.createNewReceipt();
     await this.getSupplier();
     await this.getProduct();
     let info = localStorage.getItem(AppConst.LocalStorage.Auth.UserInfo);
@@ -55,7 +53,8 @@ export class ReceiptsAddComponent implements OnInit {
     }
   }
   async getReceiptsDetail() {
-    var receiptId = this.data.id;
+    let total = 0;
+    var receiptId = this.receiptId;
     let response = await this.warehouseService.getAllReceiptDetail();
     if (response.ok) {
       var newArray = response.data.filter(function (el: any) {
@@ -63,15 +62,16 @@ export class ReceiptsAddComponent implements OnInit {
       });
 
       newArray.forEach((element: any) => {
-        this.totalprice = this.totalprice + element.price * element.quantity;
+        total = total + element.price * element.quantity;
       });
+      this.totalprice = total;
       this.dataSource = new MatTableDataSource(newArray);
     }
   }
 
   async createReDetail() {
     const fmData = new FormGroup({
-      receiptId: new FormControl(this.data.id),
+      receiptId: new FormControl(this.receiptId),
       productOptionId: new FormControl(
         this.formReceiptDetail.value.productOptionId
       ),
@@ -89,27 +89,41 @@ export class ReceiptsAddComponent implements OnInit {
     }
   }
 
-  createNewReceipt() {
-    let dialogRef = this.dialog.open(DialogCreateReceiptComponent, {
-      width: '400px',
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      this.data = result;
-    });
-  }
-
   async submit() {
     let data = new FormGroup({
       total_price: new FormControl(this.totalprice),
     });
-    console.log(data.value);
     let response = await this.warehouseService.UpdateReceipt(
       data.value,
-      this.data.id
+      this.receiptId
     );
     if (response.ok) {
       this.formReceiptDetail.reset();
+      console.log('đã tạo thành công');
     }
+  }
+
+  //create receiptId
+  async createReceipt() {
+    const fmData = new FormGroup({
+      supplierId: new FormControl(this.formReceiptDetail.value.supplierId),
+      userId: new FormControl(this.userInfo.userId),
+    });
+    let response = await this.warehouseService.CreateReceipt(fmData.value);
+    if (response.ok) {
+      this.receiptId = response.data.id;
+    }
+  }
+
+  //delete product on list
+  async deleteProduct(id: any, price: any, quantity: any) {
+    let response = await this.warehouseService.DeleteReceiptDetail(id);
+    if (response.ok) {
+      this.getReceiptsDetail();
+    }
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

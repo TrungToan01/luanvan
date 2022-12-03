@@ -11,7 +11,6 @@ import { BrandService } from '../../service/brand.service';
 export class EditBrandComponent implements OnInit {
   @ViewChild('editBrandForm')
   editBrandForm!: NgForm;
-
   dataBrand: any;
   constructor(
     public dialogRef: MatDialogRef<EditBrandComponent>,
@@ -27,7 +26,6 @@ export class EditBrandComponent implements OnInit {
   async getBrandById(id: any) {
     const response = await this.brandService.getBrandsById(id);
     if (response.ok) {
-      console.log(response);
       this.dataBrand = response.data;
     }
   }

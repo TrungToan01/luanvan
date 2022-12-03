@@ -19,18 +19,25 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
   }
 
-  async onSubmit() {
-    this.generalError = '';
+  checkPasswork() {
     if (this.loginForm.value.password != this.loginForm.value.passwordconfirm) {
       this.confirmPass = false;
-    } else {
+      return;
+    }
+    this.confirmPass = true;
+  }
+
+  async onSubmit() {
+    this.generalError = '';
+    if (this.confirmPass) {
       this.confirmPass = true;
       let response = await this.authService.login(this.loginForm.value);
       if (response && response.ok) {
         this.router.navigate(['/']);
       } else {
-        this.generalError = 'auth.error.login-failed';
+        this.generalError = 'auth.login-failed';
       }
     }
+    return;
   }
 }

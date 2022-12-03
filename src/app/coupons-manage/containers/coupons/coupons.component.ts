@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { CouponsAddComponent } from '../../components/coupons-add/coupons-add.component';
 import { CouponsEditComponent } from '../../components/coupons-edit/coupons-edit.component';
 import { CouponsService } from '../../service/coupons.service';
@@ -39,6 +40,7 @@ export class CouponsComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   doOk = false;
   constructor(
+    private shareCoreService: ShareCoreService,
     private couponsService: CouponsService,
     public dialog: MatDialog
   ) {}
@@ -58,7 +60,7 @@ export class CouponsComponent implements OnInit {
   }
 
   //add coupons
-  dialogAddCoupons() {
+  createCoupons() {
     const dialogRef = this.dialog.open(CouponsAddComponent, {
       width: '550px',
       disableClose: true,
@@ -144,5 +146,9 @@ export class CouponsComponent implements OnInit {
       }
     }
     this.getAllCoupons();
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

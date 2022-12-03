@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './auth/service/auth.service';
 import { AppConst } from './common/const';

@@ -1,16 +1,29 @@
-<div class="nav navbar mt-4 mb-5 mx-3 d-block">
-  <p class="fs-3 fw-bold float-start text-primary">
-    {{ 'user.list-employee' | translate }}
-  </p>
+<div class="nav navbar mt-4 mb-5 d-block px-3">
+  <div class="d-flex float-start">
+    <mat-button
+      class="btn border-0 circle"
+      matRipple
+      [matRippleCentered]="true"
+      (click)="goBack()"
+    >
+      <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+        keyboard_backspace
+      </mat-icon>
+    </mat-button>
+    <p class="fs-3 px-3 mt-3 fw-bold text-primary">
+      {{ 'user.employee-list' | translate }}
+    </p>
+  </div>
+
   <button
     title="{{ 'user.create-user' | translate }}"
+    routerLink="add"
     class="btn btn-primary float-end px-4 py-2"
   >
-    <a class="text-white" routerLink="add">
-      {{ 'add' | translate }}
-    </a>
+    {{ 'user.employee-create' | translate }}
   </button>
 </div>
+
 <div class="container-fluid px-3">
   <div>
     <table mat-table [dataSource]="dataSource" matSort>

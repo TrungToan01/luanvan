@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { AddColorComponent } from '../../components/color-add/add-color.component';
 import { EditColorComponent } from '../../components/color-edit/edit-color.component';
 import { ColorService } from '../../service/color.service';
@@ -26,7 +27,11 @@ export class ColorComponent implements OnInit {
   displayedColumns = ['id', 'createdAt', 'name', 'action'];
   dataSource!: MatTableDataSource<any>;
   doOk = false;
-  constructor(private colorService: ColorService, public dialog: MatDialog) {}
+  constructor(
+    private shareCoreService: ShareCoreService,
+    private colorService: ColorService,
+    public dialog: MatDialog
+  ) {}
 
   async ngOnInit() {
     await this.getColors();
@@ -87,5 +92,9 @@ export class ColorComponent implements OnInit {
       this.doOk = result;
       this.deleteColor(id);
     });
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

@@ -12,24 +12,33 @@ export class RegisterComponent implements OnInit {
   @ViewChild('registerForm')
   registerForm!: NgForm;
   confirmPass = true;
+  generalError: string = '';
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  async onSubmit() {
+  checkPasswork() {
     if (
       this.registerForm.value.password !=
       this.registerForm.value.passwordconfirm
     ) {
       this.confirmPass = false;
-    } else {
+      return;
+    }
+    this.confirmPass = true;
+  }
+
+  async onSubmit() {
+    this.generalError = '';
+    if (this.confirmPass) {
       this.confirmPass = true;
       let response = await this.authService.register(this.registerForm.value);
       if (response && response.ok) {
         this.router.navigate(['/']);
       } else {
-        response.mgs;
+        this.generalError = 'auth.register-failed';
       }
     }
+    return;
   }
 }

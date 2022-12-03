@@ -27,12 +27,14 @@ import { BaseService } from './services/base.service';
 import { AuthService } from './auth/service/auth.service';
 import { ShareCoreService } from './services/share-core.service';
 import { ShopInformationComponent } from './shop-information/shop-information.component';
+import { BannerManageModule } from './banner-manage/banner-manage.module';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 @NgModule({
   declarations: [AppComponent, DashboardComponent, ShopInformationComponent],
   imports: [
+    BannerManageModule,
     ProductConfigurationModule,
     WarehouseManageModule,
     SupplierManageModule,

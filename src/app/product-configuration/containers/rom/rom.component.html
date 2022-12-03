@@ -1,14 +1,26 @@
-<div class="nav navbar mt-4 mb-5 mx-3 d-block">
-  <p class="fs-3 fw-bold float-start text-primary">
-    {{ 'product.rom-config' | translate }}
-  </p>
+<div class="nav navbar mt-4 mb-5 d-block mx-3">
+  <div class="d-flex float-start">
+    <mat-button
+      class="btn border-0 circle"
+      matRipple
+      [matRippleCentered]="true"
+      (click)="goBack()"
+    >
+      <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+        keyboard_backspace
+      </mat-icon>
+    </mat-button>
+    <p class="fs-3 px-3 mt-3 fw-bold text-primary">
+      {{ 'product.rom-config' | translate }}
+    </p>
+  </div>
 
   <button
+    title="{{ 'user.create-user' | translate }}"
     (click)="createRom()"
-    title="{{ 'add' | translate }}"
     class="btn btn-primary float-end px-4 py-2"
   >
-    {{ 'add' | translate }}
+    {{ 'product.add-rom' | translate }}
   </button>
 </div>
 

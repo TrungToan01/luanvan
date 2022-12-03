@@ -86,6 +86,7 @@
                   ngModel
                   #passwordconfirm="ngModel"
                   name="passwordconfirm"
+                  (ngModelChange)="checkPasswork()"
                   required
                   aria-describedby="passwordconfirm"
                   type="password"

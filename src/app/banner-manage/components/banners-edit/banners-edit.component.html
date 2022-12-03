@@ -1,1 +1,117 @@
-<p>banners-edit works!</p>
+<div class="nav navbar d-block position-relative">
+  <p class="fs-4 text-black text-center text-capitalize">
+    {{ 'banner.banner-update' | translate }}
+  </p>
+  <mat-button-toggle
+    mat-dialog-close
+    class="position-absolute rounded-circle"
+    style="right: 0; top: 0;"
+  >
+    <mat-icon>
+      close
+    </mat-icon>
+  </mat-button-toggle>
+</div>
+<div class="container-fluid p-0">
+  <form
+    id="addBannerForm"
+    enctype="multipart/form-data"
+    (ngSubmit)="onSubmit()"
+    #addBannerForm="ngForm"
+  >
+    <div class="row justify-content-between">
+      <div class="form-group w-100 col-12 flex-column mb-4">
+        <div class="d-flex align-items-center">
+          <label class="pb-2">
+            {{ 'banner.image' | translate }}
+          </label>
+          <div
+            class="d-flex py-2 mx-3 px-3 align-items-center"
+            style="background-color: whitesmoke;"
+          >
+            <label class="px-3" for="avatar">
+              {{ 'upload-image' | translate }}
+            </label>
+            <i class="bi bi-upload"></i>
+          </div>
+        </div>
+
+        <input
+          hidden
+          (change)="filechange($event)"
+          ngModel
+          name="image"
+          id="avatar"
+          type="file"
+          class="form-control input-customize mt-3"
+        />
+      </div>
+
+      <div
+        class="form-group w-100 col-12 flex-column"
+        [hidden]="!dataBanner?.image"
+      >
+        <div class="form-control input-customize d-flex">
+          <div class="w-100 align-items-center" style="flex: 1;">
+            <img
+              [src]="
+                imageSrc
+                  ? imageSrc
+                  : 'http://localhost:5000' + dataBanner?.image
+              "
+              class="avatar img-circle img-thumbnail"
+              style="width: 100px;"
+              alt="avatar"
+            />
+            <span class="mx-3">{{ filename }}</span>
+          </div>
+          <div class="float-end m-auto mx-1">
+            <mat-button-toggle class="m-auto">
+              <mat-icon>delete</mat-icon>
+            </mat-button-toggle>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group w-100 col-12 flex-column d-flex">
+        <label class="form-control-label pb-2">
+          {{ 'banner.name' | translate }}
+        </label>
+
+        <input
+          [(ngModel)]="dataBanner.name"
+          #banner="ngModel"
+          name="name"
+          placeholder="{{ 'placeholder.input-banner' | translate }}"
+          type="text"
+          required
+          class="form-control input-customize"
+        />
+        <small
+          id="nameHid"
+          class="form-text text-muted"
+          *ngIf="!banner?.valid && (banner?.dirty || banner?.touched)"
+        >
+          {{ 'notification.invalid-brand' | translate }}
+        </small>
+      </div>
+      <div class="d-flex align-items-center mt-4">
+        <label class="form-check-label" for="flexSwitchCheckDefault">
+          {{ 'brand.published' | translate }}
+        </label>
+        <input
+          [(ngModel)]="dataBanner.published"
+          name="published"
+          style="width: 45px; height: 22px;"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
+      </div>
+    </div>
+  </form>
+  <div class="text-end mt-3 w-100">
+    <button (click)="onSubmit()" class="btn btn-primary w-50" cdkFocusInitial>
+      {{ 'save' | translate }}
+    </button>
+  </div>
+</div>

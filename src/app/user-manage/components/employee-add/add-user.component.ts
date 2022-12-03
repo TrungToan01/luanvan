@@ -52,24 +52,14 @@ export class AddUserComponent implements OnInit {
       if (response.ok) {
         alert('da tao thanh cong');
       } else {
-        console.log(response);
+        alert('không thể tạo tài khoản');
       }
       return (this.doOk = false);
     }
     return;
   }
 
-  async getAllRole() {
-    let response = await this.shareCoreService.getAllRole();
-    if (response.ok) {
-      this.roleList = response.data;
-    } else {
-      console.log(response);
-    }
-  }
-
-  confirmDialog() {
-    //check password
+  checkPasswork() {
     if (
       this.createUserForm.value.password !=
       this.createUserForm.value.passwordconfirm
@@ -78,7 +68,16 @@ export class AddUserComponent implements OnInit {
       return;
     }
     this.confirmPass = true;
+  }
 
+  async getAllRole() {
+    let response = await this.shareCoreService.getAllRole();
+    if (response.ok) {
+      this.roleList = response.data;
+    }
+  }
+
+  confirmDialog() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: {

@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dialog/confirm-dialog.component';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { AddBrandComponent } from '../../components/brand-add/add-brand.component';
 import { EditBrandComponent } from '../../components/brand-edit/edit-brand.component';
 import { BrandService } from '../../service/brand.service';
@@ -27,7 +28,11 @@ export class BrandComponent implements OnInit {
   displayedColumns = ['id', 'createdAt', 'name', 'published', 'action'];
   dataSource!: MatTableDataSource<any>;
   doOk = false;
-  constructor(private brandService: BrandService, public dialog: MatDialog) {}
+  constructor(
+    private shareCoreService: ShareCoreService,
+    private brandService: BrandService,
+    public dialog: MatDialog
+  ) {}
 
   async ngOnInit() {
     await this.getAllBrand();
@@ -44,7 +49,7 @@ export class BrandComponent implements OnInit {
   }
 
   //create brand
-  dialogAddBrand() {
+  createBrand() {
     const dialogRef = this.dialog.open(AddBrandComponent, {
       width: '400px',
     });
@@ -126,5 +131,9 @@ export class BrandComponent implements OnInit {
       this.doOk = result;
       this.deleteBrand(id);
     });
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }

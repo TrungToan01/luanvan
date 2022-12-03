@@ -143,6 +143,7 @@
                   class="form-control"
                   ngModel
                   #passwordconfirm="ngModel"
+                  (ngModelChange)="checkPasswork()"
                   name="passwordconfirm"
                   required
                   aria-describedby="passwordconfirm"

@@ -24,6 +24,7 @@ exports.create = async (req, res) => {
     return res.status(409).send({ message: 'code is already' })
   }
   req.body.disabled = req?.body?.disabled || false
+  req.body.used_quantity = req?.body?.used_quantity || '0'
   Coupons.create(req.body)
     .then((data) => {
       res.send({ rows: data })

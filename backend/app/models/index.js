@@ -39,4 +39,6 @@ db.cart = require('./cart.model')(sequelize, Sequelize)
 db.brand = require('./brand.model')(sequelize, Sequelize)
 db.wards = require('./wards.model')(sequelize, Sequelize)
 db.shop_info = require('./shopInfo.model')(sequelize, Sequelize)
+db.banner = require('./banner.model')(sequelize, Sequelize)
+
 module.exports = db

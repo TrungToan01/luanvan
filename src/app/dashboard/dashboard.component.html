@@ -1,5 +1,4 @@
 <div class="list-group">
-  <!-- dashboard -->
   <a
     routerLink="/dashboard"
     routerLinkActive=" list-item-active"
@@ -10,7 +9,6 @@
     {{ 'home' | translate }}
   </a>
 
-  <!-- user manage -->
   <div class="accordion m-0">
     <div
       class="d-flex accordion-button list-group-item collapsed"
@@ -42,7 +40,6 @@
     </div>
   </div>
 
-  <!-- prouct configuration manage -->
   <div class="accordion m-0">
     <div
       class="d-flex accordion-button list-group-item collapsed"
@@ -102,7 +99,7 @@
         class="list-group-item list-group-item-action px-5"
         style="background-color: black;"
       >
-        {{ 'brands' | translate }}
+        {{ 'brand.brand' | translate }}
       </a>
       <a
         routerLink="/product"
@@ -154,7 +151,7 @@
     class="d-flex list-group-item list-group-item-action"
   >
     <mat-icon>work_outline</mat-icon>
-    {{ 'user.supplier' | translate }}
+    {{ 'supplier.supplier' | translate }}
   </a>
 
   <!-- order manage -->
@@ -184,7 +181,7 @@
     class="d-flex list-group-item list-group-item-action"
   >
     <mat-icon>image</mat-icon>
-    <div>{{ 'banner' | translate }}</div>
+    <div>{{ 'banner.banner' | translate }}</div>
   </a>
 
   <!-- notification manage -->

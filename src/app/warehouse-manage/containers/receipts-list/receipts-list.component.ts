@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { WarehouseService } from '../../service/warehouse.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class ReceiptsListComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   doOk = false;
   constructor(
+    private shareCoreService: ShareCoreService,
     public dialog: MatDialog,
     private warehouseService: WarehouseService
   ) {}
@@ -47,5 +49,9 @@ export class ReceiptsListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.PageInfo.total = response.length;
     }
+  }
+
+  goBack() {
+    this.shareCoreService.goBack();
   }
 }
