@@ -25,17 +25,25 @@ export class CouponsAddComponent implements OnInit {
     let startDate = new Date(this.addCouponsForm.value.start_date);
     let endDate = new Date(this.addCouponsForm.value.end_date);
     if (endDate < currentDate) {
-      return (this.validateDate = true);
+      this.validateDate = true;
+      return;
     }
     if (startDate > endDate) {
-      return (this.validateDate = true);
+      this.validateDate = true;
+      return;
     }
-    return (this.validateDate = false);
+    this.validateDate = false;
+    return;
   }
 
   async onSubmit() {
-    await this.onchangeDate();
-    if (this.validateDate) {
+    let data = this.addCouponsForm.value;
+    if (
+      this.validateDate ||
+      !data.code ||
+      !data.quantity ||
+      !data.discount_value
+    ) {
       return;
     }
     let response = await this.couponsService.createCoupons(

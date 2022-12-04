@@ -29,6 +29,9 @@ export class EditRamComponent implements OnInit {
     }
   }
   async onSubmit() {
+    if (!this.ramForm.value.name) {
+      return;
+    }
     let response = await this.ramService.updateRam(
       this.data.id,
       this.ramForm.value

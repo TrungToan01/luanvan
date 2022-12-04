@@ -2,15 +2,30 @@ const db = require('../models')
 const Order = db.order
 const Op = db.Sequelize.Op
 const serverPage = require('./page')
+const User = db.user
+const Coupons = db.coupons
+const Order_Status = db.order_status
+
+Order_Status.hasMany(Order)
+Order.belongsTo(Order_Status)
+
+User.hasMany(Order)
+Order.belongsTo(User)
+
+Coupons.hasMany(Order)
+Order.belongsTo(Coupons)
 
 // ----------------------------------CREATE ORDER----------------------------------
 exports.create = (req, res) => {
-  if (!req.body) {
-    res.status(400).send({
+  if (!req.body.userId || !req.body.shopInfoId) {
+    return res.status(400).send({
       message: 'Content can not be empty!',
     })
-    return
   }
+
+  req.body.couponId = req?.body?.couponId || '0'
+  req.body.total_price = req?.body?.total_price || '0'
+  req.body.delivery_cost = req?.body?.delivery_cost || '0'
   Order.create(req.body)
     .then((data) => {
       res.send({ rows: data })
@@ -24,10 +39,14 @@ exports.create = (req, res) => {
 
 // ----------------------------------FIND ALL ORDER----------------------------------
 exports.findAll = (req, res) => {
-  var condition = userId
-    ? { userId: { [Op.like]: `%${req.body.userId}%` } }
-    : null
-  Order.findAndCountAll({ where: condition, limit, offset })
+  const page = req?.query?.page
+  const size = req?.query?.size
+  const { limit, offset } = serverPage.getPagination(page, size)
+  Order.findAndCountAll({
+    limit,
+    offset,
+    include: [User, Coupons, Order_Status],
+  })
     .then((data) => {
       const response = serverPage.getPagingData(data)
       res.send(response)
@@ -42,7 +61,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID ORDER----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Order.findByPk(id)
+  Order.findByPk(id, { include: [User, Coupons, Order_Status] })
     .then((data) => {
       if (data) {
         res.send({ rows: data })

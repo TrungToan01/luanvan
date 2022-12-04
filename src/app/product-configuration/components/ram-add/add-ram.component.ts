@@ -20,11 +20,14 @@ export class AddRamComponent implements OnInit {
   async ngOnInit() {}
 
   async onSubmit() {
+    if (!this.addForm.value.name) {
+      return;
+    }
     let response = await this.ramService.createRam(this.addForm.value);
     if (response.ok) {
       this.dialogRef.close();
     } else {
-      alert('không thể tạo');
+      alert(response.msg);
     }
   }
 }

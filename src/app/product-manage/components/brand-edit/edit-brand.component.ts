@@ -31,6 +31,10 @@ export class EditBrandComponent implements OnInit {
   }
 
   async onSubmit() {
+    let data = this.editBrandForm.value;
+    if (!data.name) {
+      return;
+    }
     let response = await this.brandService.updateBrands(
       this.data.id,
       this.editBrandForm.value

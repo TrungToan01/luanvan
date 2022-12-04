@@ -20,6 +20,9 @@ export class AddBrandComponent implements OnInit {
   async ngOnInit() {}
 
   async onSubmit() {
+    if (!this.addBrandForm.value.name) {
+      return;
+    }
     let response = await this.brandService.createBrand(this.addBrandForm.value);
     if (response.ok) {
       this.dialogRef.close();

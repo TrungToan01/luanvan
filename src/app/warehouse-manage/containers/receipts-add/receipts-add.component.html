@@ -1,15 +1,13 @@
 <div class="nav navbar mt-4 mb-5 mx-3 d-block">
   <div class="d-flex align-items-center float-start">
-    <mat-button
-      class="btn border-0 circle"
-      matRipple
-      [matRippleCentered]="true"
+    <mat-button-toggle
+      style="background-color: #fafafa !important;"
       (click)="goBack()"
     >
-      <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+      <mat-icon title="back" class="fw-bold">
         keyboard_backspace
       </mat-icon>
-    </mat-button>
+    </mat-button-toggle>
     <p class="fs-3 fw-bold text-primary mt-2 mx-2">
       {{ 'warehouse.create-receipt-note' | translate }}
     </p>
@@ -51,6 +49,8 @@
                 </div>
                 <div>
                   <button
+                    matRipple
+                    [matRippleCentered]="true"
                     [hidden]="receiptId"
                     (click)="createReceipt()"
                     class="form-select input-customize form-group btn btn-danger"
@@ -58,10 +58,12 @@
                     {{ 'ok' | translate }}
                   </button>
                   <button
+                    matRipple
+                    [matRippleCentered]="true"
                     class="form-select input-customize form-group btn btn-danger"
                     [hidden]="!receiptId"
                   >
-                    {{ 'thay đỗi cung cấp' | translate }}
+                    {{ 'supplier.change-supplier' | translate }}
                   </button>
                 </div>
               </div>
@@ -168,6 +170,8 @@
         <div class="form-group row mb-4">
           <div class="col-12">
             <button
+              matRipple
+              [matRippleCentered]="true"
               [disabled]="!receiptId"
               (click)="createReDetail()"
               class="btn btn-secondary input-customize form-control"
@@ -212,7 +216,7 @@
                 {{ 'delete' | translate }}
               </th>
               <td mat-cell *matCellDef="let element">
-                <button
+                <mat-button-toggle
                   (click)="
                     deleteProduct(element.id, element.price, element.quantity)
                   "
@@ -220,7 +224,7 @@
                   mat-icon-button
                 >
                   <mat-icon>delete</mat-icon>
-                </button>
+                </mat-button-toggle>
               </td>
             </ng-container>
 
@@ -235,6 +239,8 @@
       <div class="col-sm-9"></div>
       <div class="col-sm-3">
         <button
+          matRipple
+          [matRippleCentered]="true"
           [disabled]="!receiptId"
           (click)="submit()"
           class="btn btn-primary py-2 w-100"

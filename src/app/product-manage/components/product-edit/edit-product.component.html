@@ -1,14 +1,12 @@
 <div class="d-flex mt-3 mx-2">
-  <mat-button
-    class="btn border-0 circle"
-    matRipple
-    [matRippleCentered]="true"
+  <mat-button-toggle
+    style="background-color: #fafafa !important;"
     (click)="goBack()"
   >
-    <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+    <mat-icon title="back" class="fw-bold">
       keyboard_backspace
     </mat-icon>
-  </mat-button>
+  </mat-button-toggle>
   <p class="text-primary fw-bold fs-3 px-3 mt-3">
     {{ 'product.product-update' | translate }}
   </p>
@@ -487,7 +485,7 @@
           </label>
           <div class="input-group">
             <input
-              class="fs-4 py-0 fw-bold text-danger form-control input-customize"
+              class="fs-4 py-1 fw-bold text-danger form-control input-customize"
               [ngModel]="productInfo?.original_price"
               name="sale_price"
               min="0"
@@ -566,7 +564,7 @@
                 </div>
               </label>
             </div>
-            <div class="w-100 mt-4">
+            <div class="w-50 mt-4">
               <input
                 (change)="filechange($event)"
                 type="file"
@@ -574,12 +572,18 @@
                 class="d-none"
                 multiple
               />
-
-              <label class="btn btn-warning w-50" for="image1">
-                {{ 'placeholder.choose-file' | translate }}
+              <label for="image1">
+                <div
+                  class="d-flex py-2 px-3 align-items-center"
+                  style="background-color: whitesmoke;"
+                >
+                  <span class="px-3">
+                    {{ 'upload-image' | translate }}
+                  </span>
+                  <i class="bi bi-upload"></i>
+                </div>
               </label>
-              <span class="float-end text-danger">
-                Đã thêm
+              <span class="px-3">
                 {{ imageList.length + productInfo?.product_images?.length }}
                 {{ 'file' | translate }}
               </span>
@@ -591,6 +595,8 @@
         <div class="col-sm-6 col-0"></div>
         <div class="col-sm-4 col-6">
           <button
+            matRipple
+            [matRippleCentered]="true"
             class="btn btn-primary w-100"
             (click)="updateProduct(productId)"
           >
@@ -598,7 +604,12 @@
           </button>
         </div>
         <div class="col-sm-2 col-6">
-          <button (click)="goBack()" class="btn btn-secondary w-100">
+          <button
+            matRipple
+            [matRippleCentered]="true"
+            (click)="goBack()"
+            class="btn btn-secondary w-100"
+          >
             {{ 'cancel' | translate }}
           </button>
         </div>

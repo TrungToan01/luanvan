@@ -117,7 +117,7 @@ export class CouponsComponent implements OnInit {
       width: '300px',
       data: {
         title: 'notification.notification',
-        content: 'notification.confirm-disabled-coupons?',
+        content: 'notification.confirm-uplad ?',
       },
     });
     updateDialog.afterClosed().subscribe((result) => {

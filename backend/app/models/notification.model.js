@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
     userId: {
       type: Sequelize.INTEGER,
     },
-    publish: {
+    published: {
       type: Sequelize.BOOLEAN,
     },
     viewed: {

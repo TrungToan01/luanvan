@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ShareCoreService } from 'src/app/services/share-core.service';
 import { UserManageService } from '../../service/user-manage.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class ViewUserComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
+    private ShareCoreService: ShareCoreService,
     private userManageService: UserManageService
   ) {}
 
@@ -29,5 +31,9 @@ export class ViewUserComponent implements OnInit {
     } else {
       alert(response.msg);
     }
+  }
+
+  goBack() {
+    this.ShareCoreService.goBack();
   }
 }

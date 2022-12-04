@@ -23,6 +23,9 @@ import { ReceiptsEditComponent } from '../warehouse-manage/containers/receipts-e
 import { ReceiptsAddComponent } from '../warehouse-manage/containers/receipts-add/receipts-add.component';
 import { ReceiptsListComponent } from '../warehouse-manage/containers/receipts-list/receipts-list.component';
 import { BannersComponent } from '../banner-manage/containers/banners/banners.component';
+import { OrdersComponent } from '../order-manage/containers/orders/orders.component';
+import { NotificationsComponent } from '../notification-manage/containers/notifications/notifications.component';
+import { OrdersDetailComponent } from '../order-manage/containers/orders-detail/orders-detail.component';
 
 export const mainRoutes: Routes = [];
 
@@ -74,4 +77,13 @@ export const couponsManageRoutes: Routes = [
 
 export const BannerManageRoutes: Routes = [
   { path: 'banner', component: BannersComponent },
+];
+
+export const NotificationManageRoutes: Routes = [
+  { path: 'notifications', component: NotificationsComponent },
+];
+
+export const OrderManageRoutes: Routes = [
+  { path: 'orders', component: OrdersComponent },
+  { path: 'orders/detail/:id', component: OrdersDetailComponent },
 ];

@@ -21,11 +21,14 @@ export class AddColorComponent implements OnInit {
   async ngOnInit() {}
 
   async onSubmit() {
+    if (!this.addColorForm.value.name) {
+      return;
+    }
     let response = await this.colorService.createColor(this.addColorForm.value);
     if (response.ok) {
       this.dialogRef.close();
     } else {
-      alert('không thể tạo');
+      alert(response.msg);
     }
   }
 }

@@ -29,6 +29,9 @@ export class EditRomComponent implements OnInit {
     }
   }
   async onSubmit() {
+    if (!this.romForm.value.name) {
+      return;
+    }
     let response = await this.romService.updateRom(
       this.data.id,
       this.romForm.value
@@ -36,7 +39,7 @@ export class EditRomComponent implements OnInit {
     if (response.ok) {
       this.dialogRef.close();
     } else {
-      alert('không thể cập nhật ');
+      alert(response.msg);
     }
   }
 }

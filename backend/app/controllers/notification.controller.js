@@ -2,7 +2,10 @@ const db = require('../models')
 const Notification = db.notification
 const Op = db.Sequelize.Op
 const serverPage = require('./page')
+const User = db.user
 
+User.hasMany(Notification)
+Notification.belongsTo(User)
 // ----------------------------------FIND ALL COUPON----------------------------------
 exports.create = (req, res) => {
   if (!req.body.title || !req.body.content || !req.body.userId) {
@@ -16,7 +19,8 @@ exports.create = (req, res) => {
     title: req.body.title,
     content: req.body.content,
     userId: req.body.userId,
-    viewed: req.body.viewed ? req.body.published : false,
+    viewed: req.body.viewed ? req.body.viewed : false,
+    published: req.body.published ? req.body.published : true,
   }
   Notification.create(notification)
     .then((data) => {
@@ -34,9 +38,8 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const page = req?.body?.page
   const size = req?.body?.size
-
   const { limit, offset } = serverPage.getPagination(page, size)
-  Notification.findAndCountAll({ where: null, limit, offset })
+  Notification.findAndCountAll({ limit, offset, include: User })
     .then((data) => {
       const response = serverPage.getPagingData(data, page, limit)
       res.send(response)
@@ -52,7 +55,7 @@ exports.findAll = (req, res) => {
 // ----------------------------------FIND BY ID COUPON----------------------------------
 exports.findOne = (req, res) => {
   const id = req.params.id
-  Notification.findByPk(id)
+  Notification.findByPk(id, { include: User })
     .then((data) => {
       if (data) {
         res.send({ rows: data })

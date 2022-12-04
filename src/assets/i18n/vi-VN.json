@@ -60,6 +60,7 @@
     "supplier-create": "Thêm nhà cung cấp",
     "supplier-info": "Thông tin nhà cung cấp",
     "supplier-name": "Tên nhà cung cấp",
+    "change-supplier": "Thay đỗi nhà cung cấp",
     "create-success": "Thêm nhà cung cấp thành công!",
     "update-success": "Cập nhật nhà cung cấp thành công!",
     "delete-success": "Xóa nhà cung cấp thành công!",
@@ -136,6 +137,8 @@
   },
   "notification": {
     "notification": "Thông báo",
+    "notification-list": "Danh sách thông báo",
+    "notification-create": "Thêm thông báo",
     "invalid-email": "Địa chỉ email là bắt buộc",
     "invalid-password": "Mật khẩu là bắt buộc",
     "invalid-confirm": "Mật khẩu xác nhận là bắt buộc",
@@ -167,10 +170,12 @@
     "invalid-quantity": "Số lượng là bắc buộc",
     "invalid-discount_value": "Giá trị mã là bắc buộc",
     "invalid-date": "Định dạng ngày không hợp lệ",
-    "invalid-role": "Vai trò người dùng là bắc buộc"
+    "invalid-role": "Vai trò người dùng là bắc buộc",
+    "invalid-noti-title": "Tiêu đề thông báo là bắc buộc",
+    "invalid-noti-content": "Nội dung thông báo là bắc buộc"
   },
   "placeholder": {
-    "input-fullname": "Nhập họ",
+    "input-fullname": "Nhập họ tên người dùng",
     "choose-role": "Chọn vai trò người dùng",
     "input-birthdate": "Nhập ngày sinh",
     "input-sup-name": "Nhập tên nhà cung cấp",
@@ -216,7 +221,9 @@
     "choose-file": "Chọn hình ảnh",
     "input-price": "Nhập giá sản phẩm",
     "input-sale-price": "Nhập giá giảm",
-    "input-banner": "Nhập tên banner"
+    "input-banner": "Nhập tên banner",
+    "input-noti-title": "Nhập tiêu đề thông báo",
+    "input-noti-content": "Nhập nội dung thông báo"
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",
@@ -306,8 +313,13 @@
   "no.": "ID",
   "close ": "Đống",
   "total-price": "Tổng tiền",
+  "pay": "Thanh toán",
   "file": "tập tin",
   "choose": "Chọn",
   "upload-image": "Tải ảnh lên",
-  "clear": "Làm mới"
+  "clear": "Làm mới",
+  "status": "Trạng thái",
+  "title": "Tiêu đề",
+  "content": "Nội dung",
+  "published": "Hiển thị"
 }

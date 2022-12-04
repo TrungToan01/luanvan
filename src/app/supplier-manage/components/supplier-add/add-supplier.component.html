@@ -1,14 +1,12 @@
 <div class="container align-items-center mt-4 d-flex">
-  <mat-button
-    class="btn border-0 circle"
-    matRipple
-    [matRippleCentered]="true"
+  <mat-button-toggle
+    style="background-color: #fafafa !important;"
     (click)="goBack()"
   >
-    <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+    <mat-icon title="back" class="fw-bold">
       keyboard_backspace
     </mat-icon>
-  </mat-button>
+  </mat-button-toggle>
   <p class="text-primary fw-bold fs-3 px-3 mt-3">
     {{ 'supplier.supplier-create' | translate }}
   </p>
@@ -225,6 +223,8 @@
           <div class="col-12 col-md-4 mt-4">
             <div class="d-flex w-100 float-end">
               <button
+                matRipple
+                [matRippleCentered]="true"
                 (click)="confirmDialog()"
                 type="submit"
                 class="btn border-0 btn-primary mx-3"
@@ -233,6 +233,8 @@
                 {{ 'save' | translate }}
               </button>
               <button
+                matRipple
+                [matRippleCentered]="true"
                 (click)="formSupplier.reset()"
                 type="button"
                 class="btn btn-secondary"

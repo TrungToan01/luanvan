@@ -20,6 +20,9 @@ export class AddRomComponent implements OnInit {
   async ngOnInit() {}
 
   async onSubmit() {
+    if (!this.addForm.value.name) {
+      return;
+    }
     let response = await this.romService.createRom(this.addForm.value);
     if (response.ok) {
       this.dialogRef.close();

@@ -36,11 +36,12 @@ export class BannersAddComponent implements OnInit {
     reader.onload = (e) => (this.imageSrc = reader.result);
     reader.readAsDataURL(this.fileToUpload);
   }
-
+  deleteFile() {
+    this.imageSrc = null;
+  }
   async onSubmit() {
     let data = this.addBannerForm.value;
-    if (!data.name || !data.public || !this.fileToUpload) {
-      alert('vui lòng nhập nội dung');
+    if (!data.name || !data.public || !this.fileToUpload || !this.imageSrc) {
       return;
     }
     const fromData = new FormData();

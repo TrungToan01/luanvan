@@ -20,20 +20,21 @@
     #addBannerForm="ngForm"
   >
     <div class="row justify-content-between">
-      <div class="form-group w-100 col-12 flex-column mb-4">
-        <div class="d-flex align-items-center">
-          <label class="pb-2">
-            {{ 'banner.image' | translate }}
-          </label>
-          <div
-            class="d-flex py-2 mx-3 px-3 align-items-center"
+      <div class="form-group row p-0 mb-3">
+        <label class="col-3 m-auto col-form-label text-end">
+          {{ 'banner.image' | translate }}
+        </label>
+        <div class="col-9">
+          <label
+            for="avatar"
+            class="d-flex py-2 px-3 w-50 align-items-center form-control input-customize"
             style="background-color: whitesmoke;"
           >
-            <label class="px-3" for="avatar">
+            <span class="px-3">
               {{ 'upload-image' | translate }}
-            </label>
+            </span>
             <i class="bi bi-upload"></i>
-          </div>
+          </label>
         </div>
 
         <input
@@ -47,10 +48,7 @@
         />
       </div>
 
-      <div
-        class="form-group w-100 col-12 flex-column"
-        [hidden]="!dataBanner?.image"
-      >
+      <div class="form-group w-100 col-12 mb-3" [hidden]="!dataBanner?.image">
         <div class="form-control input-customize d-flex">
           <div class="w-100 align-items-center" style="flex: 1;">
             <img
@@ -66,52 +64,65 @@
             <span class="mx-3">{{ filename }}</span>
           </div>
           <div class="float-end m-auto mx-1">
-            <mat-button-toggle class="m-auto">
+            <mat-button-toggle (click)="deleteFile()" class="m-auto">
               <mat-icon>delete</mat-icon>
             </mat-button-toggle>
           </div>
         </div>
       </div>
 
-      <div class="form-group w-100 col-12 flex-column d-flex">
-        <label class="form-control-label pb-2">
+      <div class="form-group row mb-3 p-0">
+        <label class="col-3 m-auto col-form-label text-end">
           {{ 'banner.name' | translate }}
         </label>
-
-        <input
-          [(ngModel)]="dataBanner.name"
-          #banner="ngModel"
-          name="name"
-          placeholder="{{ 'placeholder.input-banner' | translate }}"
-          type="text"
-          required
-          class="form-control input-customize"
-        />
-        <small
-          id="nameHid"
-          class="form-text text-muted"
-          *ngIf="!banner?.valid && (banner?.dirty || banner?.touched)"
-        >
-          {{ 'notification.invalid-brand' | translate }}
-        </small>
+        <div class="col-9">
+          <input
+            [ngModel]="dataBanner?.name"
+            #banner="ngModel"
+            name="name"
+            placeholder="{{ 'placeholder.input-banner' | translate }}"
+            type="text"
+            required
+            class="form-control input-customize"
+          />
+          <small
+            id="nameHid"
+            class="form-text text-muted"
+            *ngIf="!banner?.valid && (banner?.dirty || banner?.touched)"
+          >
+            {{ 'notification.invalid-brand' | translate }}
+          </small>
+        </div>
       </div>
-      <div class="d-flex align-items-center mt-4">
-        <label class="form-check-label" for="flexSwitchCheckDefault">
+
+      <div class="form-group row p-0 mb-3">
+        <label class="col-3 m-auto col-form-label text-end">
           {{ 'brand.published' | translate }}
         </label>
-        <input
-          [(ngModel)]="dataBanner.published"
-          name="published"
-          style="width: 45px; height: 22px;"
-          type="checkbox"
-          id="flexSwitchCheckDefault"
-        />
+        <div class="col-9 p-0">
+          <input
+            [ngModel]="dataBanner?.published"
+            name="published"
+            style="width: 45px; height: 25px;"
+            type="checkbox"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="col-3"></div>
+        <div class="col-9 px-1">
+          <button
+            matRipple
+            [matRippleCentered]="true"
+            (click)="onSubmit()"
+            class="btn btn-primary py-2 w-100"
+            cdkFocusInitial
+          >
+            {{ 'save' | translate }}
+          </button>
+        </div>
       </div>
     </div>
   </form>
-  <div class="text-end mt-3 w-100">
-    <button (click)="onSubmit()" class="btn btn-primary w-50" cdkFocusInitial>
-      {{ 'save' | translate }}
-    </button>
-  </div>
 </div>

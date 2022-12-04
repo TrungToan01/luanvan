@@ -44,7 +44,7 @@ export class UserManageService extends BaseService {
   }
 
   //get user by id
-  public async GetUserById(id: any) {
+  public async GetUserById(id: any): Promise<any> {
     const response = await this.baseGetHttpClientUrl(`users/getOne/${id}`);
     if (response.ok) {
       return response;
@@ -55,7 +55,7 @@ export class UserManageService extends BaseService {
 
   //delete user
 
-  public async DeleteUser(id: any) {
+  public async DeleteUser(id: any): Promise<any> {
     const response = await this.baseDeleteHttpClientUrl(`users/delete/${id}`);
     if (response.ok) {
       return response;

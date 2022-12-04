@@ -32,7 +32,6 @@
             required
           />
           <small
-            id="codeHid"
             class="form-text text-muted"
             *ngIf="!code?.valid && (code?.dirty || code?.touched)"
           >
@@ -50,16 +49,17 @@
             <div class="col-6">
               <input
                 ngModel
-                #code="ngModel"
+                #startdate="ngModel"
                 name="start_date"
                 class="form-control input-customize"
                 type="date"
                 required
               />
               <small
-                id="codeHid"
                 class="form-text text-muted"
-                *ngIf="!code?.valid && (code?.dirty || code?.touched)"
+                *ngIf="
+                  !startdate?.valid && (startdate?.dirty || startdate?.touched)
+                "
               >
                 {{ 'notification.invalid-startdate' | translate }}
               </small>
@@ -68,22 +68,22 @@
             <div class="col-6">
               <input
                 ngModel
-                #code="ngModel"
+                (ngModelChange)="onchangeDate()"
+                #enddate="ngModel"
                 name="end_date"
                 class="form-control input-customize"
                 type="date"
                 required
               />
               <small
-                id="codeHid"
                 class="form-text text-muted"
-                *ngIf="!code?.valid && (code?.dirty || code?.touched)"
+                *ngIf="!enddate?.valid && (enddate?.dirty || enddate?.touched)"
               >
                 {{ 'notification.invalid-enddate' | translate }}
               </small>
             </div>
           </div>
-          <small *ngIf="validateDate" class="from-text text-muted">
+          <small *ngIf="validateDate == true" class="from-text text-muted">
             Định dạng ngày không hợp lệ
           </small>
         </div>
@@ -148,6 +148,8 @@
         <div class="col-3"></div>
         <div class="col-9">
           <button
+            matRipple
+            [matRippleCentered]="true"
             (click)="onSubmit()"
             class="btn btn-primary py-2 w-100"
             cdkFocusInitial

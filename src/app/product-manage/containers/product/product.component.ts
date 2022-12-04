@@ -48,7 +48,6 @@ export class ProductComponent implements OnInit {
   async getAllProduct() {
     let response = await this.productService.getAllProduct();
     if (response.ok) {
-      console.log(response.data);
       this.dataSource = new MatTableDataSource(response.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -67,7 +66,6 @@ export class ProductComponent implements OnInit {
         formdata.value
       );
       if (response.ok) {
-        console.log(response);
         this.doOk = false;
         this.getAllProduct();
       } else {

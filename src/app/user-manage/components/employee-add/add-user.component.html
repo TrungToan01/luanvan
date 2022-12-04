@@ -6,16 +6,14 @@
 >
   <div class="container bootstrap snippets bootdey my-3">
     <div class="d-flex">
-      <mat-button
-        class="btn border-0 circle"
-        matRipple
-        [matRippleCentered]="true"
+      <mat-button-toggle
+        style="background-color: #fafafa !important;"
         (click)="goBack()"
       >
-        <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+        <mat-icon title="back" class="fw-bold">
           keyboard_backspace
         </mat-icon>
-      </mat-button>
+      </mat-button-toggle>
       <p class="text-primary fw-bold fs-3 px-3 mt-3">
         {{ 'user.employee-create' | translate }}
       </p>
@@ -308,6 +306,8 @@
 
         <div class="d-float">
           <button
+            matRipple
+            [matRippleCentered]="true"
             title="{{ 'clear' | translate }}"
             (click)="createUserForm.reset()"
             class="btn btn-secondary float-end py-2"
@@ -315,6 +315,8 @@
             {{ 'cancel' | translate }}
           </button>
           <button
+            matRipple
+            [matRippleCentered]="true"
             (click)="confirmDialog()"
             title="{{ 'cancel' | translate }}"
             class="btn btn-primary float-end mx-3 px-5 py-2"

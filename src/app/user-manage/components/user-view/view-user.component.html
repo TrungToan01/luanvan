@@ -1,14 +1,12 @@
 <div class="d-flex mt-3 mx-2">
-  <mat-button
-    class="btn border-0 circle"
-    matRipple
-    [matRippleCentered]="true"
-    routerLink="/employee"
+  <mat-button-toggle
+    style="background-color: #fafafa !important;"
+    (click)="goBack()"
   >
-    <mat-icon title="back" class="fs-2 mt-1 fw-bold">
+    <mat-icon title="back" class="fw-bold">
       keyboard_backspace
     </mat-icon>
-  </mat-button>
+  </mat-button-toggle>
   <p class="text-primary fw-bold fs-3 px-3 mt-3">
     {{ 'user.user-info' | translate }}
   </p>
@@ -74,7 +72,12 @@
       </div>
     </div>
     <div class="d-block w-100 mb-4">
-      <button class="btn btn-primary px-5 py-1 float-end" mat-button>
+      <button
+        matRipple
+        [matRippleCentered]="true"
+        class="btn btn-primary px-5 py-1 float-end"
+        mat-button
+      >
         <a class="text-white" [routerLink]="['/employee/edit', userId]">
           {{ 'user.user-info-update' | translate }}
         </a>

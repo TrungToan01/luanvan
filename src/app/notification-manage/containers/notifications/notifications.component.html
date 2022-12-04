@@ -1,1 +1,131 @@
-<p>notifications works!</p>
+<div class="nav navbar mt-4 mb-5 d-block px-3">
+  <div class="d-flex float-start">
+    <mat-button-toggle
+      style="background-color: #fafafa !important;"
+      (click)="goBack()"
+    >
+      <mat-icon title="back" class="fw-bold">
+        keyboard_backspace
+      </mat-icon>
+    </mat-button-toggle>
+    <p class="fs-3 px-3 mt-3 fw-bold text-primary">
+      {{ 'notification.notification-list' | translate }}
+    </p>
+  </div>
+
+  <button
+    matRipple
+    [matRippleCentered]="true"
+    (click)="createNoti()"
+    title="{{ 'notification.notification-create' | translate }}"
+    class="btn btn-primary float-end px-4 py-2"
+  >
+    {{ 'notification.notification-create' | translate }}
+  </button>
+</div>
+<div class="container-fluid px-3">
+  <div>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'id' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <!-- regDate Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'regDate' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.createdAt | date: 'short' }}
+        </td>
+      </ng-container>
+
+      <!-- title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ 'title' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+
+      <!-- content Column -->
+      <ng-container matColumnDef="content">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ 'content' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.content }}</td>
+      </ng-container>
+
+      <!-- user Column -->
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'regStaff' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="text-capitalize align-items-center d-flex">
+            <div
+              class="rounded-circle"
+              style="width: 45px; height: 45px; margin-right: 10px;"
+            >
+              <img
+                class="avatar rounded-circle img-circle"
+                alt="avatar"
+                [src]="'http://localhost:5000' + element?.user?.avatar"
+                style="width: 45px; height: 45px;"
+              />
+            </div>
+            <div style="flex: 1;">
+              {{ element.user.name }}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <!-- publish Column -->
+      <ng-container matColumnDef="published">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'brand.published' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              style="width: 45px; height: 22px;"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              [checked]="element.published"
+            />
+          </div>
+        </td>
+      </ng-container>
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-button-toggle title="{{ 'edit' | translate }}" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </mat-button-toggle>
+
+          <mat-button-toggle
+            (click)="confirmDialog(element.id)"
+            title="{{ 'delete' | translate }}"
+            mat-icon-button
+          >
+            <mat-icon class="text-danger">delete</mat-icon>
+          </mat-button-toggle>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      #paginator
+      [length]="PageInfo.total"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+    ></mat-paginator>
+  </div>
+</div>

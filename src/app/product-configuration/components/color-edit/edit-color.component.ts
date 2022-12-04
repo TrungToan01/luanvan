@@ -29,6 +29,9 @@ export class EditColorComponent implements OnInit {
     }
   }
   async onSubmit() {
+    if (!this.ColorForm.value.name) {
+      return;
+    }
     let response = await this.colorService.updateColor(
       this.data.id,
       this.ColorForm.value
