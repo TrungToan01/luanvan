@@ -30,15 +30,26 @@
             class="avatar img-circle img-thumbnail"
             alt="avatar"
           />
-
-          <input
-            ngModel
-            name="avatar"
-            id="avatar"
-            type="file"
-            class="form-control input-customize mt-3"
-            (change)="filechange($event)"
-          />
+          <div class="w-100 mt-4">
+            <input
+              (change)="filechange($event)"
+              type="file"
+              id="avatar"
+              class="d-none"
+              multiple
+            />
+            <label for="avatar">
+              <div
+                class="d-flex py-2 px-3 align-items-center"
+                style="background-color: whitesmoke;"
+              >
+                <span class="px-3">
+                  {{ 'upload-image' | translate }}
+                </span>
+                <i class="bi bi-upload"></i>
+              </div>
+            </label>
+          </div>
         </div>
       </div>
 

@@ -120,6 +120,10 @@ export class ProductAddComponent implements OnInit {
       alert('không thể thêm hình ảnh sản phẩm');
     }
   }
+  clear() {
+    this.productForm.reset();
+    (this.imageList = null), (this.imageSrc = null);
+  }
 
   goBack() {
     this.coreShareService.goBack();

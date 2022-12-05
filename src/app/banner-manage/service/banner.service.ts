@@ -37,7 +37,7 @@ export class BannerService extends BaseService {
     }
   }
 
-  public async updatebanners(id: any, data: any): Promise<any> {
+  public async updateBanner(id: any, data: any): Promise<any> {
     const response = await this.basePutHttpClientUrl(
       `banners/update/${id}`,
       data
@@ -49,7 +49,7 @@ export class BannerService extends BaseService {
     }
   }
 
-  public async deleteBrand(id: any): Promise<any> {
+  public async deleteBanner(id: any): Promise<any> {
     const response = await this.baseDeleteHttpClientUrl(`banners/delete/${id}`);
     if (response.ok) {
       return response;

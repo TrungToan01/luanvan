@@ -13,12 +13,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { warehouseManageRoutes } from '../common/routes';
 import { ProductService } from '../product-manage/service/product.service';
 import { SupplierService } from '../supplier-manage/service/supplier.service';
+import { ReceiptViewComponent } from './containers/receipt-view/receipt-view.component';
 
 @NgModule({
   declarations: [
     ReceiptsListComponent,
     ReceiptsEditComponent,
     ReceiptsAddComponent,
+    ReceiptViewComponent,
   ],
   imports: [
     CommonModule,

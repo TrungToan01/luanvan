@@ -85,6 +85,11 @@
               <mat-icon>launch</mat-icon>
             </mat-button-toggle>
           </a>
+          <a [routerLink]="['edit', element.id]">
+            <mat-button-toggle title="{{ 'view' | translate }}" mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </mat-button-toggle>
+          </a>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

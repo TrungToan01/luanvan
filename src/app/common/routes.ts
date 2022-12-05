@@ -26,6 +26,7 @@ import { BannersComponent } from '../banner-manage/containers/banners/banners.co
 import { OrdersComponent } from '../order-manage/containers/orders/orders.component';
 import { NotificationsComponent } from '../notification-manage/containers/notifications/notifications.component';
 import { OrdersDetailComponent } from '../order-manage/containers/orders-detail/orders-detail.component';
+import { ReceiptViewComponent } from '../warehouse-manage/containers/receipt-view/receipt-view.component';
 
 export const mainRoutes: Routes = [];
 
@@ -63,6 +64,7 @@ export const warehouseManageRoutes: Routes = [
   { path: 'receipts', component: ReceiptsListComponent },
   { path: 'receipt/add', component: ReceiptsAddComponent },
   { path: 'receipts/edit/:id', component: ReceiptsEditComponent },
+  { path: 'receipts/view/:id', component: ReceiptViewComponent },
 ];
 
 export const ConfigurationManageRoutes: Routes = [

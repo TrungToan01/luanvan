@@ -82,7 +82,7 @@ export class BannersComponent implements OnInit {
   //deleteBanner
   async deleteBanner(id: any) {
     if (this.doOk) {
-      const response = await this.bannerService.deleteBrand(id);
+      const response = await this.bannerService.deleteBanner(id);
       if (response.ok) {
         this.getAllBanner();
       } else {
@@ -98,7 +98,7 @@ export class BannersComponent implements OnInit {
       published: new FormControl(!data),
     });
     if (this.doOk) {
-      let response = await this.bannerService.updatebanners(id, formdata.value);
+      let response = await this.bannerService.updateBanner(id, formdata.value);
       if (response.ok) {
         console.log(response);
         this.doOk = false;

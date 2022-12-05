@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConst } from 'src/app/common/const';
 import { BannerService } from '../../service/banner.service';
@@ -44,6 +44,8 @@ export class BannersEditComponent implements OnInit {
     let response = await this.bannerService.getbannersById(id);
     if (response.ok) {
       this.dataBanner = response.data;
+      this.imageSrc = 'http://localhost:5000' + response.data.image;
+      console.log(this.imageSrc);
     }
   }
 
@@ -54,21 +56,26 @@ export class BannersEditComponent implements OnInit {
 
   async onSubmit() {
     let data = this.addBannerForm.value;
-    if (!data.name || !data.public || !this.fileToUpload || !this.imageSrc) {
+    if (!data.name || !this.imageSrc) {
       return;
     }
     const fromData = new FormData();
-    fromData.append('image', this.fileToUpload);
+    if (this.fileToUpload) {
+      fromData.append('image', this.fileToUpload);
+    }
+
     fromData.set('name', data.name);
     fromData.set('userId', this.userInfo.userId);
     fromData.set('published', data.published);
 
-    let response = await this.bannerService.createBanner(fromData);
+    let response = await this.bannerService.updateBanner(
+      this.data.id,
+      fromData
+    );
     if (response.ok) {
       this.dialogRef.close();
-      alert('Đã thêm thành công');
     } else {
-      alert('không thể tạo');
+      alert(response.msg);
     }
   }
 }

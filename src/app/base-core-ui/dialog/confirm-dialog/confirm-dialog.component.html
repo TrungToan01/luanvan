@@ -6,8 +6,13 @@
 <!-- Vertically centered scrollable modal -->
 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
   <div class="d-flex align-items-center">
-    <mat-icon color="primary">warning</mat-icon>
-    <span class="px-2 fs-5">{{ data.content | translate }}</span>
+    <div class="mb-2" style="margin-right: 1rem;">
+      <mat-icon class="text-warning">
+        warning
+      </mat-icon>
+    </div>
+
+    <p class="px-2 fs-5">{{ data.content | translate }}</p>
   </div>
 </div>
 <div class="text-end mt-3 w-100">

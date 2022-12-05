@@ -19,13 +19,9 @@
     <div class="row"></div>
     <div class="row">
       <div class="col-sm-6">
-        <form
-          class="form-card"
-          id="formReceiptDetail"
-          #formReceiptDetail="ngForm"
-        >
-          <div class="row justify-content-between">
-            <!-- supplierId -->
+        <div class="row justify-content-between">
+          <!-- supplierId -->
+          <form class="form-card" id="form1" #form1="ngForm">
             <div class="d-flex row mb-4">
               <label class="col-3 m-auto col-form-label text-end">
                 {{ 'supplier.supplier' | translate }}
@@ -53,14 +49,15 @@
                     [matRippleCentered]="true"
                     [hidden]="receiptId"
                     (click)="createReceipt()"
-                    class="form-select input-customize form-group btn btn-danger"
+                    class="input-customize form-group btn btn-danger"
                   >
                     {{ 'ok' | translate }}
                   </button>
                   <button
+                    (click)="updateSupplier()"
                     matRipple
                     [matRippleCentered]="true"
-                    class="form-select input-customize form-group btn btn-danger"
+                    class="input-customize form-group btn btn-danger"
                     [hidden]="!receiptId"
                   >
                     {{ 'supplier.change-supplier' | translate }}
@@ -68,7 +65,14 @@
                 </div>
               </div>
             </div>
-            <hr />
+          </form>
+
+          <hr />
+          <form
+            class="form-card"
+            id="formReceiptDetail"
+            #formReceiptDetail="ngForm"
+          >
             <!-- product -->
             <div class="form-group row mb-4">
               <label class="col-3 m-auto col-form-label text-end">
@@ -164,8 +168,9 @@
                 <span>{{ totalprice }} (VNĐ)</span>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
+
         <!-- button -->
         <div class="form-group row mb-4">
           <div class="col-12">
@@ -174,7 +179,7 @@
               [matRippleCentered]="true"
               [disabled]="!receiptId"
               (click)="createReDetail()"
-              class="btn btn-secondary input-customize form-control"
+              class="btn btn-secondary w-100"
             >
               {{ 'product.product-create' | translate }}
             </button>
@@ -241,7 +246,7 @@
         <button
           matRipple
           [matRippleCentered]="true"
-          [disabled]="!receiptId"
+          [hidden]="!dataSource"
           (click)="submit()"
           class="btn btn-primary py-2 w-100"
         >

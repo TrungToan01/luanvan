@@ -86,6 +86,7 @@
     "product-create": "Thêm sản phẩm",
     "product-detail": "Thông tin chi tiết sản phẩm",
     "product-info": "Thông tin sản phẩm",
+    "image": "Hình ảnh sản phẩm",
     "width": "Độ rộng",
     "height": "Độ cao",
     "weight": "Trọng lượng",
@@ -127,7 +128,7 @@
     "add-ram": "Thêm cấu hình RAM",
     "edit-ram": "Cập nhật cấu hình RAM",
     "description": "Mô tả sản phẩm",
-    "add-image": "Hình ảnh sản phẩm",
+    "add-image": "Thêm hình ảnh sản phẩm",
     "create-success": "Thêm sản phẩm thành công!",
     "update-success": "Cập sản phẩm cấp thành công!",
     "delete-success": "Xóa sản phẩm thành công!",
@@ -172,7 +173,8 @@
     "invalid-date": "Định dạng ngày không hợp lệ",
     "invalid-role": "Vai trò người dùng là bắc buộc",
     "invalid-noti-title": "Tiêu đề thông báo là bắc buộc",
-    "invalid-noti-content": "Nội dung thông báo là bắc buộc"
+    "invalid-noti-content": "Nội dung thông báo là bắc buộc",
+    "update-status-coupons": "Cập nhật trạng thái mã khuyến mãi"
   },
   "placeholder": {
     "input-fullname": "Nhập họ tên người dùng",
@@ -278,6 +280,8 @@
   "message": "Tin nhắn",
   "warehouse": {
     "warehouse": "Kho hàng",
+    "receipt-edit": "Cập nhật phiếu nhập kho",
+    "receipt-detail": "Thông tin chi tiết phiếu nhập",
     "receipt-note": "Phiếu nhập kho hàng",
     "create-receipt-note": "Tạo phiếu nhập kho",
     "list-receipt-note": "Danh sách phiếu nhập kho",

@@ -75,6 +75,7 @@ exports.update = (req, res) => {
   if (req.file) {
     req.body.image = '/banners/' + req.file.filename
   }
+  console.log(req.body)
   Banner.update(req.body, {
     where: { id: id },
   })

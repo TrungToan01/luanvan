@@ -15,6 +15,8 @@ import { WarehouseService } from '../../service/warehouse.service';
 export class ReceiptsAddComponent implements OnInit {
   @ViewChild('formReceiptDetail')
   formReceiptDetail!: NgForm;
+  @ViewChild('form1')
+  form1!: NgForm;
   userInfo: any;
   supplierList: any;
   productList: any;
@@ -98,20 +100,30 @@ export class ReceiptsAddComponent implements OnInit {
       this.receiptId
     );
     if (response.ok) {
-      this.formReceiptDetail.reset();
-      console.log('đã tạo thành công');
+      alert('đã thêm thành công');
     }
   }
 
   //create receiptId
   async createReceipt() {
     const fmData = new FormGroup({
-      supplierId: new FormControl(this.formReceiptDetail.value.supplierId),
+      supplierId: new FormControl(this.form1.value.supplierId),
       userId: new FormControl(this.userInfo.userId),
     });
     let response = await this.warehouseService.CreateReceipt(fmData.value);
     if (response.ok) {
       this.receiptId = response.data.id;
+    }
+  }
+
+  //updare supplier
+  async updateSupplier() {
+    let response = await this.warehouseService.UpdateReceipt(
+      this.form1.value,
+      this.receiptId
+    );
+    if (response.ok) {
+      return;
     }
   }
 

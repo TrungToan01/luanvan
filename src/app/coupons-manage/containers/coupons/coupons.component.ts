@@ -117,7 +117,7 @@ export class CouponsComponent implements OnInit {
       width: '300px',
       data: {
         title: 'notification.notification',
-        content: 'notification.confirm-uplad ?',
+        content: 'notification.update-status-coupons',
       },
     });
     updateDialog.afterClosed().subscribe((result) => {
@@ -126,18 +126,18 @@ export class CouponsComponent implements OnInit {
     });
   }
 
-  //update published brand
+  //update published
   async disabled(id: any, data: any) {
-    let formdata = new FormGroup({
-      disabled: new FormControl(!data),
+    const formdata = new FormGroup({
+      disabled: new FormControl(data),
     });
+    console.log(formdata.value);
     if (this.doOk) {
       let response = await this.couponsService.updateCoupons(
         id,
         formdata.value
       );
       if (response.ok) {
-        console.log(response);
         this.doOk = false;
         this.getAllCoupons();
       } else {
