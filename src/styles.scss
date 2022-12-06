@@ -47,6 +47,7 @@ a {
 html,
 body {
   height: 100%;
+  font-size: 14px;
 }
 body {
   margin: 0;
@@ -62,4 +63,64 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type='number'] {
   -moz-appearance: textfield;
+}
+button:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline-width: 0;
+}
+.mat-button-toggle {
+  padding: 0px !important;
+  border: 0px !important;
+  border-radius: 50% !important;
+  width: max-content !important;
+}
+table {
+  width: 100%;
+}
+.mat-column-id {
+  width: 50px;
+  padding-right: 1rem;
+}
+
+.mat-paginator {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+.mat-table {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+a {
+  text-decoration: none;
+}
+.mat-header-cell {
+  font-weight: bold;
+}
+.mat-column-createdAt {
+  width: max-content;
+  padding-right: 1rem;
+}
+.mat-column-address {
+  max-width: 200px;
+  padding-right: 1rem;
+}
+.input-customize {
+  padding: 8px 15px;
+  border-radius: 5px !important;
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  font-weight: 300;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #4d0a95;
+  outline-width: 0;
+  font-weight: 400;
 }

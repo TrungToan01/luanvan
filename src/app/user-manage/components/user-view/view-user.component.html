@@ -39,10 +39,12 @@
             <span class="display-26 text-secondary me-2 font-weight-600">
               {{ 'user.gender' | translate }}
             </span>
-            <div *ngIf="!userInfo?.gender">
+            <span *ngIf="userInfo?.gender">
               {{ 'user.male' | translate }}
-            </div>
-            {{ 'user.female' | translate }}
+            </span>
+            <span *ngIf="!userInfo?.gender">
+              {{ 'user.female' | translate }}
+            </span>
           </li>
           <li class="mb-2 mb-xl-3 display-28">
             <span class="display-26 text-secondary me-2 font-weight-600">

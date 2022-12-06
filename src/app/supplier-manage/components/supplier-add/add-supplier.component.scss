@@ -47,14 +47,3 @@ select:focus {
 .btn-block:hover {
   color: #fff !important;
 }
-button:focus {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  outline-width: 0;
-}
-.mat-button-toggle {
-  padding: 0px !important;
-  border: 0px !important;
-  border-radius: 50% !important;
-}

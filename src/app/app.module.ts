@@ -12,7 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { AppShareMaterialUiModule } from './base-core-ui/app.share.material.ui.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { UserManageModule } from './user-manage/user-manage.module';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SupplierManageModule } from './supplier-manage/supplier-manage.module';
 import { OrderManageModule } from './order-manage/order-manage.module';
@@ -26,13 +26,13 @@ import { UserManageService } from './user-manage/service/user-manage.service';
 import { BaseService } from './services/base.service';
 import { AuthService } from './auth/service/auth.service';
 import { ShareCoreService } from './services/share-core.service';
-import { ShopInformationComponent } from './shop-information/shop-information.component';
 import { BannerManageModule } from './banner-manage/banner-manage.module';
+import { UserManageModule } from './user-manage/user-manage.module';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, ShopInformationComponent],
+  declarations: [AppComponent, DashboardComponent],
   imports: [
     BannerManageModule,
     ProductConfigurationModule,

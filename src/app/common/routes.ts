@@ -27,12 +27,14 @@ import { OrdersComponent } from '../order-manage/containers/orders/orders.compon
 import { NotificationsComponent } from '../notification-manage/containers/notifications/notifications.component';
 import { OrdersDetailComponent } from '../order-manage/containers/orders-detail/orders-detail.component';
 import { ReceiptViewComponent } from '../warehouse-manage/containers/receipt-view/receipt-view.component';
+import { ShopInformationComponent } from '../user-manage/containers/shop-information/shop-information.component';
 
 export const mainRoutes: Routes = [];
 
 export const authRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'shop-information', component: ShopInformationComponent },
 ];
 
 export const userManageRoutes: Routes = [

@@ -54,13 +54,42 @@ export class UserManageService extends BaseService {
   }
 
   //delete user
-
   public async DeleteUser(id: any): Promise<any> {
     const response = await this.baseDeleteHttpClientUrl(`users/delete/${id}`);
     if (response.ok) {
       return response;
     } else {
-      response.message;
+      response;
+    }
+  }
+  // ---------------------------------------------------------------------------------------
+  //create shop information
+  public async CreateShopInfo(data: any): Promise<any> {
+    const response = await this.basePostHttpClientUrl('shopInfo/add', data);
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //get shop information
+  public async GetShopInfo(): Promise<any> {
+    const response = await this.baseGetHttpClientUrl('shopInfo/getOne/1');
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
+    }
+  }
+
+  //update shop
+  public async updateShopInfo(data: any): Promise<any> {
+    const response = await this.basePutHttpClientUrl('shopInfo/update/1', data);
+    if (response.ok) {
+      return response;
+    } else {
+      return response;
     }
   }
 }

@@ -1,4 +1,4 @@
-<div class="nav navbar mt-4 mb-5 d-block px-3">
+<div class="nav navbar mt-3 d-block px-3">
   <div class="d-flex float-start">
     <mat-button-toggle
       style="background-color: #fafafa !important;"
@@ -25,7 +25,15 @@
 </div>
 <div class="container-fluid px-3">
   <div>
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table
+      style="
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+          rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+      "
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+    >
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'id' | translate }}
@@ -104,7 +112,11 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <mat-button-toggle title="{{ 'edit' | translate }}" mat-icon-button>
+          <mat-button-toggle
+            (click)="EditNoti(element.id)"
+            title="{{ 'edit' | translate }}"
+            mat-icon-button
+          >
             <mat-icon>edit</mat-icon>
           </mat-button-toggle>
 
@@ -122,6 +134,10 @@
     </table>
 
     <mat-paginator
+      style="
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+          rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+      "
       #paginator
       [length]="PageInfo.total"
       [pageSize]="10"

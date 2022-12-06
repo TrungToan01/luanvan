@@ -110,7 +110,7 @@ export class ProductComponent implements OnInit {
       width: '300px',
       data: {
         title: 'notification.notification',
-        content: 'notification.confirm-delete',
+        content: 'notification.delete-product',
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

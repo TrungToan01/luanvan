@@ -56,7 +56,7 @@ export class NotificationService extends BaseService {
   //delete notification
   public async DeleteNoti(id: any): Promise<any> {
     const response = await this.basePutHttpClientUrl(
-      `notification/update/${id}`
+      `notification/delete/${id}`
     );
     if (response.ok) {
       return response;

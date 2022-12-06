@@ -90,6 +90,15 @@ export class ReceiptsAddComponent implements OnInit {
       alert('không thể thêm sản phẩm');
     }
   }
+  async updateProduct() {
+    const data = new FormGroup({
+      original_price: new FormControl(this.formReceiptDetail.value.price),
+    });
+    let response = await this.productService.updateProduct(
+      this.receiptId,
+      data.value
+    );
+  }
 
   async submit() {
     let data = new FormGroup({

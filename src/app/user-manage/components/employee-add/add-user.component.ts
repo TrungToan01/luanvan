@@ -73,7 +73,10 @@ export class AddUserComponent implements OnInit {
   async getAllRole() {
     let response = await this.shareCoreService.getAllRole();
     if (response.ok) {
-      this.roleList = response.data;
+      var newArray = response.data.filter(function (el: any) {
+        return el.id != '4';
+      });
+      this.roleList = newArray;
     }
   }
 

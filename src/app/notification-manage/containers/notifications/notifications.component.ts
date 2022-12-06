@@ -7,6 +7,7 @@ import { ConfirmDialogComponent } from 'src/app/base-core-ui/dialog/confirm-dial
 import { PageDataInfo } from 'src/app/base-core-ui/interfaces/service-interface';
 import { ShareCoreService } from 'src/app/services/share-core.service';
 import { NotificationAddComponent } from '../../components/notification-add/notification-add.component';
+import { NotificationEditComponent } from '../../components/notification-edit/notification-edit.component';
 import { NotificationService } from '../../service/notification.service';
 
 @Component({
@@ -47,6 +48,19 @@ export class NotificationsComponent implements OnInit {
   createNoti() {
     const dialogRef = this.dialog.open(NotificationAddComponent, {
       width: '500px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getAllEmployee();
+    });
+  }
+
+  EditNoti(id: any) {
+    console.log(id);
+    const dialogRef = this.dialog.open(NotificationEditComponent, {
+      width: '500px',
+      data: {
+        id: id,
+      },
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.getAllEmployee();

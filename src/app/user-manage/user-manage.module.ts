@@ -13,7 +13,7 @@ import { UserManageService } from './service/user-manage.service';
 import { EditUserComponent } from './components/employee-edit/edit-user.component';
 import { AddUserComponent } from './components/employee-add/add-user.component';
 import { ViewUserComponent } from './components/user-view/view-user.component';
-
+import { ShopInformationComponent } from './containers/shop-information/shop-information.component';
 @NgModule({
   declarations: [
     CustomerManageComponent,
@@ -21,6 +21,7 @@ import { ViewUserComponent } from './components/user-view/view-user.component';
     ViewUserComponent,
     EditUserComponent,
     AddUserComponent,
+    ShopInformationComponent,
   ],
   imports: [
     CommonModule,

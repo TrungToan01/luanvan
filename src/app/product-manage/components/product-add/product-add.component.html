@@ -439,7 +439,7 @@
             <div class="input-group">
               <input
                 class="fs-4 py-1 fw-bold text-danger form-control input-customize"
-                [ngModel]
+                [ngModel]="0"
                 name="original_price"
                 min="0"
                 type="number"
@@ -462,8 +462,9 @@
             </label>
 
             <input
+              disabled
               class="fs-4 py-1 fw-bold text-danger form-control input-customize"
-              [ngModel]
+              [ngModel]="0"
               name="quantity"
               min="0"
               type="number"
@@ -486,7 +487,7 @@
             <div class="input-group">
               <input
                 class="fs-4 py-1 fw-bold text-danger form-control input-customize"
-                ngModel
+                [ngModel]="0"
                 name="sale_price"
                 min="0"
                 type="number"

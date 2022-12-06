@@ -13,5 +13,5 @@ module.exports = (app) => {
   // Delete a shop_info with id
   router.delete('/delete/:id', verify, shop_info.delete)
 
-  app.use('/api/shop_info', router)
+  app.use('/api/shopInfo', router)
 }

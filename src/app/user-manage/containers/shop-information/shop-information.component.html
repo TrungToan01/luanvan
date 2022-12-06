@@ -1,0 +1,259 @@
+<div class="nav navbar mt-2 mb-5 d-block px-3">
+  <div class="d-flex float-start">
+    <mat-button-toggle style="background-color: #fafafa !important;">
+      <mat-icon title="back" class="fw-bold">
+        keyboard_backspace
+      </mat-icon>
+    </mat-button-toggle>
+    <p class="fs-3 px-3 mt-3 fw-bold text-primary">
+      {{ 'shop-info' | translate }}
+    </p>
+  </div>
+</div>
+
+<div class="row px-3 py-3 mx-3">
+  <div class="col-sm-1"></div>
+  <form class="col-sm-10" id="ShopInfo" #ShopInfo="ngForm">
+    <div class="form-group row mb-4">
+      <label class="col-sm-2 col-3 m-auto col-form-label text-end">
+        {{ 'shop-name' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <input
+          class="text-capitalize"
+          placeholder="{{ 'placeholder.input-shopname' | translate }}"
+          [ngModel]="shopdata?.name"
+          #name="ngModel"
+          name="name"
+          class="form-control input-customize"
+          type="text"
+          required
+        />
+        <small
+          class="form-text text-muted"
+          *ngIf="!name?.valid && (name?.dirty || name?.touched)"
+        >
+          {{ 'notification.invalid-username' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group row mb-4">
+      <label class="col-sm-2 col-3 col-form-label text-end">
+        {{ 'user.description' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <textarea
+          class="text-capitalize"
+          placeholder="{{ 'placeholder.input-description' | translate }}"
+          [ngModel]="shopdata?.description"
+          name="description"
+          class="form-control input-customize"
+          type="text"
+          rows="4"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row mb-4">
+      <label class="col-sm-2 col-3 col-form-label text-end">
+        {{ 'user.email' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <input
+          [ngModel]="shopdata?.email"
+          #email="ngModel"
+          name="email"
+          placeholder="{{ 'placeholder.input-email' | translate }}"
+          class="form-control input-customize"
+          type="email"
+          placeholder="example@gamilcom"
+          required
+        />
+        <small
+          id="emailHid"
+          class="form-text text-muted"
+          *ngIf="!email?.valid && (email?.dirty || email?.touched)"
+        >
+          {{ 'notification.invalid-email' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group row mb-4">
+      <label class="col-sm-2 m-auto col-3 col-form-label text-end">
+        {{ 'user.phone-number' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <input
+          [ngModel]="shopdata?.phone"
+          #phone="ngModel"
+          name="phone"
+          class="form-control input-customize"
+          aria-describedby="phone"
+          placeholder="{{ 'placeholder.input-phone' | translate }}"
+          type="text"
+          required
+        />
+        <small
+          id="phoneHid"
+          class="form-text text-muted"
+          *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
+        >
+          {{ 'notification.invalid-phone' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="from-group row mb-4">
+      <label class="col-sm-2 m-auto col-3 col-form-label text-end">
+        {{ 'user.province' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <select
+          class="form-control input-customize text-capitalize"
+          #provinceId="ngModel"
+          [ngModel]="shopdata?.provinceId"
+          name="provinceId"
+          id="provinceId"
+          (ngModelChange)="getDistrict($event)"
+        >
+          <option hidden value="" disabled selected>
+            {{ 'placeholder.choose-province' | translate }}
+          </option>
+          <option *ngFor="let item of province" [value]="item.id">
+            {{ item.name }}
+          </option>
+        </select>
+        <small
+          id="provinceHid"
+          class="form-text mx-3 text-muted"
+          *ngIf="
+            !provinceId?.valid && (provinceId?.dirty || provinceId?.touched)
+          "
+        >
+          {{ 'notification.invalid-province' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="from-group row mb-4">
+      <label class="col-sm-2 m-auto col-3 col-form-label text-end">
+        {{ 'user.district' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <select
+          class="form-control input-customize text-capitalize"
+          #districtId="ngModel"
+          [ngModel]="shopdata?.districtId"
+          name="districtId"
+          id="districtId"
+          (ngModelChange)="getWard($event)"
+          required
+        >
+          <option hidden value="" disabled selected>
+            {{ 'placeholder.choose-district' | translate }}
+          </option>
+          <option *ngFor="let item of district" [value]="item.id">
+            {{ item.name }}
+          </option>
+        </select>
+        <small
+          id="districtIdHid"
+          class="form-text mx-3 text-muted"
+          *ngIf="
+            !districtId?.valid && (districtId?.dirty || districtId?.touched)
+          "
+        >
+          {{ 'notification.invalid-district' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="from-group row mb-4">
+      <label class="col-sm-2 m-auto col-3 col-form-label text-end">
+        {{ 'user.ward' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <select
+          class="form-control input-customize text-capitalize"
+          #ward_id="ngModel"
+          [ngModel]="shopdata?.wardId"
+          name="wardId"
+          id="wardId"
+          required="true"
+        >
+          <option hidden value="" disabled selected>
+            {{ 'placeholder.choose-ward' | translate }}
+          </option>
+          <option *ngFor="let item of wards" [value]="item.id">
+            {{ item?.name }}
+          </option>
+        </select>
+        <small
+          id="ward_idhid"
+          class="form-text mx-3 text-muted"
+          *ngIf="!ward_id?.valid && (ward_id?.dirty || ward_id?.touched)"
+        >
+          {{ 'notification.invalid-ward' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group row mb-4">
+      <label class="col-sm-2 col-3 col-form-label text-end">
+        {{ 'user.address' | translate }}
+      </label>
+      <div class="col-sm-10 col-9">
+        <textarea
+          class="form-control input-customize"
+          [ngModel]="shopdata?.address"
+          #address="ngModel"
+          name="address"
+          placeholder="{{ 'placeholder.input-sup-address' | translate }}"
+          type="text"
+          rows="4"
+          required
+        ></textarea>
+        <small
+          id="address"
+          class="form-text text-muted"
+          *ngIf="!address?.valid && (address?.dirty || address?.touched)"
+        >
+          {{ 'notification.invalid-address' | translate }}
+        </small>
+      </div>
+    </div>
+    <div class="d-block w-100">
+      <button
+        matRipple
+        [matRippleCentered]="true"
+        class="btn btn-secondary float-end px-3 py-2"
+      >
+        {{ 'cancel' | translate }}
+      </button>
+      <div>
+        <button
+          (click)="createData()"
+          class="btn btn-primary float-end mx-3 px-3 py-2"
+          [hidden]="shopdata"
+          matRipple
+          [matRippleCentered]="true"
+        >
+          {{ 'save' | translate }}
+        </button>
+
+        <button
+          class="btn btn-primary float-end mx-3 px-3 py-2"
+          (click)="updateData()"
+          [hidden]="!shopdata"
+          matRipple
+          [matRippleCentered]="true"
+        >
+          {{ 'update' | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="col-sm-1"></div>
+</div>

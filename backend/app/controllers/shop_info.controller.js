@@ -4,12 +4,7 @@ const Op = db.Sequelize.Op
 
 // ----------------------------------CREATE SHOP INFO----------------------------------
 exports.create = (req, res) => {
-  if (req.body) {
-    res.status(400).send({
-      message: 'Content can not be empty!',
-    })
-    return
-  }
+  console.log(req.body)
   Shop_info.create(req.body)
     .then((data) => {
       res.send({ rows: data })

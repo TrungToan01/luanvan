@@ -6,14 +6,15 @@
   },
   "auth": {
     "title": "Nhập email và mật khẩu",
-    "already-have-an-account": "Bạn đã có tài khoản?",
     "login": "Đăng nhập",
-    "donot-have-an-account": "Chưa có tài khoản?",
     "register": "Đăng ký",
-    "registration": "Đăng ký tài khoản",
     "logout": "Đăng xuất",
     "change-password": "Đổi mật khẩu",
-    "login-failed": "Đăng nhập thất bại",
+    "registration": "Đăng ký tài khoản",
+    "already-have-an-account": "Bạn đã có tài khoản?",
+    "donot-have-an-account": "Chưa có tài khoản?",
+
+    "login-failed": "Đăng nhập thất bại! Kiểm tra tài khoản và mật khẩu của bạn",
     "register-failed": "Đăng ký không thành công"
   },
   "user": {
@@ -29,7 +30,7 @@
     "role": "Vai trò người dùng",
     "profile": "Thông tin tài khoản",
     "avatar": "Ảnh đại diện",
-    "username": "Họ tên",
+    "username": "Họ & tên",
     "birthdate": "Ngày sinh",
     "gender": "Giới tính",
     "phone-number": "Số điện thoại",
@@ -174,7 +175,10 @@
     "invalid-role": "Vai trò người dùng là bắc buộc",
     "invalid-noti-title": "Tiêu đề thông báo là bắc buộc",
     "invalid-noti-content": "Nội dung thông báo là bắc buộc",
-    "update-status-coupons": "Cập nhật trạng thái mã khuyến mãi"
+    "update-status-coupons": "Cập nhật trạng thái mã khuyến mãi",
+    "delete-product": "Xác nhận xóa sản phẩm?",
+    "delete-brand": "Xác nhận xóa thương hiệu?",
+    "invalid-shopname": "Tên cửa hàng là bắc buộc"
   },
   "placeholder": {
     "input-fullname": "Nhập họ tên người dùng",
@@ -225,7 +229,8 @@
     "input-sale-price": "Nhập giá giảm",
     "input-banner": "Nhập tên banner",
     "input-noti-title": "Nhập tiêu đề thông báo",
-    "input-noti-content": "Nhập nội dung thông báo"
+    "input-noti-content": "Nhập nội dung thông báo",
+    "input-shopname": "Nhập tên cửa hàng"
   },
   "search": "Tìm kiếm",
   "account": "Tài khoản",
@@ -304,7 +309,10 @@
     "name": "Tên banner"
   },
   "regStaff": "Người tạo",
+
   "shop-info": "Thông tin cửa hàng",
+  "shop-name": "Tên cửa hàng",
+
   "edit": "Chỉnh sửa",
   "add": "Tạo mới",
   "delete": "Xóa",

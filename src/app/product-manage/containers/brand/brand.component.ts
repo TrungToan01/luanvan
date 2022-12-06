@@ -123,7 +123,7 @@ export class BrandComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: {
-        title: 'brand.delete-brand',
+        title: 'brand.brand-delete',
         content: 'notification.confirm-delete',
       },
     });

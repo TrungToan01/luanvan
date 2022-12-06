@@ -71,9 +71,10 @@ export class EditUserComponent implements OnInit {
   async getAllRole() {
     let response = await this.shareCoreService.getAllRole();
     if (response.ok) {
-      this.roleList = response.data;
-    } else {
-      alert('can get role');
+      var newArray = response.data.filter(function (el: any) {
+        return el.id != '4';
+      });
+      this.roleList = newArray;
     }
   }
 
