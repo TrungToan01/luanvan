@@ -21,6 +21,7 @@ import { NotificationManageModule } from './notification-manage/notification-man
 import { WarehouseManageModule } from './warehouse-manage/warehouse-manage.module';
 import { ProductConfigurationModule } from './product-configuration/product-configuration.module';
 import { CouponsManageModule } from './coupons-manage/coupons-manage.module';
+import { PagesModule } from './pages/pages.module';
 //service
 import { UserManageService } from './user-manage/service/user-manage.service';
 import { BaseService } from './services/base.service';
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent, DashboardComponent],
   imports: [
+    PagesModule,
     BannerManageModule,
     ProductConfigurationModule,
     WarehouseManageModule,

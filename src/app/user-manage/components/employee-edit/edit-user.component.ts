@@ -91,7 +91,7 @@ export class EditUserComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: {
-        title: 'user.update-user',
+        title: 'user.user-update',
         content: 'notification.confirm-update',
       },
     });

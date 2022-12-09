@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
     delivery_cost: {
       type: Sequelize.INTEGER,
     },
-    couponId: {
+    couponsId: {
       type: Sequelize.INTEGER,
     },
     discount_value: {

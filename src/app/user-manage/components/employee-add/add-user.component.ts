@@ -84,7 +84,7 @@ export class AddUserComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: {
-        title: 'user.create-user',
+        title: 'user.user-create',
         content: 'notification.confirm-create',
       },
     });

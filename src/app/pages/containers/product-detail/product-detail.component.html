@@ -1,0 +1,208 @@
+<div class="ntainer-fluid px-0 py-4 detail-product">
+  <div class="container" style="height: 100%;">
+    <div class="row bg-white">
+      <div class="col-12 text-center col-md-5 border-end" style="height: 100%;">
+        <div class="mt-2 d-flex m-auto" style="height: 420px;">
+          <div id="image" class="carousel slide" data-bs-ride="carousel">
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner w-100 h-100">
+              <div class="carousel-item active w-100 h-100">
+                <img
+                  src="https://hc.com.vn/i/ecommerce/media/ckeditor_3087077.jpg"
+                  class="d-block img-fluid"
+                  style="width: 100%; height: 100%; object-fit: fill;"
+                />
+              </div>
+              <div class="carousel-item w-100 h-100">
+                <img
+                  src="https://24hstore.vn/upload_images/images/SEO/ONPAGE/BLOG-Dien-thoai-chup-anh-dep/cac-dong-dien-thoai-chup-anh-dep.jpg"
+                  alt="Chicago"
+                  class="d-block img-fluid"
+                  style="width: 100%; height: 100%; object-fit: cover;"
+                />
+              </div>
+              <div class="carousel-item w-100 h-100">
+                <img
+                  src="https://i.ndh.vn/2021/08/07/a2-1628309230.jpg"
+                  alt="New York"
+                  class="d-block img-fluid"
+                  style="width: 100%; height: 100%; object-fit: fill;"
+                />
+              </div>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#image"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#image"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="other-img d-flex w-100 border-top p-2 my-3"
+          style="background-color: whitesmoke;"
+        >
+          <!-- Indicators/dots -->
+
+          <img
+            src="https://hc.com.vn/i/ecommerce/media/ckeditor_3087077.jpg"
+            alt="Girl in a jacket"
+            class="img img-fluid active bg-white p-2 mx-1 rounded"
+            style="width: 100px; height: 100px;"
+            data-bs-target="#image"
+            data-bs-slide-to="0"
+          />
+          <img
+            src="https://24hstore.vn/upload_images/images/SEO/ONPAGE/BLOG-Dien-thoai-chup-anh-dep/cac-dong-dien-thoai-chup-anh-dep.jpg"
+            alt="Chicago"
+            alt="Girl in a jacket"
+            class="img img-fluid active bg-white p-2 mx-1 rounded"
+            style="width: 100px; height: 100px;"
+            data-bs-target="#image"
+            data-bs-slide-to="1"
+          />
+          <img
+            src="https://i.ndh.vn/2021/08/07/a2-1628309230.jpg"
+            alt="Girl in a jacket"
+            class="img img-fluid active bg-white p-2 mx-1 rounded"
+            style="width: 100px; height: 100px;"
+            data-bs-target="#image"
+            data-bs-slide-to="2"
+          />
+        </div>
+      </div>
+      <!-- Thông tin -->
+      <div class="col-md-7 py-4">
+        <div class="header">
+          <p class="fs-5">{{ 'brand.brand' | translate }}: Apple</p>
+          <p class="fs-2">Iphone 14 promax</p>
+
+          <div class="bg-primary p-3">
+            <div class="text-white display-4 fw-bold">
+              20.000.000
+            </div>
+          </div>
+          <div class="bg-dark text-white px-3 d-flex fs-4 m-auto py-3">
+            <span>{{ 'product.original-price' | translate }} :</span>
+            <div class="px-2" style="text-decoration: line-through;">
+              35.000.000
+            </div>
+          </div>
+        </div>
+        <!-- Thông số kỹ thuật -->
+        <div class="d-block border-top">
+          <p class="fs-4 mt-4 fw-bold">
+            {{ 'product.specifications' | translate }}
+          </p>
+          <div class="d-flex">
+            <div
+              class="btn btn-light border border-primary py-2 px-4"
+              style="margin-right: 1rem;"
+            >
+              <div>
+                64 GB
+              </div>
+              34.000.000
+            </div>
+            <div
+              class="btn btn-light border border-primary p-2 px-4"
+              style="margin-right: 1rem;"
+            >
+              128 GB
+            </div>
+            <div
+              class="btn btn-light border border-primary p-2 px-4"
+              style="margin-right: 1rem;"
+            >
+              512 GB
+            </div>
+          </div>
+        </div>
+        <!-- màu sắc -->
+
+        <div class="d-flex mt-4 text-center">
+          <p class="fs-4 m-auto mx-2">{{ 'product.color' | translate }}</p>
+          <div
+            class="btn btn-light border border-primary py-2 px-4"
+            style="margin-right: 1rem;"
+          >
+            Trắng
+          </div>
+          <div
+            class="btn btn-light border border-primary p-2 px-4"
+            style="margin-right: 1rem;"
+          >
+            Đỏ
+          </div>
+          <div
+            class="btn btn-light border border-primary p-2 px-4"
+            style="margin-right: 1rem;"
+          >
+            Tím
+          </div>
+        </div>
+        <!-- số lượng-->
+        <div class="border-top mt-4">
+          <div class="d-flex mt-3">
+            <div class="d-block">
+              <p>{{ 'product.quantity' | translate }}</p>
+              <input type="number" value="0" min="0" max="1000" />
+            </div>
+            <div class="mx-5">
+              {{ 'product.remaining-products' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 d-flex">
+          <div style="max-width: 70%; min-width: 50%;">
+            <button class="btn btn-secondary fs-3 py-2 w-100">
+              <i
+                title="{{ 'cart.add-to-cart' | translate }}"
+                class="m-auto fs-3 bi bi-cart-plus"
+              ></i>
+              {{ 'cart.add-to-cart' | translate }}
+            </button>
+          </div>
+
+          <button
+            title="{{ 'buy' | translate }}"
+            class="btn btn-danger fs-3 py-2 mx-3"
+            style="min-width: 30%;"
+          >
+            {{ 'buy' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container bg-white mt-5 p-0">
+    <div class="title py-3 px-2 border-bottom text-uppercase fw-bold">
+      sản phẩm tương tự
+    </div>
+
+    <div class="container-fluid m-auto row p-4">
+      <a
+        routerLink="/product/1"
+        class="tag col-lg-2 col-md-3 col-sm-4 col-6 product-tag border p-2"
+      >
+        <app-product-tag></app-product-tag>
+      </a>
+      <a class="tag col-lg-2 col-md-3 col-sm-4 col-6 product-tag border p-2">
+        <app-product-tag></app-product-tag>
+      </a>
+    </div>
+  </div>
+</div>

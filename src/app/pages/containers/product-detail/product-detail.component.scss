@@ -1,0 +1,26 @@
+.detail-product {
+  background-color: whitesmoke !important;
+  height: 100%;
+}
+.img {
+  cursor: pointer;
+}
+.other-img {
+  overflow-x: scroll;
+}
+.img:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
+}
+.product-tag {
+  height: 380px;
+  max-height: 380px;
+}
+
+.tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.35);
+}
+a {
+  text-decoration: none;
+  color: black;
+}

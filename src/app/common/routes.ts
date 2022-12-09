@@ -28,6 +28,12 @@ import { NotificationsComponent } from '../notification-manage/containers/notifi
 import { OrdersDetailComponent } from '../order-manage/containers/orders-detail/orders-detail.component';
 import { ReceiptViewComponent } from '../warehouse-manage/containers/receipt-view/receipt-view.component';
 import { ShopInformationComponent } from '../user-manage/containers/shop-information/shop-information.component';
+import { HomeComponent } from '../pages/containers/home/home.component';
+import { ProductsComponent } from '../pages/containers/products/products.component';
+import { CartComponent } from '../pages/containers/cart/cart.component';
+import { ProductDetailComponent } from '../pages/containers/product-detail/product-detail.component';
+import { ProfileComponent } from '../pages/containers/profile/profile.component';
+import { OrderComponent } from '../pages/containers/order/order.component';
 
 export const mainRoutes: Routes = [];
 
@@ -90,4 +96,13 @@ export const NotificationManageRoutes: Routes = [
 export const OrderManageRoutes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/detail/:id', component: OrdersDetailComponent },
+];
+
+export const pagesRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'order', component: OrderComponent },
 ];
