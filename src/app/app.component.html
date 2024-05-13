@@ -1,303 +1,78 @@
-<div *ngIf="isAdmin; then Auth; else noAuth"></div>
-
-<ng-template #Auth>
-  <mat-drawer-container class="example-container p-0" autosize>
-    <mat-drawer #drawer opened="true" mode="side">
-      <div class="position-relative">
-        <mat-toolbar class="shopname fs-3 text-white">
-          <span>Phonestore</span>
-        </mat-toolbar>
-      </div>
-      <app-dashboard></app-dashboard>
-    </mat-drawer>
-
-    <div class="cotainer-fluid">
-      <div class="nav navbar bg-white shadow">
-        <button
-          title="{{ 'Menu' | translate }}"
-          mat-icon-button
-          class="example-icon"
-          type="button"
-          (click)="drawer.toggle()"
-        >
-          <mat-icon>menu</mat-icon>
-        </button>
-
-        <span class="example-spacer d-none d-md-flex"></span>
-
-        <div
-          class="mx-2 d-flex m-auto border rounded-pill"
-          style="flex: 1; background-color: whitesmoke;"
-        >
-          <input
-            class="search-field border-0"
-            placeholder="{{ 'search' | translate }}"
-            type="search"
-          />
-          <button
-            mat-stroked-button
-            mat-icon-button
-            class="example-icon favorite-icon bg-dark text-white"
-            aria-label="Example icon-button with heart icon"
-            title="{{ 'search' | translate }}"
-          >
-            <mat-icon>search</mat-icon>
-          </button>
+<div class="myApp w-100">
+  <!-- header -->
+  <div class="header-bar d-block w-100 px-3">
+    <div class="float-end py-1">
+      <div class="d-flex">
+        <div class="item text-white">
+          <div class="px-4 align-items-center d-flex">
+            <i class="bi bi-question-circle fs-3 px-1"></i>
+            <label>
+              {{ "help" | translate }}
+            </label>
+          </div>
         </div>
-        <div class="mx-2 d-md-flex d-none">
-          <button
-            mat-stroked-button
-            mat-icon-button
-            class="example-icon favorite-icon"
-            aria-label="Example icon-button with heart icon"
-            title="{{ 'message' | translate }}"
-          >
-            <i class="bi bi-chat-dots fs-4 fw-bold"></i>
-          </button>
-        </div>
-        <div class="mx-2 mx-2 d-md-flex d-none">
-          <button
-            [matMenuTriggerFor]="notification"
-            mat-stroked-button
-            mat-icon-button
-            class="example-icon"
-            title="{{ 'notification.notification' | translate }}"
-          >
-            <mat-icon>notifications_none</mat-icon>
-          </button>
-          <mat-menu #notification="matMenu">
-            <button mat-menu-item>
-              thông báo đơn hàng 1
-            </button>
-          </mat-menu>
-        </div>
-        <div class="mx-2">
-          <button
-            [matMenuTriggerFor]="menu"
-            mat-stroked-button
-            mat-icon-button
-            class="example-icon"
-            title="{{ 'menu' | translate }}"
-          >
-            <mat-icon>more_horiz</mat-icon>
-          </button>
 
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item [matMenuTriggerFor]="language">
-              {{ 'language.languages' | translate }}
-            </button>
-            <mat-menu #language="matMenu">
-              <div
-                *ngFor="let lang of languages"
-                (click)="changeLanguage(lang)"
-              >
-                <button mat-menu-item>
+        <div class="item text-white">
+          <div
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            class="dropdown px-2 align-items-center d-flex"
+          >
+            <i class="bi bi-globe2 fs-3 px-1"></i>
+            <label>
+              {{ "language.languages" | translate }}
+            </label>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li *ngFor="let lang of languages" (click)="changeLanguage(lang)">
+                <button class="dropdown-item">
                   {{ getLanguageDisplay(lang, true) }}
                 </button>
-              </div>
-            </mat-menu>
-            <button mat-menu-item>{{ 'account' | translate }}</button>
-            <button mat-menu-item>{{ 'change-password' | translate }}</button>
-            <button (click)="logout()" mat-menu-item>
-              {{ 'auth.logout' | translate }}
-            </button>
-          </mat-menu>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="mx-2 d-md-flex d-none" style="height: 50px;">
-          <div class="rounded-circle" style="width: 50px; height: 50px;">
-            <img
-              class="img-fluid rounded-circle"
-              [src]="'http://localhost:5000' + userInfo?.avatar"
-              style="width: 50px; height: 50px;"
-            />
-          </div>
-          <div class="px-2 mt-2 h-100">
-            <div class="fs-4 text-capitalize">{{ userInfo?.username }}</div>
-            <div class="fs-6">
-              {{ userInfo?.rolename }}
+        <div class="item text-white">
+          <div
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            class="dropdown px-4 align-items-center d-flex"
+          >
+            <div
+              class="item align-items-center d-flex"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-fill fs-3"></i>
+              <label>
+                {{ "account" | translate }}
+              </label>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="contents-main">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-drawer-container>
-</ng-template>
-
-<ng-template #noAuth>
-  <div class="myApp w-100">
-    <!-- navbar -->
-    <div class="container-fluid p-0 app-header" style="z-index: 10;">
-      <div class="navbar bg-primary p-0 shadow">
-        <div class="d-none d-md-block bg-black w-100 px-3">
-          <div class="float-end py-1">
-            <div class="d-flex">
-              <div class="item text-white">
-                <div class="px-4 align-items-center d-flex">
-                  <i class="bi bi-question-circle fs-3 px-1"></i>
-                  <label>
-                    {{ 'help' | translate }}
-                  </label>
-                </div>
-              </div>
-
-              <div class="item text-white">
-                <div
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  class="dropdown px-2 align-items-center d-flex"
-                >
-                  <i class="bi bi-globe2 fs-3 px-1"></i>
-                  <label>
-                    {{ 'language.languages' | translate }}
-                  </label>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li
-                      *ngFor="let lang of languages"
-                      (click)="changeLanguage(lang)"
-                    >
-                      <button class="dropdown-item">
-                        {{ getLanguageDisplay(lang, true) }}
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="item text-white">
-                <div
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  class="dropdown px-4 align-items-center d-flex"
-                >
-                  <div
-                    class="item align-items-center d-flex"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="bi bi-person-fill fs-3"></i>
-                    <label>
-                      {{ 'account' | translate }}
-                    </label>
-                  </div>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        {{ 'user.profile' | translate }}
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        {{ 'order.order-tracking' | translate }}
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" (click)="logout()">
-                        {{ 'auth.logout' | translate }}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="w-100 mb-3">
-            <div class="d-flex w-100 mt-3">
-              <div class="fw-bold d-none d-md-flex m-auto">
-                <a href="/" class="fw-bold fs-3 text-white mb-1">
-                  PhoneStore
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="#">
+                  {{ "user.profile" | translate }}
                 </a>
-              </div>
-              <!-- menu -->
-              <div
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                class="dropdown m-auto d-xs-flex d-md-none"
-              >
-                <i
-                  title="menu"
-                  class="fs-1 search_icon text-white bi bi-list"
-                ></i>
-
-                <ul class="dropdown-menu">
-                  <li>
-                    <button class="dropdown-item">
-                      {{ 'user.profile' | translate }}
-                    </button>
-                  </li>
-                  <li>
-                    <button class="dropdown-item">
-                      {{ 'language.languages' | translate }}
-                    </button>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="d-none d-md-flex text-white w-100">
-                <ul class="nav m-auto navbar bg-primary w-100">
-                  <li class="px-2 m-auto">
-                    <a
-                      routerLink="/home"
-                      class="list-item"
-                      routerLinkActive="active-item"
-                    >
-                      {{ 'home' | translate }}
-                    </a>
-                  </li>
-                  <li class="px-2 m-auto">
-                    <a
-                      routerLink="/products"
-                      class="list-item"
-                      routerLinkActive="active-item"
-                    >
-                      {{ 'product.product' | translate }}
-                    </a>
-                  </li>
-                  <li class="px-2 m-auto">{{ 'brand.brand' | translate }}</li>
-                </ul>
-              </div>
-
-              <!-- search button -->
-              <div class="d-flex w-100">
-                <input type="search" class="search_input rounded-start" />
-                <button class="bg-black text-white rounded-end search_icon">
-                  <mat-icon>search</mat-icon>
-                </button>
-              </div>
-
-              <a class="m-auto mx-3 text-white d-flex" routerLink="/cart">
-                <div class="position-relative">
-                  <i
-                    title="{{ 'cart.cart' | translate }}"
-                    class="fs-1 search_icon text-white bi bi-cart2"
-                  ></i>
-                  <span
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  >
-                    99+
-                  </span>
-                  <span
-                    class="d-md-block d-none position-absolute bottom-0 start-100"
-                    style="width: max-content;"
-                  >
-                    {{ 'cart.cart' | translate }}
-                  </span>
-                </div>
-              </a>
-            </div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  {{ "order.order-tracking" | translate }}
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="logout()">
+                  {{ "auth.logout" | translate }}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-    <!-- contents -->
-    <div class="contents">
-      <router-outlet></router-outlet>
     </div>
   </div>
-</ng-template>
+  <div class="container-fluid p-0 app-header" style="z-index: 10"></div>
+  <!-- body -->
+  <div class="contents">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 .auth-page {
-  background-color: whitesmoke;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -8,49 +7,45 @@
   top: 0;
   right: 0;
   left: 0;
-}
-
-.auth-form {
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
-@media only screen and (max-width: 768px) {
-  .auth-page {
-    background-color: white;
-  }
+  text-align: center;
+  background-image: url("https://media.istockphoto.com/id/1344016735/vector/silhouette-forest-landscape-background.jpg?s=2048x2048&w=is&k=20&c=hkWH8TuJI8_DxM85bM4nOFMiTwwiXFXiKCPbHnb7lAc=");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #470336ab;
+  object-fit: contain;
+  padding-top: 50px;
 
   .auth-form {
     width: 90%;
-    background-color: white;
-    margin: auto;
-  }
-}
+    max-width: 1000px;
+    min-height: 400px;
+    background-color: #470336ab;
+    color: white !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(6, 14, 17, 0.12) 0px 2px 4px 0px,
+      rgba(13, 24, 29, 0.32) 0px 2px 16px 0px;
+    text-align: start;
 
-a {
-  text-decoration: none;
-}
-.form-control {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.icon {
-  margin-top: 12px;
-  font-size: 18px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-input:focus,
-textarea:focus,
-select:focus {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  border: 1px solid #4d0a95;
-  outline-width: 0;
-  font-weight: 400;
+    .login-title {
+      font-size: 28px;
+      text-transform: uppercase;
+      text-align: center;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .form-group {
+      position: relative !important;
+
+      .form-text {
+        position: absolute !important;
+        color: white !important;
+      }
+    }
+  }
 }

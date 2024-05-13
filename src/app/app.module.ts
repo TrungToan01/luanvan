@@ -13,37 +13,16 @@ import { AppShareMaterialUiModule } from './base-core-ui/app.share.material.ui.m
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SupplierManageModule } from './supplier-manage/supplier-manage.module';
-import { OrderManageModule } from './order-manage/order-manage.module';
-import { ProductManageModule } from './product-manage/product-manage.module';
-import { NotificationManageModule } from './notification-manage/notification-manage.module';
-import { WarehouseManageModule } from './warehouse-manage/warehouse-manage.module';
-import { ProductConfigurationModule } from './product-configuration/product-configuration.module';
-import { CouponsManageModule } from './coupons-manage/coupons-manage.module';
-import { PagesModule } from './pages/pages.module';
-//service
-import { UserManageService } from './user-manage/service/user-manage.service';
 import { BaseService } from './services/base.service';
 import { AuthService } from './auth/service/auth.service';
 import { ShareCoreService } from './services/share-core.service';
-import { BannerManageModule } from './banner-manage/banner-manage.module';
-import { UserManageModule } from './user-manage/user-manage.module';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent, DashboardComponent],
+  declarations: [AppComponent],
   imports: [
-    PagesModule,
-    BannerManageModule,
-    ProductConfigurationModule,
-    WarehouseManageModule,
-    SupplierManageModule,
-    OrderManageModule,
-    ProductManageModule,
-    NotificationManageModule,
-    CouponsManageModule,
+
     AppShareMaterialUiModule,
     MatToolbarModule,
     MatIconModule,
@@ -53,7 +32,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule.forChild(mainRoutes),
     BrowserAnimationsModule,
     AuthModule,
-    UserManageModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -62,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [BaseService, AuthService, UserManageService, ShareCoreService],
+  providers: [BaseService, AuthService, ShareCoreService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
