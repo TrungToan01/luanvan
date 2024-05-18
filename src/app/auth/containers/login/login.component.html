@@ -11,7 +11,6 @@
             class="img-fluid d-md-flex d-none m-auto"
           />
         </div>
-
         <div class="col-12 col-md-7 h-100 px-0 d-flex m-auto">
           <div class="w-100 m-auto">
             <form id="loginForm" (ngSubmit)="onSubmit()" #loginForm="ngForm">
@@ -26,18 +25,33 @@
                     #email="ngModel"
                     name="email"
                     class="form-control"
-                    placeholder="{{ 'placeholder.input-email' | translate }}"
+                    placeholder="{{ 'placeholder.email' | translate }}"
                     aria-describedby="email"
                     type="email"
-                    required
+                    [pattern]="
+                      '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+                    "
+                    [required]="'true'"
                   />
                   <small
                     id="emailHid"
-                    class="form-text text-whitem frm-text"
-                    style="position: absolute"
-                    *ngIf="!email?.valid && (email?.dirty || email.touched)"
+                    *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="form-text text-whitem frm-text position-absolute"
                   >
-                    {{ "notification.invalid-email" | translate }}
+                    <div
+                      *ngIf="
+                        email.errors && email.errors['pattern'] && email.value
+                      "
+                    >
+                      {{ "verify.format.email" | translate }}
+                    </div>
+                    <div
+                      *ngIf="
+                        email.errors && email.errors['required'] && !email.value
+                      "
+                    >
+                      {{ "verify.empty.email" | translate }}
+                    </div>
                   </small>
                 </div>
               </div>
@@ -57,9 +71,7 @@
                       #password="ngModel"
                       name="password"
                       type="password"
-                      placeholder="{{
-                        'placeholder.input-password' | translate
-                      }}"
+                      placeholder="{{ 'placeholder.password' | translate }}"
                       aria-describedby="password"
                       required
                       style="padding-right: 30px"
@@ -75,7 +87,15 @@
                       !password?.valid && (password?.dirty || password.touched)
                     "
                   >
-                    {{ "notification.invalid-password" | translate }}
+                    <div
+                      *ngIf="
+                        password.errors &&
+                        password.errors['required'] &&
+                        !password.value
+                      "
+                    >
+                      {{ "verify.empty.password" | translate }}
+                    </div>
                   </small>
                 </div>
               </div>
@@ -85,7 +105,7 @@
                   for="passwordconfirm"
                   class="col-3 m-auto col-form-label text-end"
                 >
-                  {{ "user.password-confirm" | translate }}
+                  {{ "user.confirm" | translate }}
                 </label>
                 <div class="col-9">
                   <div class="d-flex position-relative">
@@ -98,9 +118,7 @@
                       required
                       aria-describedby="passwordconfirm"
                       type="password"
-                      placeholder="{{
-                        'placeholder.input-password-confirm' | translate
-                      }}"
+                      placeholder="{{ 'placeholder.confirm' | translate }}"
                       style="padding-right: 30px"
                     />
                     <div class="icon d-flex position-absolute" style="right: 0">
@@ -115,10 +133,18 @@
                       (passwordconfirm?.dirty || passwordconfirm.touched)
                     "
                   >
-                    {{ "notification.invalid-confirm" | translate }}
+                    <div
+                      *ngIf="
+                        passwordconfirm.errors &&
+                        passwordconfirm.errors['required'] &&
+                        !passwordconfirm.value
+                      "
+                    >
+                      {{ "verify.empty.confirm" | translate }}
+                    </div>
                   </small>
-                  <small *ngIf="!confirmPass" class="from-text text-muted">
-                    {{ "notification.validate-password" | translate }}
+                  <small *ngIf="!confirmPass" class="form-text text-muted">
+                    {{ "verify.invalid.confirm" | translate }}
                   </small>
                 </div>
               </div>
@@ -129,14 +155,14 @@
                   <button
                     class="btn btn-primary m-auto fs-4 px-5 w-100 shadow fw-bold"
                   >
-                    {{ "auth.login" | translate }}
+                    {{ "button.submit" | translate }}
                   </button>
                 </div>
               </div>
 
               <div class="text-end">
                 <span>
-                  {{ "auth.donot-have-an-account" | translate }}
+                  {{ "verify.confirm.not-account" | translate }}
                   <a routerLink="/register" class="text-primary">
                     {{ "auth.register" | translate }}
                   </a>

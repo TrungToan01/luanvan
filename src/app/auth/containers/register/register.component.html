@@ -2,7 +2,7 @@
   <div class="auth-form d-flex shadow rounded">
     <div class="container h-100">
       <p class="login-title">
-        {{ "auth.registration" | translate }}
+        {{ "auth.register" | translate }}
       </p>
       <div class="row m-auto h-100 px-0">
         <div class="col-0 h-100 col-md-5 m-auto d-flex d-md-flex d-none">
@@ -19,7 +19,6 @@
               (ngSubmit)="onSubmit()"
               #registerForm="ngForm"
             >
-              <!-- user full name -->
               <div class="form-group row mb-4 frm-group">
                 <label class="col-3 m-auto col-form-label text-end">
                   {{ "user.username" | translate }}
@@ -27,31 +26,38 @@
                 <div class="col-9">
                   <input
                     ngModel
-                    #full_name="ngModel"
-                    name="full_name"
+                    #username="ngModel"
+                    name="username"
                     required
                     aria-describedby="full_name"
-                    placeholder="{{ 'placeholder.input-fullname' | translate }}"
+                    placeholder="{{ 'placeholder.username' | translate }}"
                     type="email"
                     class="form-control"
                     required
                   />
                   <small
-                    id="full_nameHid"
+                    id="username"
                     class="form-text text-whitem frm-text"
                     *ngIf="
-                      !full_name?.valid &&
-                      (full_name?.dirty || full_name?.touched)
+                      !username?.valid && (username?.dirty || username?.touched)
                     "
                   >
-                    {{ "notification.invalid-username" | translate }}
+                    <div
+                      *ngIf="
+                        username.errors &&
+                        username.errors['required'] &&
+                        !username.value
+                      "
+                    >
+                      {{ "verify.empty.username" | translate }}
+                    </div>
                   </small>
                 </div>
               </div>
               <!-- number Phone -->
               <div class="form-group row mb-4 frm-group">
                 <label for="phone" class="col-3 m-auto col-form-label text-end">
-                  {{ "user.phone-number" | translate }}
+                  {{ "user.phone" | translate }}
                 </label>
                 <div class="col-9">
                   <input
@@ -59,7 +65,7 @@
                     ngModel
                     #phone="ngModel"
                     name="phone"
-                    placeholder="{{ 'placeholder.input-phone' | translate }}"
+                    placeholder="{{ 'placeholder.phone' | translate }}"
                     minlength="10"
                     aria-describedby="phone"
                     class="form-control"
@@ -70,16 +76,19 @@
                     class="form-text text-whitem frm-text"
                     *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
                   >
-                    {{ "notification.invalid-phone" | translate }}
+                    <div
+                      *ngIf="
+                        phone.errors && phone.errors['required'] && !phone.value
+                      "
+                    >
+                      {{ "verify.empty.phone" | translate }}
+                    </div>
                   </small>
                 </div>
               </div>
               <!-- email -->
               <div class="form-group row mb-4 frm-group">
-                <label
-                  for="email_address"
-                  class="col-3 m-auto col-form-label text-end"
-                >
+                <label class="col-3 m-auto col-form-label text-end">
                   {{ "user.email" | translate }}
                 </label>
                 <div class="col-9">
@@ -88,29 +97,44 @@
                     #email="ngModel"
                     name="email"
                     class="form-control"
+                    placeholder="{{ 'placeholder.email' | translate }}"
                     aria-describedby="email"
-                    placeholder="{{ 'placeholder.input-email' | translate }}"
                     type="email"
-                    required
+                    [pattern]="
+                      '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+                    "
+                    [required]="'true'"
                   />
                   <small
                     id="emailHid"
-                    class="form-text text-whitem frm-text"
-                    *ngIf="!email?.valid && (email?.dirty || email?.touched)"
+                    *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="form-text text-whitem frm-text position-absolute"
                   >
-                    {{ "notification.invalid-email" | translate }}
+                    <div
+                      *ngIf="
+                        email.errors && email.errors['pattern'] && email.value
+                      "
+                    >
+                      {{ "verify.format.email" | translate }}
+                    </div>
+                    <div
+                      *ngIf="
+                        email.errors && email.errors['required'] && !email.value
+                      "
+                    >
+                      {{ "verify.empty.email" | translate }}
+                    </div>
                   </small>
                 </div>
               </div>
               <!-- password -->
-              <div class="form-group row mb-4 frm-group">
+              <div class="form-group row mb-4">
                 <label
                   for="password"
                   class="col-3 m-auto col-form-label text-end"
                 >
                   {{ "user.password" | translate }}
                 </label>
-
                 <div class="col-9">
                   <div class="d-flex position-relative">
                     <input
@@ -119,9 +143,7 @@
                       #password="ngModel"
                       name="password"
                       type="password"
-                      placeholder="{{
-                        'placeholder.input-password' | translate
-                      }}"
+                      placeholder="{{ 'placeholder.password' | translate }}"
                       aria-describedby="password"
                       required
                       style="padding-right: 30px"
@@ -132,22 +154,30 @@
                   </div>
                   <small
                     id="passwordHid"
-                    class="form-text text-whitem frm-text"
+                    class="form-text text-muted"
                     *ngIf="
                       !password?.valid && (password?.dirty || password.touched)
                     "
                   >
-                    {{ "notification.invalid-password" | translate }}
+                    <div
+                      *ngIf="
+                        password.errors &&
+                        password.errors['required'] &&
+                        !password.value
+                      "
+                    >
+                      {{ "verify.empty.password" | translate }}
+                    </div>
                   </small>
                 </div>
               </div>
               <!-- password confirm -->
-              <div class="form-group row mb-4 frm-group">
+              <div class="form-group row mb-4">
                 <label
                   for="passwordconfirm"
                   class="col-3 m-auto col-form-label text-end"
                 >
-                  {{ "user.password-confirm" | translate }}
+                  {{ "user.confirm" | translate }}
                 </label>
                 <div class="col-9">
                   <div class="d-flex position-relative">
@@ -155,48 +185,54 @@
                       class="form-control"
                       ngModel
                       #passwordconfirm="ngModel"
-                      (ngModelChange)="checkPasswork()"
                       name="passwordconfirm"
+                      (ngModelChange)="checkPasswork()"
                       required
                       aria-describedby="passwordconfirm"
                       type="password"
-                      placeholder="{{
-                        'placeholder.input-password-confirm' | translate
-                      }}"
+                      placeholder="{{ 'placeholder.confirm' | translate }}"
                       style="padding-right: 30px"
                     />
-                    <div class="d-flex icon position-absolute" style="right: 0">
+                    <div class="icon d-flex position-absolute" style="right: 0">
                       <i class="bi bi-eye m-auto"></i>
                     </div>
                   </div>
                   <small
                     id="passwordconfirmHid"
-                    class="form-text text-whitem frm-text"
+                    class="form-text text-muted"
                     *ngIf="
                       !passwordconfirm?.valid &&
                       (passwordconfirm?.dirty || passwordconfirm.touched)
                     "
                   >
-                    {{ "notification.invalid-confirm" | translate }}
+                    <div
+                      *ngIf="
+                        passwordconfirm.errors &&
+                        passwordconfirm.errors['required'] &&
+                        !passwordconfirm.value
+                      "
+                    >
+                      {{ "verify.empty.confirm" | translate }}
+                    </div>
                   </small>
-                  <small *ngIf="!confirmPass" class="from-text text-muted">
-                    {{ "notification.validate-password" | translate }}
+                  <small *ngIf="!confirmPass" class="form-text text-muted">
+                    {{ "verify.invalid.confirm" | translate }}
                   </small>
                 </div>
               </div>
 
-              <div class="form-group row mt-4">
+              <div class="form-group row mt-5">
                 <div class="col-3"></div>
                 <div class="col-9">
                   <button class="btn btn-primary m-auto fs-4 px-5 w-100">
-                    {{ "auth.register" | translate }}
+                    {{ "button.submit" | translate }}
                   </button>
                 </div>
               </div>
 
-              <div class="pb-2" style="float: right">
+              <div class="pb-2 pt-2" style="float: right">
                 <span class="float-right">
-                  {{ "auth.already-have-an-account" | translate }}
+                  {{ "verify.confirm.has-account" | translate }}
                   <a class="text-primary" routerLink="/login">
                     {{ "auth.login" | translate }}
                   </a>

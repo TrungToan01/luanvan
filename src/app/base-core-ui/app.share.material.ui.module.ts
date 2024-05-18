@@ -42,13 +42,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { WaitingComponent } from './waiting/waiting.component';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import { MessageDialogComponent } from './dialog/message-dialog/message-dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
-    WaitingComponent,
     ConfirmDialogComponent,
     MessageDialogComponent,
   ],
