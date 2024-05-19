@@ -50,7 +50,6 @@
       "phone": "Phone field cannot be empty."
     },
     "format": {
-      "username": "Invalid format username.",
       "email": "Invalid format email address.",
       "phone": "Invalid format phone number."
     },
@@ -68,7 +67,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "home": "Home",
-    "submit": "Submit"
+    "submit": "Submit",
+    "help": "Help"
   },
   "placeholder": {
     "email": "email@address.com",

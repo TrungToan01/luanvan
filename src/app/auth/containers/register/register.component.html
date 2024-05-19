@@ -61,21 +61,27 @@
                 </label>
                 <div class="col-9">
                   <input
-                    type="text"
                     ngModel
                     #phone="ngModel"
                     name="phone"
-                    placeholder="{{ 'placeholder.phone' | translate }}"
-                    minlength="10"
-                    aria-describedby="phone"
                     class="form-control"
-                    id="phone"
-                    required
+                    placeholder="{{ 'placeholder.phone' | translate }}"
+                    aria-describedby="phone"
+                    [pattern]="'^[2-9]\d{2}[2-9]\d{2}\d{4}$'"
+                    [required]="'true'"
                   />
                   <small
-                    class="form-text text-whitem frm-text"
-                    *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
+                    id="emailHid"
+                    *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                    class="form-text text-white frm-text position-absolute"
                   >
+                    <div
+                      *ngIf="
+                        phone.errors && phone.errors['pattern'] && phone.value
+                      "
+                    >
+                      {{ "verify.format.phone" | translate }}
+                    </div>
                     <div
                       *ngIf="
                         phone.errors && phone.errors['required'] && !phone.value

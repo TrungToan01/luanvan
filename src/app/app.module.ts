@@ -16,11 +16,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BaseService } from './services/base.service';
 import { AuthService } from './auth/service/auth.service';
 import { ShareCoreService } from './services/share-core.service';
+import { HomeComponent } from './page/containers/home/home.component';
+import { ProfileComponent } from './page/containers/profile/profile.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,HomeComponent, ProfileComponent],
   imports: [
 
     AppShareMaterialUiModule,
